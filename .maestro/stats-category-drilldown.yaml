@@ -1,0 +1,13 @@
+appId: dev.hyo.bookoo
+name: Statistics category drill-down
+---
+# Synthetic populated September ledger, already on Stats.
+- assertVisible:
+    id: donut-chart
+- takeScreenshot: ${EVIDENCE_DIR}/01-stats-populated
+- tapOn:
+    text: Meal,.*
+- waitForAnimationToEnd
+- takeScreenshot: ${EVIDENCE_DIR}/02-category-detail
+- assertNotVisible:
+    id: app-error-fallback

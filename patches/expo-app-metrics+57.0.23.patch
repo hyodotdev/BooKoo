@@ -1,0 +1,81 @@
+diff --git a/node_modules/expo-app-metrics/src/index.ts b/node_modules/expo-app-metrics/src/index.ts
+--- a/node_modules/expo-app-metrics/src/index.ts
++++ b/node_modules/expo-app-metrics/src/index.ts
+@@ -1,5 +1,3 @@
+-import { installErrorHandler } from './installErrorHandler';
+-
+ export { default } from './module';
+ export { AppMetricsRoot } from './AppMetricsRoot';
+ export { AppMetricsErrorBoundary } from './AppMetricsErrorBoundary';
+@@ -10,7 +8,3 @@
+ export type { Session } from './Session';
+ export * from './types';
+ export * from './useNetworkRequestObserver';
+-
+-// Install the unhandled-JS-error handler as soon as `expo-app-metrics` is imported, so capture is
+-// live as early as the app pulls the module in. Idempotent.
+-installErrorHandler();
+diff --git a/node_modules/expo-app-metrics/android/src/main/java/expo/modules/appmetrics/crashreporting/CrashFileWriter.kt b/node_modules/expo-app-metrics/android/src/main/java/expo/modules/appmetrics/crashreporting/CrashFileWriter.kt
+--- a/node_modules/expo-app-metrics/android/src/main/java/expo/modules/appmetrics/crashreporting/CrashFileWriter.kt
++++ b/node_modules/expo-app-metrics/android/src/main/java/expo/modules/appmetrics/crashreporting/CrashFileWriter.kt
+@@ -34,7 +34,8 @@
+         pid = pid,
+         crashedAtMillis = crashedAtMillis,
+         exceptionClass = throwable.javaClass.name,
+-        composedMessage = CrashReport.composeMessage(throwable),
++        // BooKoo: persist only the exception class, never private runtime text.
++        composedMessage = throwable.javaClass.name,
+         threadName = threadName,
+         // Same frame source `fromThrowable` uses.
+         stackFrames = throwable.stackTrace.map { it.toString() }
+diff --git a/node_modules/expo-app-metrics/android/src/main/java/expo/modules/appmetrics/crashreporting/CrashFileReader.kt b/node_modules/expo-app-metrics/android/src/main/java/expo/modules/appmetrics/crashreporting/CrashFileReader.kt
+--- a/node_modules/expo-app-metrics/android/src/main/java/expo/modules/appmetrics/crashreporting/CrashFileReader.kt
++++ b/node_modules/expo-app-metrics/android/src/main/java/expo/modules/appmetrics/crashreporting/CrashFileReader.kt
+@@ -107,7 +107,8 @@
+    */
+   fun toCrashReport(ingestedAt: String, appVersion: String): CrashReport =
+     CrashReport(
+-      exceptionReason = composedMessage,
++      // BooKoo: older pending files must not restore private runtime text.
++      exceptionReason = exceptionClass,
+       callStackTree = CallStackTreeBuilder.fromSymbols(stackFrames),
+       appVersion = appVersion,
+       timestampBegin = TimeUtils.millisToTimestamp(crashedAtMillis),
+diff --git a/node_modules/expo-app-metrics/android/src/main/java/expo/modules/appmetrics/crashreporting/ExitInfoProvider.kt b/node_modules/expo-app-metrics/android/src/main/java/expo/modules/appmetrics/crashreporting/ExitInfoProvider.kt
+--- a/node_modules/expo-app-metrics/android/src/main/java/expo/modules/appmetrics/crashreporting/ExitInfoProvider.kt
++++ b/node_modules/expo-app-metrics/android/src/main/java/expo/modules/appmetrics/crashreporting/ExitInfoProvider.kt
+@@ -56,7 +56,8 @@
+       } else {
+         null
+       },
+-      terminationReason = description,
++      // BooKoo: numeric reasons suffice; omit free-form OS descriptions.
++      terminationReason = null,
+       appVersion = appVersion,
+       timestampBegin = crashTimestamp,
+       ingestedAt = ingestedAt
+diff --git a/node_modules/expo-app-metrics/ios/CrashReporting/CrashReport.swift b/node_modules/expo-app-metrics/ios/CrashReporting/CrashReport.swift
+--- a/node_modules/expo-app-metrics/ios/CrashReporting/CrashReport.swift
++++ b/node_modules/expo-app-metrics/ios/CrashReporting/CrashReport.swift
+@@ -326,18 +326,8 @@
+     self.timestampEnd = payload.timeStampEnd
+     self.ingestedAt = Date.now
+-
++
+-    if #available(iOS 17.0, *), let reason = diagnostic.exceptionReason {
+-      self.exceptionReason = ExceptionReason(
+-        composedMessage: reason.composedMessage as String,
+-        formatString: reason.formatString as String,
+-        arguments: reason.arguments.map { $0 as String },
+-        exceptionType: reason.exceptionType as String,
+-        className: reason.className as String,
+-        exceptionName: reason.exceptionName as String
+-      )
+-    } else {
+-      self.exceptionReason = nil
+-    }
++    // BooKoo: omit MetricKit free-form arguments; keep numeric crash grouping.
++    self.exceptionReason = nil
+   }
+ }
+ #endif

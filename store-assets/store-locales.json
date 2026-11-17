@@ -1,0 +1,15 @@
+{
+  "de": {"apple": ["de-DE"], "google": ["de-DE"]},
+  "en": {"apple": ["en-US"], "google": ["en-US"]},
+  "es": {"apple": ["es-ES"], "google": ["es-ES", "es-419"]},
+  "fr": {"apple": ["fr-FR"], "google": ["fr-FR"]},
+  "id": {"apple": ["id"], "google": ["id"]},
+  "it": {"apple": ["it"], "google": ["it-IT"]},
+  "ja": {"apple": ["ja"], "google": ["ja-JP"]},
+  "ko": {"apple": ["ko"], "google": ["ko-KR"]},
+  "nl": {"apple": ["nl-NL"], "google": ["nl-NL"]},
+  "pt": {"apple": ["pt-BR", "pt-PT"], "google": ["pt-BR", "pt-PT"]},
+  "vi": {"apple": ["vi"], "google": ["vi"]},
+  "zh": {"apple": ["zh-Hans"], "google": ["zh-CN"]},
+  "zh-Hant": {"apple": ["zh-Hant"], "google": ["zh-TW", "zh-HK"]}
+}

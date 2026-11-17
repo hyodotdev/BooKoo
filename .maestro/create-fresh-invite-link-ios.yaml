@@ -1,0 +1,36 @@
+appId: dev.hyo.bookoo
+name: Create a synthetic invite link for fresh-account E2E
+---
+- launchApp:
+    stopApp: true
+- openLink: bookoo://ledgers
+- waitForAnimationToEnd:
+    timeout: 10000
+- tapOn:
+    id: ledger-list-row-${BOOKOO_E2E_OWNER_LEDGER_TITLE}
+- extendedWaitUntil:
+    visible: ${BOOKOO_E2E_OWNER_LEDGER_TITLE}
+    timeout: 30000
+- openLink: bookoo://me
+- extendedWaitUntil:
+    visible:
+      id: ledger-settings-row-invites
+    timeout: 30000
+- tapOn:
+    id: ledger-settings-row-invites
+- extendedWaitUntil:
+    visible: Create invite link
+    timeout: 30000
+- tapOn: Create invite link
+- extendedWaitUntil:
+    visible: Copy
+    timeout: 30000
+- tapOn: Copy
+- extendedWaitUntil:
+    visible: Copy link
+    timeout: 30000
+- tapOn: Copy link
+- extendedWaitUntil:
+    visible: Invite link copied.
+    timeout: 10000
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-simulator/invite/001-owner-created-invite

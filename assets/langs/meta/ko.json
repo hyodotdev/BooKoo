@@ -1,0 +1,13 @@
+{
+  "android": {
+    "app_name": "BooKoo"
+  },
+  "ios": {
+    "CFBundleDisplayName": "BooKoo",
+    "NSCameraUsageDescription": "BooKoo에서 내역에 사진을 첨부하려면 카메라 접근 권한이 필요합니다.",
+    "NSFaceIDUsageDescription": "BooKoo 잠금을 해제하는 데 Face ID를 사용합니다.",
+    "NSLocationWhenInUseUsageDescription": "BooKoo에서 내역에 장소를 고르거나 지도에서 현재 위치를 찾을 때 위치 권한을 사용합니다.",
+    "NSPhotoLibraryAddUsageDescription": "BooKoo에서 사진을 기기에 저장하려면 사진 보관함 추가 권한이 필요합니다.",
+    "NSPhotoLibraryUsageDescription": "BooKoo에서 내역에 사진을 첨부하려면 사진 접근 권한이 필요합니다."
+  }
+}

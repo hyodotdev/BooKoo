@@ -1,0 +1,11 @@
+appId: dev.hyo.bookoo
+---
+- openLink: ${ROUTE}
+- runFlow:
+    when:
+      platform: iOS
+    file: ios-confirm-deep-link.yaml
+- waitForAnimationToEnd
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: ${OUTPUT_ROOT}/${NAME}

@@ -1,0 +1,24 @@
+appId: dev.hyo.bookoo
+name: Select OpenIAP Pro screen plans and close without a purchase
+# Run only where the real store catalog resolves. No purchase or restore tap.
+---
+- runFlow: openiap-pro-inspect.yaml
+- assertVisible: '^Annual, .*'
+- tapOn:
+    text: '^Monthly, .*'
+    waitToSettleTimeoutMs: 1000
+- assertVisible: '^Continue monthly$'
+- takeScreenshot: ${EVIDENCE_DIR}/03-monthly-selected
+- tapOn:
+    text: '^Annual, .*'
+    waitToSettleTimeoutMs: 1000
+- assertVisible: '^Annual, .*'
+- takeScreenshot: ${EVIDENCE_DIR}/04-annual-selected
+- back
+- extendedWaitUntil:
+    visible:
+      id: ledger-settings-row-pro
+    timeout: 15000
+- takeScreenshot: ${EVIDENCE_DIR}/05-returned-to-more
+- assertNotVisible:
+    id: pro-paywall-loading

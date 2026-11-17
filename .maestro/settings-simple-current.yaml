@@ -1,0 +1,154 @@
+appId: dev.hyo.bookoo
+name: Concise sticky settings and inverse recovery action
+---
+- launchApp:
+    stopApp: false
+- openLink: bookoo://settings
+- runFlow:
+    when:
+      platform: iOS
+    file: ios-confirm-deep-link.yaml
+- extendedWaitUntil:
+    visible:
+      id: app-settings-sections
+    timeout: 20000
+- assertNotVisible:
+    id: app-error-fallback
+- assertNotVisible: 'Feedback|의견나누기|フィードバック|分享你的想法|berinteraksi'
+- assertNotVisible: 'Logout|로그아웃|ログアウト|退出登录|Keluar'
+- takeScreenshot: ${EVIDENCE_DIR}/01-settings
+- swipe:
+    direction: UP
+    duration: 500
+- takeScreenshot: ${EVIDENCE_DIR}/01b-settings-sticky
+- openLink: bookoo://settings/notifications
+- runFlow:
+    when:
+      platform: iOS
+    file: ios-confirm-deep-link.yaml
+- extendedWaitUntil:
+    visible:
+      id: notification-settings-sections
+    timeout: 20000
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: ${EVIDENCE_DIR}/02-notifications
+- openLink: bookoo://settings/default-currency
+- runFlow:
+    when:
+      platform: iOS
+    file: ios-confirm-deep-link.yaml
+- extendedWaitUntil:
+    visible:
+      id: default-currency-sections
+    timeout: 20000
+- tapOn:
+    text: '.*JPY'
+- waitForAnimationToEnd:
+    timeout: 5000
+- takeScreenshot: ${EVIDENCE_DIR}/03-currency-jpy-selected
+- openLink: bookoo://settings/about
+- runFlow:
+    when:
+      platform: iOS
+    file: ios-confirm-deep-link.yaml
+- extendedWaitUntil:
+    visible:
+      id: about-sections
+    timeout: 20000
+- assertNotVisible: 'Terms of service|이용약관|利用規約|服务条款|Ketentuan layanan'
+- assertNotVisible: 'Contact support|고객 문의|お問い合わせ|客户咨询|Hubungi kami'
+- takeScreenshot: ${EVIDENCE_DIR}/04-about
+- openLink: bookoo://settings/legal/support
+- runFlow:
+    when:
+      platform: iOS
+    file: ios-confirm-deep-link.yaml
+- extendedWaitUntil:
+    visible:
+      id: legal-support-sections
+    timeout: 20000
+- assertNotVisible: 2026-09-01
+- takeScreenshot: ${EVIDENCE_DIR}/05-customer-inquiry
+- openLink: bookoo://settings/faq
+- runFlow:
+    when:
+      platform: iOS
+    file: ios-confirm-deep-link.yaml
+- extendedWaitUntil:
+    visible:
+      id: faq-sections
+    timeout: 20000
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: ${EVIDENCE_DIR}/06-faq
+- openLink: bookoo://settings/announcements
+- runFlow:
+    when:
+      platform: iOS
+    file: ios-confirm-deep-link.yaml
+- extendedWaitUntil:
+    visible:
+      id: announcement-sections
+    timeout: 20000
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: ${EVIDENCE_DIR}/07-announcements
+- openLink: bookoo://settings/privacy
+- runFlow:
+    when:
+      platform: iOS
+    file: ios-confirm-deep-link.yaml
+- extendedWaitUntil:
+    visible:
+      id: privacy-sections
+    timeout: 20000
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: ${EVIDENCE_DIR}/08-privacy
+- openLink: bookoo://settings/account
+- runFlow:
+    when:
+      platform: iOS
+    file: ios-confirm-deep-link.yaml
+- extendedWaitUntil:
+    visible:
+      id: account-sections
+    timeout: 20000
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: ${EVIDENCE_DIR}/09-account
+- openLink: bookoo://settings/appearance
+- runFlow:
+    when:
+      platform: iOS
+    file: ios-confirm-deep-link.yaml
+- extendedWaitUntil:
+    visible:
+      id: appearance-sections
+    timeout: 20000
+- tapOn:
+    text: 'Dark|다크|ダーク|深色|Gelap|Dunkel|Oscuro|Sombre|Scuro|Donker|Escuro'
+- openLink: bookoo://not-a-real-route
+- runFlow:
+    when:
+      platform: iOS
+    file: ios-confirm-deep-link.yaml
+- extendedWaitUntil:
+    visible:
+      id: not-found-screen
+    timeout: 20000
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: ${EVIDENCE_DIR}/10-dark-recovery
+- openLink: bookoo://settings/appearance
+- runFlow:
+    when:
+      platform: iOS
+    file: ios-confirm-deep-link.yaml
+- extendedWaitUntil:
+    visible:
+      id: appearance-sections
+    timeout: 20000
+- tapOn:
+    text: 'System|시스템 설정|システム|跟随系统|Sistem|Système|Systeem|Sistema'

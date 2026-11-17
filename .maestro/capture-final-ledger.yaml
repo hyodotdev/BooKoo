@@ -1,0 +1,117 @@
+appId: dev.hyo.bookoo
+name: Final ledger route screenshot inventory
+---
+- launchApp:
+    stopApp: true
+- runFlow:
+    file: _capture-route.yaml
+    env:
+      {
+        ROUTE: 'bookoo://ledger/${LEDGER_ID}/settings',
+        NAME: '020-ledger-settings',
+      }
+- runFlow:
+    file: _capture-route.yaml
+    env:
+      {
+        ROUTE: 'bookoo://ledger/${LEDGER_ID}/details',
+        NAME: '021-ledger-details',
+      }
+- runFlow:
+    file: _capture-route.yaml
+    env:
+      {
+        ROUTE: 'bookoo://ledger/${LEDGER_ID}/members',
+        NAME: '022-ledger-members',
+      }
+- runFlow:
+    file: _capture-route.yaml
+    env:
+      {
+        ROUTE: 'bookoo://ledger/${LEDGER_ID}/invites',
+        NAME: '023-ledger-invites',
+      }
+- runFlow:
+    file: _capture-route.yaml
+    env:
+      {
+        ROUTE: 'bookoo://ledger/${LEDGER_ID}/requests',
+        NAME: '024-ledger-requests',
+      }
+- runFlow:
+    file: _capture-route.yaml
+    env:
+      {
+        ROUTE: 'bookoo://ledger/${LEDGER_ID}/categories',
+        NAME: '025-ledger-categories',
+      }
+- runFlow:
+    file: _capture-route.yaml
+    env:
+      {
+        ROUTE: 'bookoo://ledger/${LEDGER_ID}/currency',
+        NAME: '026-ledger-currency',
+      }
+- runFlow:
+    file: _capture-route.yaml
+    env:
+      {
+        ROUTE: 'bookoo://ledger/${LEDGER_ID}/timezone',
+        NAME: '027-ledger-timezone',
+      }
+- runFlow:
+    file: _capture-route.yaml
+    env:
+      {ROUTE: 'bookoo://ledger/${LEDGER_ID}/photos', NAME: '028-ledger-photos'}
+- runFlow:
+    file: _capture-route.yaml
+    env:
+      {
+        ROUTE: 'bookoo://ledger/${LEDGER_ID}/deleted',
+        NAME: '029-ledger-deleted',
+      }
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: 'bookoo://ledger/${LEDGER_ID}/audit', NAME: '030-ledger-audit'}
+- runFlow:
+    file: _capture-route.yaml
+    env:
+      {ROUTE: 'bookoo://ledger/${LEDGER_ID}/danger', NAME: '031-ledger-danger'}
+- runFlow:
+    file: _capture-route.yaml
+    env:
+      {
+        ROUTE: 'bookoo://ledger/${LEDGER_ID}/item/new',
+        NAME: '032-ledger-item-new',
+      }
+- runFlow:
+    file: _capture-route.yaml
+    env:
+      {
+        ROUTE: 'bookoo://ledger/${LEDGER_ID}/item/${ITEM_ID}',
+        NAME: '033-ledger-item-detail',
+      }
+- runFlow:
+    file: _capture-route.yaml
+    env:
+      {
+        ROUTE: 'bookoo://ledger/${LEDGER_ID}/item/${ITEM_ID}/edit',
+        NAME: '034-ledger-item-edit',
+      }
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: 'bookoo://photo/${ITEM_ID}', NAME: '035-photo-viewer'}
+- runFlow:
+    file: _capture-route.yaml
+    env:
+      {
+        ROUTE: 'bookoo://ledger/${LEDGER_ID}/item/category?kind=EXPENSE&selectedKey=transport',
+        NAME: '036-ledger-item-category',
+      }
+- runFlow:
+    file: _capture-route.yaml
+    env:
+      {
+        ROUTE: 'bookoo://ledger/${LEDGER_ID}/item/category/new?kind=EXPENSE',
+        NAME: '037-ledger-item-category-new',
+      }

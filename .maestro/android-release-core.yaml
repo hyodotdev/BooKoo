@@ -1,0 +1,48 @@
+appId: dev.hyo.bookoo
+name: Warm Android calendar statistics and More regression
+---
+- assertVisible:
+    id: authenticated-tab-shell
+- tapOn: '^Monthly$'
+- assertVisible:
+    id: calendar-next
+- takeScreenshot: ${EVIDENCE_DIR}/20-monthly-populated
+- tapOn:
+    id: calendar-next
+- assertVisible:
+    id: calendar-empty-add
+- takeScreenshot: ${EVIDENCE_DIR}/21-monthly-empty
+- tapOn:
+    id: calendar-empty-add
+- assertVisible:
+    id: entry-route-header
+- pressKey: BACK
+- assertVisible:
+    id: calendar-empty-add
+- tapOn:
+    id: calendar-prev
+- tapOn: '^Stats$'
+- assertVisible:
+    id: stats-next-month
+- takeScreenshot: ${EVIDENCE_DIR}/22-stats-populated
+- tapOn:
+    id: stats-next-month
+- assertVisible: 'No entries in this month'
+- takeScreenshot: ${EVIDENCE_DIR}/23-stats-empty
+- tapOn:
+    id: stats-previous-month
+- tapOn: '^More$'
+- assertVisible:
+    id: ledger-settings-row-manage
+- takeScreenshot: ${EVIDENCE_DIR}/24-more
+- tapOn:
+    id: ledger-settings-row-manage
+- assertVisible:
+    id: ledger-settings-row-deleted
+- takeScreenshot: ${EVIDENCE_DIR}/25-manage
+- pressKey: BACK
+- assertVisible:
+    id: ledger-settings-row-manage
+- tapOn: '^Monthly$'
+- assertNotVisible:
+    id: app-error-fallback

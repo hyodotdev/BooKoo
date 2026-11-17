@@ -1,0 +1,80 @@
+appId: dev.hyo.bookoo
+name: Final Android interaction screenshot sweep
+---
+- launchApp:
+    stopApp: false
+- openLink: bookoo://
+- extendedWaitUntil:
+    visible:
+      id: calendar-parallax-menu
+    timeout: 20000
+- tapOn:
+    id: calendar-parallax-menu
+- assertVisible:
+    id: ledger-drawer-close
+- takeScreenshot: docs/debugs/e2e/2026-08-31-final/android-emulator/interactions/001-drawer-open
+- tapOn:
+    point: 95%,50%
+- assertNotVisible:
+    id: ledger-drawer-close
+- tapOn:
+    id: calendar-parallax-menu
+- tapOn:
+    id: ledger-drawer-profile
+- assertVisible:
+    id: my-profile-screen
+- takeScreenshot: docs/debugs/e2e/2026-08-31-final/android-emulator/interactions/002-drawer-profile
+- openLink: bookoo://ledger/ns714ycjvtq4z653adfvfwpwn58dgdsk/categories
+- extendedWaitUntil:
+    visible: Categories
+    timeout: 20000
+- tapOn:
+    text: more
+    index: 0
+- takeScreenshot: docs/debugs/e2e/2026-08-31-final/android-emulator/interactions/003-category-tools
+- openLink: bookoo://ledger/ns714ycjvtq4z653adfvfwpwn58dgdsk/item/n576hmvb67ex9ph02m5c4awnc58dh8x0
+- extendedWaitUntil:
+    visible:
+      id: ledger-item-comment-field
+    timeout: 20000
+- tapOn:
+    text: Write a comment...
+- inputText: Could we tag this for work?
+- takeScreenshot: docs/debugs/e2e/2026-08-31-final/android-emulator/interactions/004-comment-keyboard
+- eraseText: 27
+- hideKeyboard
+- tapOn:
+    id: ledger-item-more
+- takeScreenshot: docs/debugs/e2e/2026-08-31-final/android-emulator/interactions/005-item-more
+- tapOn: Cancel
+- openLink: bookoo://ledger/ns714ycjvtq4z653adfvfwpwn58dgdsk/item/n576hmvb67ex9ph02m5c4awnc58dh8x0/edit
+- extendedWaitUntil:
+    visible:
+      id: entry-date-picker
+    timeout: 20000
+- tapOn:
+    id: entry-date-picker
+- takeScreenshot: docs/debugs/e2e/2026-08-31-final/android-emulator/interactions/006-date-picker
+- pressKey: BACK
+- tapOn: Delete
+- takeScreenshot: docs/debugs/e2e/2026-08-31-final/android-emulator/interactions/007-delete-dialog
+- tapOn: Cancel
+- openLink: bookoo://settings/account
+- extendedWaitUntil:
+    visible: Logout
+    timeout: 20000
+- tapOn: Logout
+- takeScreenshot: docs/debugs/e2e/2026-08-31-final/android-emulator/interactions/009-logout-dialog
+- tapOn: Cancel
+- openLink: bookoo://settings/appearance
+- extendedWaitUntil:
+    visible: Dark
+    timeout: 20000
+- tapOn: Dark
+- takeScreenshot: docs/debugs/e2e/2026-08-31-final/android-emulator/interactions/010-dark-theme
+- tapOn: Light
+- waitForAnimationToEnd:
+    timeout: 5000
+- takeScreenshot: docs/debugs/e2e/2026-08-31-final/android-emulator/interactions/011-light-theme-restored
+- assertNotVisible:
+    id: app-error-fallback

@@ -1,0 +1,90 @@
+[
+  {
+    "build": "local iOS Release working tree",
+    "device": "iPad Pro 13-inch (M5) simulator",
+    "dimensions": "2752x2064",
+    "file": "01-calendar.png",
+    "locale": "en-US",
+    "route": "/(app)/(tabs)/(root)",
+    "sha256": "e669262470b11ddd421e9ae818e887af71e25747c763fa0ed959df1af6adf9d5",
+    "theme": "light",
+    "version": "1.0.0"
+  },
+  {
+    "build": "local iOS Release working tree",
+    "device": "iPad Pro 13-inch (M5) simulator",
+    "dimensions": "2752x2064",
+    "file": "02-timeline-detail.png",
+    "locale": "en-US",
+    "route": "/(app)/(tabs)/(root)/timeline#selected-item",
+    "sha256": "245a700dfbcc3ae8e488c9c9224c0519c9297fbde36ecf1bf2119b28b82ebea3",
+    "theme": "light",
+    "version": "1.0.0"
+  },
+  {
+    "build": "local iOS Release working tree",
+    "device": "iPad Pro 13-inch (M5) simulator",
+    "dimensions": "2752x2064",
+    "file": "03-stats.png",
+    "locale": "en-US",
+    "route": "/(app)/(tabs)/(root)/stats",
+    "sha256": "e040eb195a247a5260838e003676fe5a0804951292207936febae87a6b2502b6",
+    "theme": "light",
+    "version": "1.0.0"
+  },
+  {
+    "build": "local iOS Release working tree",
+    "device": "iPad Pro 13-inch (M5) simulator",
+    "dimensions": "2752x2064",
+    "file": "04-ledger-switcher.png",
+    "locale": "en-US",
+    "route": "/(app)/(tabs)#drawer",
+    "sha256": "463afe3032f9d5230c77aaeb0f0e7fd10fa8c981783c8502d861448dfdf097fc",
+    "theme": "light",
+    "version": "1.0.0"
+  },
+  {
+    "build": "local iOS Release working tree",
+    "device": "iPad Pro 13-inch (M5) simulator",
+    "dimensions": "2752x2064",
+    "file": "05-members.png",
+    "locale": "en-US",
+    "route": "/ledger/[ledgerId]/members",
+    "sha256": "257165bc147082fb284986131766a5a1e0165bca4f37616b1b32704bdb44d670",
+    "theme": "light",
+    "version": "1.0.0"
+  },
+  {
+    "build": "local iOS Release working tree",
+    "device": "iPad Pro 13-inch (M5) simulator",
+    "dimensions": "2752x2064",
+    "file": "06-category-picker.png",
+    "locale": "en-US",
+    "route": "/ledger/[ledgerId]/item/new#category",
+    "sha256": "eb603d95387de450e386392d492ad9f8bdfe5c919e6cbd2476f7f57c6442681e",
+    "theme": "light",
+    "version": "1.0.0"
+  },
+  {
+    "build": "local iOS Release working tree",
+    "device": "iPad Pro 13-inch (M5) simulator",
+    "dimensions": "2752x2064",
+    "file": "07-new-entry.png",
+    "locale": "en-US",
+    "route": "/ledger/[ledgerId]/item/new",
+    "sha256": "d8f9503a1828d01ff00a2c266d3b64eafc9559ab910cdbb6f8fe181763774e2c",
+    "theme": "light",
+    "version": "1.0.0"
+  },
+  {
+    "build": "local iOS Release working tree",
+    "device": "iPad Pro 13-inch (M5) simulator",
+    "dimensions": "2752x2064",
+    "file": "08-more.png",
+    "locale": "en-US",
+    "route": "/(app)/(tabs)/(root)/me",
+    "sha256": "5dec160ef3bcdf601d6699f54cb1d69ea36176fa2bda17bb5580a8f7dcf96534",
+    "theme": "light",
+    "version": "1.0.0"
+  }
+]

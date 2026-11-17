@@ -1,0 +1,80 @@
+appId: dev.hyo.bookoo
+name: Final iPad portrait and landscape verification
+---
+- launchApp:
+    stopApp: true
+- setOrientation: PORTRAIT
+- openLink: bookoo://
+- tapOn:
+    point: 57%,51%
+- extendedWaitUntil:
+    visible:
+      id: ledger-header-menu
+    timeout: 30000
+- takeScreenshot: docs/debugs/e2e/2026-08-31-final/ipad-simulator/001-calendar-portrait
+- openLink: bookoo://timeline
+- extendedWaitUntil:
+    visible: All
+    timeout: 20000
+- takeScreenshot: docs/debugs/e2e/2026-08-31-final/ipad-simulator/002-timeline-portrait
+- openLink: bookoo://stats
+- extendedWaitUntil:
+    visible: Total
+    timeout: 20000
+- takeScreenshot: docs/debugs/e2e/2026-08-31-final/ipad-simulator/003-stats-portrait
+- openLink: bookoo://ledger/ns75ty7d9jp02pwn9aftw8ax698de5ex/item/n571kc4rpdjphgx2pk3a19dxfs8deqp3
+- extendedWaitUntil:
+    visible: Weekend study session
+    timeout: 20000
+- takeScreenshot: docs/debugs/e2e/2026-08-31-final/ipad-simulator/004-item-detail-portrait
+- openLink: bookoo://photo/n571kc4rpdjphgx2pk3a19dxfs8deqp3
+- extendedWaitUntil:
+    visible: Photo 1/2
+    timeout: 20000
+- waitForAnimationToEnd:
+    timeout: 10000
+- takeScreenshot: docs/debugs/e2e/2026-08-31-final/ipad-simulator/005-photo-viewer-portrait
+- openLink: bookoo://settings
+- extendedWaitUntil:
+    visible: Preferences
+    timeout: 20000
+- takeScreenshot: docs/debugs/e2e/2026-08-31-final/ipad-simulator/006-settings-portrait
+- setOrientation: LANDSCAPE_LEFT
+- waitForAnimationToEnd:
+    timeout: 5000
+- stopApp
+- launchApp
+- openLink: bookoo://
+- extendedWaitUntil:
+    visible:
+      id: ledger-header-menu
+    timeout: 30000
+- takeScreenshot: docs/debugs/e2e/2026-08-31-final/ipad-simulator/007-calendar-landscape
+- openLink: bookoo://timeline
+- extendedWaitUntil:
+    visible: All
+    timeout: 20000
+- takeScreenshot: docs/debugs/e2e/2026-08-31-final/ipad-simulator/008-timeline-landscape
+- openLink: bookoo://stats
+- extendedWaitUntil:
+    visible: Total
+    timeout: 20000
+- takeScreenshot: docs/debugs/e2e/2026-08-31-final/ipad-simulator/009-stats-landscape
+- openLink: bookoo://ledger/ns75ty7d9jp02pwn9aftw8ax698de5ex/item/n571kc4rpdjphgx2pk3a19dxfs8deqp3
+- extendedWaitUntil:
+    visible: Weekend study session
+    timeout: 20000
+- takeScreenshot: docs/debugs/e2e/2026-08-31-final/ipad-simulator/010-item-detail-landscape
+- openLink: bookoo://photo/n571kc4rpdjphgx2pk3a19dxfs8deqp3
+- extendedWaitUntil:
+    visible: Photo 1/2
+    timeout: 20000
+- waitForAnimationToEnd:
+    timeout: 10000
+- takeScreenshot: docs/debugs/e2e/2026-08-31-final/ipad-simulator/011-photo-viewer-landscape
+- openLink: bookoo://settings
+- extendedWaitUntil:
+    visible: Preferences
+    timeout: 20000
+- takeScreenshot: docs/debugs/e2e/2026-08-31-final/ipad-simulator/012-settings-landscape
+- setOrientation: PORTRAIT

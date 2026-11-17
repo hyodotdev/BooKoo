@@ -1,0 +1,130 @@
+appId: dev.hyo.bookoo
+name: Server-authority and responsive regression on Android
+---
+- launchApp:
+    stopApp: true
+- openLink: bookoo://
+- extendedWaitUntil:
+    visible:
+      id: calendar-parallax-menu
+    timeout: 20000
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/android-emulator/interactions/001-calendar
+- tapOn:
+    id: calendar-parallax-menu
+- assertVisible:
+    id: ledger-drawer-close
+- assertVisible:
+    id: ledger-drawer-list
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/android-emulator/interactions/002-drawer-open
+- tapOn:
+    point: 95%,50%
+- assertNotVisible:
+    id: ledger-drawer-close
+- tapOn:
+    id: calendar-parallax-menu
+- tapOn:
+    id: ledger-drawer-close
+- assertNotVisible:
+    id: ledger-drawer-close
+- tapOn:
+    id: calendar-parallax-menu
+- tapOn:
+    id: ledger-drawer-profile
+- assertVisible:
+    id: my-profile-screen
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/android-emulator/interactions/003-drawer-profile
+- openLink: bookoo://timeline
+- extendedWaitUntil:
+    visible:
+      id: authenticated-tab-shell
+    timeout: 20000
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/android-emulator/interactions/004-timeline
+- openLink: bookoo://stats
+- extendedWaitUntil:
+    visible:
+      id: stats-previous-month
+    timeout: 20000
+- tapOn:
+    id: stats-previous-month
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/android-emulator/interactions/005-stats-multiple-categories
+- openLink: bookoo://ledger/ns714ycjvtq4z653adfvfwpwn58dgdsk/item/n576hmvb67ex9ph02m5c4awnc58dh8x0
+- extendedWaitUntil:
+    visible:
+      id: ledger-item-comment-field
+    timeout: 20000
+- assertVisible:
+    id: ledger-item-metadata
+- tapOn:
+    id: ledger-item-comment-field
+- inputText: Could we tag this for work?
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/android-emulator/interactions/006-comment-keyboard
+- eraseText: 27
+- hideKeyboard
+- tapOn:
+    id: ledger-item-more
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/android-emulator/interactions/007-item-more
+- tapOn: Cancel
+- openLink: bookoo://ledger/ns714ycjvtq4z653adfvfwpwn58dgdsk/item/n576hmvb67ex9ph02m5c4awnc58dh8x0/edit
+- extendedWaitUntil:
+    visible:
+      id: entry-route-header
+    timeout: 20000
+- assertVisible:
+    id: entry-delete
+- tapOn:
+    id: entry-date-picker
+- assertVisible: OK
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/android-emulator/interactions/008-date-picker
+- tapOn: OK
+- tapOn:
+    id: entry-category-picker
+- assertVisible:
+    id: entry-create-category
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/android-emulator/interactions/009-category-picker
+- tapOn:
+    id: entry-category-close
+- tapOn:
+    id: entry-memo-box
+- inputText: Follow up after the study session.
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/android-emulator/interactions/010-memo-keyboard
+- eraseText: 34
+- hideKeyboard
+- openLink: bookoo://invite/BK100000000000000000000000000
+- extendedWaitUntil:
+    visible: This invite link is not valid.
+    timeout: 20000
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/android-emulator/interactions/011-invalid-invite-scheme
+- openLink: https://bookoo.hyo.dev/invite/BK100000000000000000000000000
+- extendedWaitUntil:
+    visible: Make Chrome your own
+    timeout: 20000
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/android-emulator/interactions/012-app-link-debug-cert-unverified
+- pressKey: BACK
+- assertVisible: This invite link is not valid.
+- openLink: bookoo://settings/appearance
+- extendedWaitUntil:
+    visible: Dark
+    timeout: 20000
+- tapOn: Dark
+- openLink: bookoo://
+- assertVisible:
+    id: authenticated-tab-shell
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/android-emulator/interactions/013-dark-theme
+- openLink: bookoo://settings/appearance
+- tapOn: Light
+- openLink: bookoo://
+- assertVisible:
+    id: authenticated-tab-shell
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/android-emulator/interactions/014-light-theme-restored
+- openLink: bookoo://settings
+- assertVisible:
+    id: app-settings-sections
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/android-emulator/interactions/015-settings

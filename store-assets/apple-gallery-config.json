@@ -1,0 +1,203 @@
+{
+  "sourceVersion": "1.1.0",
+  "locales": {
+    "en-US": {
+      "directory": "en-US",
+      "appLocale": "en",
+      "copyLocale": "en-US"
+    },
+    "ko": {
+      "directory": "ko",
+      "appLocale": "ko",
+      "copyLocale": "ko-KR"
+    },
+    "ja": {
+      "directory": "ja",
+      "appLocale": "ja",
+      "copyLocale": "ja"
+    },
+    "zh-Hans": {
+      "directory": "zh-Hans",
+      "appLocale": "zh",
+      "copyLocale": "zh-CN"
+    },
+    "id": {
+      "directory": "id",
+      "appLocale": "id",
+      "copyLocale": "id"
+    },
+    "de-DE": {
+      "directory": "de-DE",
+      "appLocale": "de",
+      "copyLocale": "de-DE"
+    },
+    "es-ES": {
+      "directory": "es-ES",
+      "appLocale": "es",
+      "copyLocale": "es-ES"
+    },
+    "fr-FR": {
+      "directory": "fr-FR",
+      "appLocale": "fr",
+      "copyLocale": "fr-FR"
+    },
+    "it": {
+      "directory": "it-IT",
+      "appLocale": "it",
+      "copyLocale": "it-IT"
+    }
+  },
+  "families": [
+    {
+      "directory": "apple-iphone-medium",
+      "displayType": "APP_IPHONE_61",
+      "label": "iPhone Dynamic Island medium display",
+      "width": 1206,
+      "height": 2622,
+      "sourceFamily": "iphone",
+      "frame": "phone",
+      "acceptedSizes": [
+        [
+          1206,
+          2622
+        ],
+        [
+          2622,
+          1206
+        ],
+        [
+          1179,
+          2556
+        ],
+        [
+          2556,
+          1179
+        ]
+      ]
+    },
+    {
+      "directory": "apple-iphone-6.9",
+      "displayType": "APP_IPHONE_67",
+      "label": "iPhone large display",
+      "width": 1320,
+      "height": 2868,
+      "sourceFamily": "iphone",
+      "frame": "phone",
+      "acceptedSizes": [
+        [
+          1320,
+          2868
+        ],
+        [
+          2868,
+          1320
+        ],
+        [
+          1290,
+          2796
+        ],
+        [
+          2796,
+          1290
+        ],
+        [
+          1260,
+          2736
+        ],
+        [
+          2736,
+          1260
+        ]
+      ]
+    },
+    {
+      "directory": "apple-iphone-6.5",
+      "displayType": "APP_IPHONE_65",
+      "label": "iPhone Face ID large display",
+      "width": 1242,
+      "height": 2688,
+      "sourceFamily": "iphone",
+      "frame": "phone",
+      "acceptedSizes": [
+        [
+          1242,
+          2688
+        ],
+        [
+          2688,
+          1242
+        ],
+        [
+          1284,
+          2778
+        ],
+        [
+          2778,
+          1284
+        ]
+      ]
+    },
+    {
+      "directory": "apple-ipad-13",
+      "displayType": "APP_IPAD_PRO_3GEN_129",
+      "label": "iPad 13-inch",
+      "width": 2064,
+      "height": 2752,
+      "sourceFamily": "ipad",
+      "frame": "tablet",
+      "acceptedSizes": [
+        [
+          2064,
+          2752
+        ],
+        [
+          2752,
+          2064
+        ],
+        [
+          2048,
+          2732
+        ],
+        [
+          2732,
+          2048
+        ]
+      ]
+    },
+    {
+      "directory": "apple-iphone-duo",
+      "displayType": "APP_IPHONE_DUO",
+      "label": "iPhone Duo opened",
+      "width": 2007,
+      "height": 2853,
+      "sourceFamily": "duo",
+      "frame": "foldable",
+      "acceptedSizes": [
+        [
+          1398,
+          2034
+        ],
+        [
+          2034,
+          1398
+        ],
+        [
+          2007,
+          2853
+        ],
+        [
+          2853,
+          2007
+        ]
+      ]
+    }
+  ],
+  "creative": {
+    "width": 5244,
+    "height": 2950,
+    "placements": [
+      "header",
+      "search-results"
+    ]
+  }
+}

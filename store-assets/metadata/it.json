@@ -1,0 +1,45 @@
+{
+  "locale": "it",
+  "releaseNotesVersion": "1.4.0",
+  "apple": {
+    "name": "BooKoo - Spese condivise",
+    "subtitle": "Coppia, famiglia e coinquilini",
+    "keywords": "cassa,comune,gruppo,squadra,viaggio,tesoriere,entrate,registro,coinquilini,famiglia",
+    "promoText": "Registra entrate e uscite in coppia, in famiglia o tra coinquilini in un unico registro, con foto degli scontrini e domande direttamente su ogni movimento.",
+    "releaseNotes": "Aggiunto il vietnamita e migliorate le traduzioni in tutta l’app.",
+    "description": "BooKoo è un registro delle spese e delle entrate da compilare manualmente. Tieni i tuoi conti personali o condividi un registro per le spese di casa, di coppia, tra coinquilini, di un gruppo o di un viaggio. Aggiungi foto degli scontrini e commenti a ogni movimento e consulta il calendario e le statistiche per categoria. Ogni nuovo registro supporta 2 membri gratis, fino a 5 con BooKoo Pro.\n\n• Scansiona le ricevute sul dispositivo e verifica prima di salvare\n• Cronologia paginata e fluida anche quando i dati aumentano\n• Calendario e totali giornalieri nel fuso orario del registro\n• Statistiche per categoria e andamento degli ultimi 12 mesi\n• Foto, commenti, inviti e ruoli dei membri\n• Esportazione personale e per amministratori\n• Modalità chiara e scura, layout per telefono e tablet\n\nOgni registro è privato e accessibile solo su invito. BooKoo è uno strumento di registrazione manuale: non si collega alle banche, non trasferisce denaro tra persone, non calcola divisioni o rimborsi, non tiene le quote non versate membro per membro, non gestisce approvazioni di spesa e non converte le valute. Le voci si registrano nella valuta del registro, e gli utenti non vengono tracciati tra app. La versione gratuita può mostrare un banner limitato e non personalizzato direttamente sotto le schede principali. L’unico acquisto è l’abbonamento facoltativo descritto di seguito, gestito dallo store.\n\nBooKoo Pro (abbonamento facoltativo)\nBooKoo gratuito include un registro di tua proprietà, 2 membri in ogni nuovo registro, movimenti illimitati, accesso completo ai propri dati e un banner limitato sotto le schede principali. BooKoo Pro rimuove gli annunci, consente di creare registri aggiuntivi e supporta fino a 5 membri in ogni nuovo registro.\n\n• Abbonamento mensile o annuale\n• Il piano annuale include una prova gratuita di 7 giorni per i nuovi abbonati\n• Si abbona chi possiede il registro e copre tutti i suoi membri; i membri invitati non pagano\n• Il pagamento viene addebitato sull’account dello store alla conferma dell’acquisto\n• Il rinnovo è automatico salvo annullamento almeno 24 ore prima della scadenza\n• Puoi gestire o annullare l’abbonamento in qualsiasi momento nelle impostazioni dell’account dello store\n• I prezzi sono mostrati nell’app e variano in base alla regione\n\nTermini di utilizzo: https://bookoo.hyo.dev/legal/terms?lang=en\nInformativa sulla privacy: https://bookoo.hyo.dev/legal/privacy?lang=en"
+  },
+  "google": {
+    "name": "BooKoo - Spese condivise",
+    "shortDescription": "Gestione di entrate e uscite per coppie, coinquilini e viaggi, con ricevute.",
+    "fullDescription": "BooKoo è un registro delle spese e delle entrate da compilare manualmente. Tieni i tuoi conti personali o condividi un registro per le spese di casa, di coppia, tra coinquilini, di un gruppo o di un viaggio. Aggiungi foto degli scontrini e commenti a ogni movimento e consulta il calendario e le statistiche per categoria. Ogni nuovo registro supporta 2 membri gratis, fino a 5 con BooKoo Pro.\n\nFunzioni principali\n• Scansiona le ricevute sul dispositivo e verifica prima di salvare\n• Cronologia paginata e fluida anche quando i dati aumentano\n• Calendario e totali giornalieri nel fuso orario del registro\n• Statistiche per categoria e andamento degli ultimi 12 mesi\n• Foto, commenti, link di invito e ruoli dei membri\n• Esportazione personale e per amministratori\n• Eliminazione dell’account con periodo di recupero di 30 giorni\n• Temi chiaro e scuro per telefono e tablet\n\nI registri sono visibili solo ai membri invitati. BooKoo è uno strumento di registrazione manuale: non offre collegamenti bancari, trasferimenti di denaro, divisioni o rimborsi calcolati, gestione delle quote non versate per membro, approvazione delle spese, conversione di valuta, investimenti o tracciamento tra app. Le voci si registrano nella valuta del registro. La versione gratuita può mostrare un banner limitato e non personalizzato direttamente sotto le schede principali. L’unico acquisto è l’abbonamento facoltativo descritto di seguito, gestito dallo store.\n\nBooKoo Pro (abbonamento facoltativo)\nBooKoo gratuito include un registro di tua proprietà, 2 membri in ogni nuovo registro, movimenti illimitati, accesso completo ai propri dati e un banner limitato sotto le schede principali. BooKoo Pro rimuove gli annunci, consente di creare registri aggiuntivi e supporta fino a 5 membri in ogni nuovo registro.\n\n• Abbonamento mensile o annuale\n• Il piano annuale include una prova gratuita di 7 giorni per i nuovi abbonati\n• Si abbona chi possiede il registro e copre tutti i suoi membri; i membri invitati non pagano\n• Il pagamento viene addebitato sull’account dello store alla conferma dell’acquisto\n• Il rinnovo è automatico salvo annullamento almeno 24 ore prima della scadenza\n• Puoi gestire o annullare l’abbonamento in qualsiasi momento nelle impostazioni dell’account dello store\n• I prezzi sono mostrati nell’app e variano in base alla regione\n\nTermini di utilizzo: https://bookoo.hyo.dev/legal/terms?lang=en\nInformativa sulla privacy: https://bookoo.hyo.dev/legal/privacy?lang=en",
+    "releaseNotes": "Aggiunto il vietnamita e migliorate le traduzioni in tutta l’app."
+  },
+  "urls": {
+    "privacy": "https://bookoo.hyo.dev/legal/privacy?lang=en",
+    "terms": "https://bookoo.hyo.dev/legal/terms?lang=en",
+    "support": "https://bookoo.hyo.dev/support?lang=en",
+    "privacyChoices": "https://bookoo.hyo.dev/privacy-choices?lang=en",
+    "accountDeletion": "https://bookoo.hyo.dev/account-deletion?lang=en"
+  },
+  "screenshotScenes": [
+    "intro",
+    "calendar",
+    "timeline",
+    "stats",
+    "entry",
+    "sharing",
+    "comments",
+    "theme"
+  ],
+  "screenshotAltText": [
+    "Presentazione di BooKoo su sfondo verde menta con logo e viste inclinate del calendario",
+    "Calendario mensile del registro condiviso con i movimenti del giorno selezionato",
+    "Cronologia paginata delle entrate e delle spese raggruppata per data",
+    "Statistiche delle spese con grafico multicolore e classifica per categoria",
+    "Editor dei movimenti con importo, data, luogo, nota e foto delle ricevute",
+    "Invito al registro condiviso e gestione dei ruoli dei membri",
+    "Commenti e risposte direttamente su un movimento",
+    "Calendario mensile del registro condiviso con tema scuro"
+  ]
+}

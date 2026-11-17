@@ -1,0 +1,13 @@
+{
+  "android": {
+    "app_name": "BooKoo"
+  },
+  "ios": {
+    "CFBundleDisplayName": "BooKoo",
+    "NSCameraUsageDescription": "BooKoo necessita dell’accesso alla fotocamera per allegare una foto a una voce.",
+    "NSFaceIDUsageDescription": "BooKoo usa Face ID per sbloccare l’app.",
+    "NSLocationWhenInUseUsageDescription": "BooKoo usa la tua posizione quando scegli un luogo per una voce o cerchi dove ti trovi sulla mappa.",
+    "NSPhotoLibraryAddUsageDescription": "BooKoo necessita del permesso di salvare una foto nella libreria.",
+    "NSPhotoLibraryUsageDescription": "BooKoo necessita dell’accesso alla libreria foto per allegare una foto a una voce."
+  }
+}

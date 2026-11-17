@@ -1,0 +1,4 @@
+interface:
+  display_name: "Loop UI"
+  short_description: "Inspect every page, fix UI, refresh the storyboard"
+  default_prompt: "Use $loop-ui to inspect BooKoo page by page on phones and tablets, exercise interactions, fix verified UI/UX defects, and refresh the storyboard with honest coverage."

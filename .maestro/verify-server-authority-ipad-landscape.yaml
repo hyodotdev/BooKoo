@@ -1,0 +1,47 @@
+appId: dev.hyo.bookoo
+name: Server-authority iPad landscape verification
+env:
+  LEDGER_ID: ns714ycjvtq4z653adfvfwpwn58dgdsk
+  ITEM_ID: n576hmvb67ex9ph02m5c4awnc58dh8x0
+---
+- launchApp:
+    stopApp: true
+- setOrientation: LANDSCAPE_LEFT
+- openLink: bookoo://
+- extendedWaitUntil:
+    visible:
+      id: ledger-header-menu
+    timeout: 30000
+- extendedWaitUntil:
+    notVisible:
+      id: bookoo-loading
+    timeout: 30000
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-ipad/interactions/018-calendar-landscape
+- openLink: bookoo://timeline
+- extendedWaitUntil:
+    visible: All
+    timeout: 30000
+- extendedWaitUntil:
+    notVisible:
+      id: bookoo-loading
+    timeout: 30000
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-ipad/interactions/019-timeline-landscape
+- openLink: bookoo://ledger/${LEDGER_ID}/item/${ITEM_ID}
+- extendedWaitUntil:
+    visible:
+      id: ledger-item-more
+    timeout: 30000
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-ipad/interactions/020-entry-detail-landscape
+- openLink: bookoo://stats
+- extendedWaitUntil:
+    visible: Total
+    timeout: 30000
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-ipad/interactions/021-stats-landscape
+- openLink: bookoo://settings
+- extendedWaitUntil:
+    visible: Preferences
+    timeout: 30000
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-ipad/interactions/022-settings-landscape
+- assertNotVisible:
+    id: app-error-fallback
+- setOrientation: PORTRAIT

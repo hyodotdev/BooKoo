@@ -1,0 +1,27 @@
+appId: dev.hyo.bookoo
+name: Inverse dark recovery action
+---
+- launchApp:
+    stopApp: false
+- openLink: bookoo://settings/appearance
+- extendedWaitUntil:
+    visible:
+      id: appearance-sections
+    timeout: 20000
+- tapOn:
+    text: 'Dark|다크|ダーク|深色|Gelap|Dunkel|Oscuro|Sombre|Scuro|Donker|Escuro'
+- openLink: bookoo://not-a-real-route
+- extendedWaitUntil:
+    visible:
+      id: not-found-screen
+    timeout: 20000
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: ${EVIDENCE_DIR}/10-dark-recovery
+- openLink: bookoo://settings/appearance
+- extendedWaitUntil:
+    visible:
+      id: appearance-sections
+    timeout: 20000
+- tapOn:
+    text: 'System|시스템 설정|システム|跟随系统|Sistem|Système|Systeem|Sistema'

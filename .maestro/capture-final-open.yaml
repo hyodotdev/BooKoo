@@ -1,0 +1,12 @@
+appId: dev.hyo.bookoo
+---
+- launchApp:
+    stopApp: false
+- openLink: bookoo://settings
+- runFlow:
+    when:
+      platform: iOS
+    file: ios-confirm-deep-link.yaml
+- waitForAnimationToEnd
+- assertVisible: Preferences
+- takeScreenshot: docs/debugs/e2e/2026-08-31-final/ios-simulator/001-settings

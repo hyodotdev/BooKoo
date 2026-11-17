@@ -1,0 +1,20 @@
+appId: dev.hyo.bookoo
+name: Verify accepted invite and account isolation
+---
+- launchApp:
+    stopApp: true
+- extendedWaitUntil:
+    visible:
+      id: authenticated-tab-shell
+    timeout: 30000
+- assertNotVisible:
+    id: app-error-fallback
+- tapOn:
+    id: calendar-parallax-menu
+- assertVisible:
+    id: ledger-drawer-profile
+- assertVisible:
+    id: ledger-row-${BOOKOO_E2E_LEDGER_TITLE}-select
+- assertNotVisible:
+    id: ledger-row-${BOOKOO_E2E_PRIVATE_LEDGER_TITLE}-select
+- takeScreenshot: ${BOOKOO_E2E_OUTPUT_ROOT}/fresh-invite-accepted

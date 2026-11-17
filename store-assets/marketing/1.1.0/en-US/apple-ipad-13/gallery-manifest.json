@@ -1,0 +1,345 @@
+{
+  "version": "1.1.0",
+  "scenes": [
+    "intro",
+    "calendar",
+    "timeline",
+    "stats",
+    "entry",
+    "sharing",
+    "comments",
+    "theme"
+  ],
+  "panels": [
+    {
+      "locale": "en-US",
+      "family": "apple-ipad-13",
+      "displayType": "APP_IPAD_PRO_3GEN_129",
+      "scene": "intro",
+      "file": "en-US/apple-ipad-13/01-intro.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "6f9ab09847890bca47e9a06f9256d53bc3434e33baabbea00e8fb8ebf71f3f19",
+      "bytes": 3385469,
+      "capture": {
+        "family": "ipad",
+        "locale": "en-US",
+        "scene": "calendar",
+        "file": "sources/ipad/en-US-calendar.png",
+        "sha256": "cf67fe00b1b49d66cfada22df4785ebf472428c82f021d200a44fa92d4d5de7c",
+        "platform": "ios",
+        "version": "1.1.0",
+        "nativeBuild": "signed SDK27.1 debug simulator",
+        "nativeArtifactSha256": "097793bea5db54235a7ad7f62f1c14c368170273eaaaac54d332ce347a1a2aaf",
+        "sourceFingerprint": "8714e04f566cd12731c6554853bf57dd715fa033659ef4485ae404eb933f7805",
+        "sourceFingerprintFiles": [
+          "src/features/ledger/ui.tsx",
+          "src/features/ledger/screens/entryEditor.tsx",
+          "src/features/ledger/screens/calendar.tsx",
+          "src/features/ledger/screens/timeline.tsx",
+          "src/features/ledger/screens/entryDetail.tsx",
+          "src/hooks/useTabletLayout.ts"
+        ],
+        "capturedAt": "2026-10-09T15:08:08.748152+00:00",
+        "os": "iOS26.5",
+        "device": "iPadPro13M5",
+        "orientation": "portrait",
+        "theme": "light",
+        "inspected": true,
+        "crop": {
+          "top": 48,
+          "bottom": 220
+        }
+      }
+    },
+    {
+      "locale": "en-US",
+      "family": "apple-ipad-13",
+      "displayType": "APP_IPAD_PRO_3GEN_129",
+      "scene": "calendar",
+      "file": "en-US/apple-ipad-13/02-calendar.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "052bf997e618ce8ad7eef8922150e292193f70f845f93d6fa23250f32b1daa68",
+      "bytes": 189679,
+      "capture": {
+        "family": "ipad",
+        "locale": "en-US",
+        "scene": "calendar",
+        "file": "sources/ipad/en-US-calendar.png",
+        "sha256": "cf67fe00b1b49d66cfada22df4785ebf472428c82f021d200a44fa92d4d5de7c",
+        "platform": "ios",
+        "version": "1.1.0",
+        "nativeBuild": "signed SDK27.1 debug simulator",
+        "nativeArtifactSha256": "097793bea5db54235a7ad7f62f1c14c368170273eaaaac54d332ce347a1a2aaf",
+        "sourceFingerprint": "8714e04f566cd12731c6554853bf57dd715fa033659ef4485ae404eb933f7805",
+        "sourceFingerprintFiles": [
+          "src/features/ledger/ui.tsx",
+          "src/features/ledger/screens/entryEditor.tsx",
+          "src/features/ledger/screens/calendar.tsx",
+          "src/features/ledger/screens/timeline.tsx",
+          "src/features/ledger/screens/entryDetail.tsx",
+          "src/hooks/useTabletLayout.ts"
+        ],
+        "capturedAt": "2026-10-09T15:08:08.748152+00:00",
+        "os": "iOS26.5",
+        "device": "iPadPro13M5",
+        "orientation": "portrait",
+        "theme": "light",
+        "inspected": true,
+        "crop": {
+          "top": 48,
+          "bottom": 220
+        }
+      }
+    },
+    {
+      "locale": "en-US",
+      "family": "apple-ipad-13",
+      "displayType": "APP_IPAD_PRO_3GEN_129",
+      "scene": "timeline",
+      "file": "en-US/apple-ipad-13/03-timeline.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "95a25d7a0d9ac1c8a9cfa6a4e8a8357a5fd66cfbc033e4a20811357f377ec4d7",
+      "bytes": 240588,
+      "capture": {
+        "family": "ipad",
+        "locale": "en-US",
+        "scene": "timeline",
+        "file": "sources/ipad/en-US-timeline.png",
+        "sha256": "f56b3a18f3440860b35f4c00fca0b3d8c58af548c2f56d5dc707d7167ae6413c",
+        "platform": "ios",
+        "version": "1.1.0",
+        "nativeBuild": "signed SDK27.1 debug simulator",
+        "nativeArtifactSha256": "097793bea5db54235a7ad7f62f1c14c368170273eaaaac54d332ce347a1a2aaf",
+        "sourceFingerprint": "8714e04f566cd12731c6554853bf57dd715fa033659ef4485ae404eb933f7805",
+        "sourceFingerprintFiles": [
+          "src/features/ledger/ui.tsx",
+          "src/features/ledger/screens/entryEditor.tsx",
+          "src/features/ledger/screens/calendar.tsx",
+          "src/features/ledger/screens/timeline.tsx",
+          "src/features/ledger/screens/entryDetail.tsx",
+          "src/hooks/useTabletLayout.ts"
+        ],
+        "capturedAt": "2026-10-09T15:08:18.480012+00:00",
+        "os": "iOS26.5",
+        "device": "iPadPro13M5",
+        "orientation": "portrait",
+        "theme": "light",
+        "inspected": true,
+        "crop": {
+          "top": 48,
+          "bottom": 220
+        }
+      }
+    },
+    {
+      "locale": "en-US",
+      "family": "apple-ipad-13",
+      "displayType": "APP_IPAD_PRO_3GEN_129",
+      "scene": "stats",
+      "file": "en-US/apple-ipad-13/04-stats.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "ffebcf3b8a9538180e23d3e9f699b14ca02f425a3036fe29e49bfb9d1ae0776f",
+      "bytes": 313367,
+      "capture": {
+        "family": "ipad",
+        "locale": "en-US",
+        "scene": "stats",
+        "file": "sources/ipad/en-US-stats.png",
+        "sha256": "c77cdcab9354ac4a695e0538c506574109b277c949052e3277dcef775631787f",
+        "platform": "ios",
+        "version": "1.1.0",
+        "nativeBuild": "signed SDK27.1 debug simulator",
+        "nativeArtifactSha256": "097793bea5db54235a7ad7f62f1c14c368170273eaaaac54d332ce347a1a2aaf",
+        "sourceFingerprint": "180b7a191ab201da6d723712f298aac1134b30b0a195d79fbf25e012e0fd2c81",
+        "sourceFingerprintFiles": [
+          "src/features/ledger/ui.tsx",
+          "src/features/ledger/screens/entryEditor.tsx",
+          "src/features/ledger/screens/calendar.tsx",
+          "src/features/ledger/screens/timeline.tsx",
+          "src/features/ledger/screens/entryDetail.tsx",
+          "src/hooks/useTabletLayout.ts",
+          "src/features/ledger/screens/stats.tsx",
+          "src/features/ledger/statsPresentation.ts"
+        ],
+        "capturedAt": "2026-10-09T17:07:59.818Z",
+        "os": "iOS26.5",
+        "device": "iPadPro13M5",
+        "orientation": "portrait",
+        "theme": "light",
+        "inspected": true,
+        "crop": {
+          "top": 48,
+          "bottom": 220
+        }
+      }
+    },
+    {
+      "locale": "en-US",
+      "family": "apple-ipad-13",
+      "displayType": "APP_IPAD_PRO_3GEN_129",
+      "scene": "entry",
+      "file": "en-US/apple-ipad-13/05-entry.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "53cf1498393f6940335fcd43e0dbd3f3ed840c20c9b11bc21639b1a309b352f6",
+      "bytes": 168654,
+      "capture": {
+        "family": "ipad",
+        "locale": "en-US",
+        "scene": "entry",
+        "file": "sources/ipad/en-US-entry.png",
+        "sha256": "bfc05e1156450f77d586c54847a4a8b58b9d3049f284f79c2f5c4f73251ffa09",
+        "platform": "ios",
+        "version": "1.1.0",
+        "nativeBuild": "signed SDK27.1 debug simulator; current R91 JS from root Metro8083",
+        "nativeArtifactSha256": "097793bea5db54235a7ad7f62f1c14c368170273eaaaac54d332ce347a1a2aaf",
+        "sourceFingerprint": "9847cd32637a053d29cd172f7704a31d3367a142a932e7cbb175f625c034a763",
+        "sourceFingerprintFiles": [
+          "src/features/ledger/ui.tsx",
+          "src/features/ledger/screens/entryEditor.tsx",
+          "src/features/ledger/screens/calendar.tsx",
+          "src/features/ledger/screens/timeline.tsx",
+          "src/features/ledger/screens/entryDetail.tsx",
+          "src/hooks/useTabletLayout.ts"
+        ],
+        "capturedAt": "2026-10-10T03:42:07.485155+00:00",
+        "os": "iOS26.5",
+        "device": "iPadPro13M5",
+        "orientation": "portrait",
+        "theme": "light",
+        "inspected": true,
+        "crop": {
+          "top": 48,
+          "bottom": 0
+        }
+      }
+    },
+    {
+      "locale": "en-US",
+      "family": "apple-ipad-13",
+      "displayType": "APP_IPAD_PRO_3GEN_129",
+      "scene": "sharing",
+      "file": "en-US/apple-ipad-13/06-sharing.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "854c7d3da379b30161c876f3b5778b255f05566cde33777827a24ce34117fd97",
+      "bytes": 177784,
+      "capture": {
+        "family": "ipad",
+        "locale": "en-US",
+        "scene": "sharing",
+        "file": "sources/ipad/en-US-sharing.png",
+        "sha256": "7a43452c9da4293abb2ceb7aaacb9306ebcf539a8bf40c4d2108e98761b540ba",
+        "platform": "ios",
+        "version": "1.1.0",
+        "nativeBuild": "signed SDK27.1 debug simulator",
+        "nativeArtifactSha256": "097793bea5db54235a7ad7f62f1c14c368170273eaaaac54d332ce347a1a2aaf",
+        "sourceFingerprint": "8714e04f566cd12731c6554853bf57dd715fa033659ef4485ae404eb933f7805",
+        "sourceFingerprintFiles": [
+          "src/features/ledger/ui.tsx",
+          "src/features/ledger/screens/entryEditor.tsx",
+          "src/features/ledger/screens/calendar.tsx",
+          "src/features/ledger/screens/timeline.tsx",
+          "src/features/ledger/screens/entryDetail.tsx",
+          "src/hooks/useTabletLayout.ts"
+        ],
+        "capturedAt": "2026-10-09T15:08:38.831730+00:00",
+        "os": "iOS26.5",
+        "device": "iPadPro13M5",
+        "orientation": "portrait",
+        "theme": "light",
+        "inspected": true,
+        "crop": {
+          "top": 48,
+          "bottom": 0
+        }
+      }
+    },
+    {
+      "locale": "en-US",
+      "family": "apple-ipad-13",
+      "displayType": "APP_IPAD_PRO_3GEN_129",
+      "scene": "comments",
+      "file": "en-US/apple-ipad-13/07-comments.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "442d29ff81eeb1292c2224f687a98dc1cb0333ad8212b80c3ba582c2fba5577e",
+      "bytes": 246957,
+      "capture": {
+        "family": "ipad",
+        "locale": "en-US",
+        "scene": "comments",
+        "file": "sources/ipad/en-US-comments.png",
+        "sha256": "b9073e8c67ace5ca2f5b0a9a4f480766917ac2be5b5f8e3f6363796da4aa8018",
+        "platform": "ios",
+        "version": "1.1.0",
+        "nativeBuild": "signed SDK27.1 debug simulator",
+        "nativeArtifactSha256": "097793bea5db54235a7ad7f62f1c14c368170273eaaaac54d332ce347a1a2aaf",
+        "sourceFingerprint": "8714e04f566cd12731c6554853bf57dd715fa033659ef4485ae404eb933f7805",
+        "sourceFingerprintFiles": [
+          "src/features/ledger/ui.tsx",
+          "src/features/ledger/screens/entryEditor.tsx",
+          "src/features/ledger/screens/calendar.tsx",
+          "src/features/ledger/screens/timeline.tsx",
+          "src/features/ledger/screens/entryDetail.tsx",
+          "src/hooks/useTabletLayout.ts"
+        ],
+        "capturedAt": "2026-10-09T15:08:48.829176+00:00",
+        "os": "iOS26.5",
+        "device": "iPadPro13M5",
+        "orientation": "portrait",
+        "theme": "light",
+        "inspected": true,
+        "crop": {
+          "top": 48,
+          "bottom": 0
+        }
+      }
+    },
+    {
+      "locale": "en-US",
+      "family": "apple-ipad-13",
+      "displayType": "APP_IPAD_PRO_3GEN_129",
+      "scene": "theme",
+      "file": "en-US/apple-ipad-13/08-theme.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "a95a041845805c0c6f5b623c49de6da3ad9e4667c16534faabf0ef483e89a9eb",
+      "bytes": 199981,
+      "capture": {
+        "family": "ipad",
+        "locale": "en-US",
+        "scene": "theme",
+        "file": "sources/ipad/en-US-theme.png",
+        "sha256": "a956e3de39eeafa16732af58b8ac64743d0fef9c9f2141d60b5e729e51d95ea4",
+        "platform": "ios",
+        "version": "1.1.0",
+        "nativeBuild": "signed SDK27.1 debug simulator",
+        "nativeArtifactSha256": "097793bea5db54235a7ad7f62f1c14c368170273eaaaac54d332ce347a1a2aaf",
+        "sourceFingerprint": "8714e04f566cd12731c6554853bf57dd715fa033659ef4485ae404eb933f7805",
+        "sourceFingerprintFiles": [
+          "src/features/ledger/ui.tsx",
+          "src/features/ledger/screens/entryEditor.tsx",
+          "src/features/ledger/screens/calendar.tsx",
+          "src/features/ledger/screens/timeline.tsx",
+          "src/features/ledger/screens/entryDetail.tsx",
+          "src/hooks/useTabletLayout.ts"
+        ],
+        "capturedAt": "2026-10-09T15:09:31.456172+00:00",
+        "os": "iOS26.5",
+        "device": "iPadPro13M5",
+        "orientation": "portrait",
+        "theme": "dark",
+        "inspected": true,
+        "crop": {
+          "top": 48,
+          "bottom": 220
+        }
+      }
+    }
+  ]
+}

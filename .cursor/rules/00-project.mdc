@@ -1,0 +1,48 @@
+---
+description: BooKoo project-wide hard rules (cpk-ui ownership, lists/pagination, no any, typed routes, i18n keys, money & time units).
+globs:
+alwaysApply: true
+---
+
+# BooKoo Project Rules
+
+The full rulebook lives in the two root documents. Read them; they are the
+source of truth and this rule only restates their headline constraints.
+
+@AGENTS.md
+@CLAUDE.md
+
+## The hard rules, in short
+
+1. **Unbounded lists paginate.** `FlashList` + `paginationOptsValidator` +
+   `usePaginatedQuery` + `onEndReached`. Never `ScrollView + map`, never an
+   uncapped `.collect()`, never a whole-collection `useQuery`. Add the index
+   before the pagination.
+2. **`any` is banned.** Concrete types, `unknown`, generics or type guards.
+   Convex ids are `Id<'tableName'>` from `convex/_generated/dataModel`.
+   `as any` / `as unknown as T` to dodge a type error is the same violation.
+3. **expo-router routes are typed.** String literals, no cast. A typed-route
+   error means the route file is missing — create it.
+4. **i18n keys are static literals.** Branch with `if`/`switch`;
+   `t(dynamicKey as any)` is forbidden.
+5. **Money is an integer in minor units** with an ISO 4217 currency string.
+   Timestamps are epoch-ms numbers; month keys `'YYYY-MM'`, day keys
+   `'YYYY-MM-DD'`.
+6. **Performance is the acceptance criterion.** Every query is index-bounded,
+   every dashboard number comes from a rollup, membership checks are O(1).
+   See `CLAUDE.md` → PERFORMANCE.
+7. **Reusable UI belongs to cpk-ui.** Consume or improve its public primitives;
+   add missing controls and charts upstream instead of implementing competing
+   visuals in BooKoo. BooKoo owns only domain adapters and screen composition.
+   See `src/AGENTS.md` for the cross-repository, native/web, test, and local-link
+   workflow.
+8. **cpk-ui Button radius is a prop.** `borderRadius={8}` on `Button` /
+   `BookooButton`. Never put `borderRadius` or `padding` in `style`. Padding
+   belongs in `styles.container`. A loading overlay must use the same radius.
+
+Directory-scoped rules: `convex/AGENTS.md`, `app/AGENTS.md`, `src/AGENTS.md`,
+`shared/AGENTS.md`, `scripts/AGENTS.md`.
+
+This file is hand-authored. The `00-` prefix keeps
+`.agents/scripts/sync-skills.sh` from pruning it — the prune loop skips
+`.cursor/rules/` files whose basename matches `[0-9][0-9]-*`.

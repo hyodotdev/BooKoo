@@ -1,0 +1,23 @@
+appId: dev.hyo.bookoo
+name: Release candidate iPad comment keyboard avoidance
+env:
+  LEDGER_ID: ns714ycjvtq4z653adfvfwpwn58dgdsk
+  ITEM_ID: n576hmvb67ex9ph02m5c4awnc58dh8x0
+---
+- launchApp:
+    stopApp: false
+- setOrientation: PORTRAIT
+- openLink: bookoo://ledger/${LEDGER_ID}/item/${ITEM_ID}
+- extendedWaitUntil:
+    visible:
+      id: ledger-item-comment-field
+    timeout: 20000
+- tapOn:
+    id: ledger-item-comment-field
+- eraseText: 64
+- inputText: Looks good for the monthly review.
+- takeScreenshot: docs/debugs/e2e/2026-09-01-release-candidate/ipad-mini/023-comment-software-keyboard
+- eraseText: 34
+- hideKeyboard
+- assertNotVisible:
+    id: app-error-fallback

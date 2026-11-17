@@ -1,0 +1,27 @@
+appId: dev.hyo.bookoo
+name: Inspect OpenIAP Pro screen from ledger More without a purchase
+# Supply EVIDENCE_DIR. This flow never purchases or restores.
+---
+# Shared preflight owns launch/auth. Ad loading is not a Paywall prerequisite.
+- assertVisible:
+    id: authenticated-tab-shell
+- takeScreenshot: ${EVIDENCE_DIR}/00-settled-tabs
+- tapOn:
+    text: '^More$'
+- extendedWaitUntil:
+    visible:
+      id: ledger-settings-row-pro
+    timeout: 20000
+- takeScreenshot: ${EVIDENCE_DIR}/01-pro-menu
+- tapOn:
+    id: ledger-settings-row-pro
+- extendedWaitUntil:
+    visible: '^Restore purchases$'
+    timeout: 30000
+- takeScreenshot: ${EVIDENCE_DIR}/02-pro-surface
+# Catalog rows distinguish usable store products from the unavailable fallback.
+- assertVisible: '^BooKoo Pro$'
+- assertVisible: '^Annual, .*'
+- assertVisible: '^Monthly, .*'
+- assertNotVisible:
+    id: app-error-fallback

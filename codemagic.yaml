@@ -1,0 +1,81 @@
+# Codemagic native build checks for BooKoo.
+#
+# These workflows prove that the native iOS and Android projects still build.
+# They use the QA app identity and no signing or store credentials, so they
+# run the same for forks and pull requests. Lint, typecheck and tests stay in
+# GitHub Actions (.github/workflows/ci.yml).
+
+definitions:
+  environment: &environment
+    node: 22.14.0
+    vars:
+      CI: '1'
+      EXPO_NO_DOTENV: '1'
+      BOOKOO_APP_VARIANT: qa
+      BUN_VERSION: '1.3.13'
+  triggering: &triggering
+    events:
+      - pull_request
+    branch_patterns:
+      - pattern: main
+        include: true
+        source: false
+    cancel_previous_builds: true
+  scripts:
+    - &install_bun
+      name: Install Bun
+      script: |
+        curl -fsSL https://bun.sh/install | bash -s "bun-v$BUN_VERSION"
+        echo "PATH=$HOME/.bun/bin:$PATH" >> "$CM_ENV"
+    - &install_dependencies
+      name: Install dependencies
+      script: bun install --frozen-lockfile
+
+workflows:
+  ios-qa-simulator:
+    name: iOS QA simulator build
+    instance_type: mac_mini_m2
+    max_build_duration: 60
+    environment:
+      <<: *environment
+      xcode: latest
+      cocoapods: default
+    triggering: *triggering
+    scripts:
+      - *install_bun
+      - *install_dependencies
+      - name: Generate the iOS project
+        script: bunx expo prebuild --no-install --platform ios
+      - name: Install pods
+        script: cd ios && pod install
+      - name: Build for the iOS simulator
+        script: |
+          set -o pipefail
+          xcodebuild \
+            -workspace ios/BooKooQA.xcworkspace \
+            -scheme BooKooQA \
+            -configuration Release \
+            -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' \
+            CODE_SIGNING_ALLOWED=NO \
+            build | xcpretty
+    artifacts:
+      - /Users/builder/Library/Developer/Xcode/DerivedData/**/Build/Products/**/*.app
+
+  android-qa-release:
+    name: Android QA release build
+    instance_type: linux_x2
+    max_build_duration: 60
+    environment:
+      <<: *environment
+      java: 17
+    triggering: *triggering
+    scripts:
+      - *install_bun
+      - *install_dependencies
+      - name: Generate the Android project
+        script: bunx expo prebuild --no-install --platform android
+      - name: Build the release APK
+        script: cd android && ./gradlew :app:assembleRelease --no-daemon
+    artifacts:
+      - android/app/build/outputs/**/*.apk

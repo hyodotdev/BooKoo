@@ -1,0 +1,58 @@
+appId: dev.hyo.bookoo
+name: Android icon search and dark ledger surfaces
+---
+- assertVisible:
+    id: authenticated-tab-shell
+- tapOn: '^Monthly$'
+- tapOn:
+    id: calendar-parallax-menu
+- tapOn:
+    id: ledger-drawer-add
+- assertVisible:
+    id: ledger-form
+- takeScreenshot: ${EVIDENCE_DIR}/30-ledger-placeholder
+- tapOn:
+    id: ledger-form-icon
+- assertVisible:
+    id: color-icon-select-search
+- takeScreenshot: ${EVIDENCE_DIR}/31-icons-search-empty
+- tapOn:
+    id: color-icon-select-search
+- inputText: 'Cafe'
+- hideKeyboard
+- takeScreenshot: ${EVIDENCE_DIR}/32-icons-filtered
+- tapOn:
+    id: color-icon-select-close
+- assertVisible:
+    id: ledger-form
+- pressKey: BACK
+- assertVisible:
+    id: calendar-parallax-menu
+- tapOn:
+    id: calendar-parallax-menu
+- tapOn:
+    id: ledger-drawer-settings
+- assertVisible:
+    id: app-settings-sections
+- tapOn: '^Theme$'
+- assertVisible:
+    id: appearance-sections
+- tapOn:
+    text: '^Dark$'
+    waitToSettleTimeoutMs: 1000
+- assertVisible:
+    text: '^Dark$'
+    checked: true
+- takeScreenshot: ${EVIDENCE_DIR}/33-appearance-dark
+- pressKey: BACK
+- pressKey: BACK
+- assertVisible:
+    id: calendar-next
+- takeScreenshot: ${EVIDENCE_DIR}/34-monthly-dark
+- tapOn: '^More$'
+- assertVisible:
+    id: ledger-settings-row-manage
+- takeScreenshot: ${EVIDENCE_DIR}/35-more-dark
+- tapOn: '^Monthly$'
+- assertNotVisible:
+    id: app-error-fallback

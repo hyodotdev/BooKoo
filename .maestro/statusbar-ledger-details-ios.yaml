@@ -1,0 +1,11 @@
+appId: dev.hyo.bookoo
+name: Open themed ledger details on existing iPad
+---
+- launchApp:
+    stopApp: false
+- tapOn:
+    point: "7%, 21%"
+- tapOn:
+    point: "50%, 49%"
+- assertNotVisible:
+    id: app-error-fallback

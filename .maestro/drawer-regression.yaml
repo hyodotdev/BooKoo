@@ -1,0 +1,39 @@
+appId: dev.hyo.bookoo
+name: Native drawer regression
+---
+- launchApp:
+    stopApp: false
+- assertVisible:
+    id: calendar-parallax-menu
+- tapOn:
+    id: calendar-parallax-menu
+- assertVisible:
+    id: ledger-drawer-close
+- assertVisible:
+    id: ledger-drawer-list
+- takeScreenshot: docs/debugs/e2e/2026-08-30-exact/pixel10/010-drawer-open
+- tapOn:
+    point: 95%,50%
+- assertNotVisible:
+    id: ledger-drawer-close
+- tapOn:
+    id: calendar-parallax-menu
+- assertVisible:
+    id: ledger-drawer-close
+- takeScreenshot: docs/debugs/e2e/2026-08-30-exact/pixel10/011-drawer-reopened
+- tapOn:
+    id: ledger-drawer-close
+- assertNotVisible:
+    id: ledger-drawer-close
+- tapOn:
+    id: calendar-parallax-menu
+- tapOn: Jiyoon Monthly Budget
+- assertNotVisible:
+    id: ledger-drawer-close
+- tapOn:
+    id: calendar-parallax-menu
+- tapOn:
+    id: ledger-drawer-profile
+- assertNotVisible:
+    id: ledger-drawer-close
+- takeScreenshot: docs/debugs/e2e/2026-08-30-exact/pixel10/012-drawer-profile-destination

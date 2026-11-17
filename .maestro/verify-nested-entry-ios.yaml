@@ -1,0 +1,40 @@
+appId: dev.hyo.bookoo
+name: Preserve nested LedgerItem draft through category selection on iOS
+---
+- launchApp:
+    stopApp: false
+- openLink: bookoo://entry/new
+- extendedWaitUntil:
+    visible:
+      id: entry-route-header
+    timeout: 20000
+- tapOn:
+    id: edit-text
+- eraseText: 30
+- inputText: '55000'
+- tapOn:
+    id: entry-category-picker
+- extendedWaitUntil:
+    visible: Transport
+    timeout: 20000
+- tapOn: Transport
+- assertVisible:
+    id: entry-route-header
+- assertVisible: Transport
+- tapOn:
+    id: entry-memo-box
+- eraseText: 200
+- inputText: Monthly transit card
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-simulator/online/003-entry-draft-preserved
+- tapOn:
+    id: entry-save
+- extendedWaitUntil:
+    notVisible:
+      id: entry-route-header
+    timeout: 20000
+- openLink: bookoo://timeline
+- extendedWaitUntil:
+    visible: 'expense,.*Transport'
+    timeout: 20000
+- assertVisible: 'expense,.*Transport'
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-simulator/online/004-entry-created-calendar

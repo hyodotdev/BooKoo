@@ -1,0 +1,4 @@
+interface:
+  display_name: "Loop Review"
+  short_description: "Run the BooKoo change-to-merge review loop"
+  default_prompt: "Use $loop-review to take the current BooKoo change from main through review-self, PR, review polling, and a verified merge."

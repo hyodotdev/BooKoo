@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://bookoo.hyo.dev/sitemap.xml

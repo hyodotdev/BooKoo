@@ -1,0 +1,13 @@
+{
+  "android": {
+    "app_name": "BooKoo"
+  },
+  "ios": {
+    "CFBundleDisplayName": "BooKoo",
+    "NSCameraUsageDescription": "BooKoo で記録に写真を添付するには、カメラへのアクセス権限が必要です。",
+    "NSFaceIDUsageDescription": "BooKoo のロック解除に Face ID を使用します。",
+    "NSLocationWhenInUseUsageDescription": "BooKoo は、記録に場所を選ぶときや地図で現在地を表示するときに位置情報を使用します。",
+    "NSPhotoLibraryAddUsageDescription": "BooKoo で写真を端末に保存するには、写真への追加権限が必要です。",
+    "NSPhotoLibraryUsageDescription": "BooKoo で記録に写真を添付するには、写真へのアクセス権限が必要です。"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "android": {
+    "app_name": "BooKoo"
+  },
+  "ios": {
+    "CFBundleDisplayName": "BooKoo",
+    "NSCameraUsageDescription": "BooKoo heeft toegang tot de camera nodig om een foto aan een boeking toe te voegen.",
+    "NSFaceIDUsageDescription": "BooKoo gebruikt Face ID om de app te ontgrendelen.",
+    "NSLocationWhenInUseUsageDescription": "BooKoo gebruikt je locatie wanneer je een plaats kiest voor een post of je positie op de kaart zoekt.",
+    "NSPhotoLibraryAddUsageDescription": "BooKoo heeft toestemming nodig om een foto in je fotobibliotheek op te slaan.",
+    "NSPhotoLibraryUsageDescription": "BooKoo heeft toegang tot je fotobibliotheek nodig om een foto aan een boeking toe te voegen."
+  }
+}

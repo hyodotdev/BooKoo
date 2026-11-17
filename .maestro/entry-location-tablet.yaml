@@ -1,0 +1,29 @@
+appId: dev.hyo.bookoo
+name: Tablet native location from the entry editor
+---
+- launchApp:
+    stopApp: true
+- openLink: bookoo://
+- extendedWaitUntil:
+    visible:
+      id: ledger-header-action
+    timeout: 30000
+- tapOn:
+    id: ledger-header-action
+- extendedWaitUntil:
+    visible: Amount
+    timeout: 20000
+- tapOn:
+    id: entry-location-picker
+- runFlow:
+    when:
+      visible: Allow While Using App
+    commands:
+      - tapOn: Allow While Using App
+- extendedWaitUntil:
+    visible:
+      id: entry-location-map
+    timeout: 15000
+- takeScreenshot: ${EVIDENCE_DIR}/00-current-location
+- runFlow:
+    file: entry-location-roundtrip.yaml

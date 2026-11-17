@@ -1,0 +1,111 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "prettier.configPath": ".prettierrc.js",
+
+  "eslint.enable": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "json"
+  ],
+  "eslint.options": {
+    "extensions": [".js", ".jsx", ".ts", ".tsx", ".json"]
+  },
+  "eslint.workingDirectories": [{"mode": "auto"}],
+
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "javascript.preferences.importModuleSpecifier": "shortest",
+  "typescript.preferences.importModuleSpecifier": "shortest",
+
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    "package.json": "bun.lock, bun.lockb, .ncurc.json, .npmrc, commitlint.config.cjs",
+    "tsconfig.json": "environment.d.ts, expo-env.d.ts, convex.json",
+    ".eslintrc.js": ".eslintignore, .prettierrc.js, .prettierignore, custom-syntax-validator.ts",
+    "app.config.ts": "app.json, config.ts, eas.json, .env, .env.*, metro.config.js, babel.config.js",
+    "jest.config.ts": "custom-syntax-validator.ts",
+    "schema.ts": "auth.config.ts, auth.ts, http.ts, convex.config.ts, tsconfig.json"
+  },
+
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/.expo": true,
+    "**/.jest": true,
+    "bun.lock": true,
+    "convex/_generated": true,
+    "BooKooLegacy": true
+  },
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/.expo/**": true,
+    "**/BooKooLegacy/**": true,
+    "**/convex/_generated/**": true
+  },
+
+  "cSpell.words": [
+    "BooKoo",
+    "convex",
+    "cpk",
+    "crossplatformkorea",
+    "datetime",
+    "flashlist",
+    "gagyebu",
+    "hyochan",
+    "hyodotdev",
+    "kakao",
+    "kstyled",
+    "ledgers",
+    "minor units",
+    "MMKV",
+    "naver",
+    "paginated",
+    "Pressable",
+    "Pretendard",
+    "Proguard",
+    "shopify",
+    "Skia",
+    "Subviews",
+    "typedRoutes",
+    "victory",
+    "zustand"
+  ]
+}

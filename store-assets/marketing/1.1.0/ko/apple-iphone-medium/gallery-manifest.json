@@ -1,0 +1,345 @@
+{
+  "version": "1.1.0",
+  "scenes": [
+    "intro",
+    "calendar",
+    "timeline",
+    "stats",
+    "entry",
+    "sharing",
+    "comments",
+    "theme"
+  ],
+  "panels": [
+    {
+      "locale": "ko",
+      "family": "apple-iphone-medium",
+      "displayType": "APP_IPHONE_61",
+      "scene": "intro",
+      "file": "ko/apple-iphone-medium/01-intro.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "46d8100e4e757bca1c987e9aad827b8eaa6b8c610ac2e03543f4a13e9145b4ef",
+      "bytes": 2146467,
+      "capture": {
+        "family": "iphone",
+        "locale": "ko",
+        "scene": "calendar",
+        "file": "sources/iphone/ko-calendar.png",
+        "sha256": "d3623c6bf230e89a80b2cdc6de59d8e12c24f3556255b7089189a768d1bf975f",
+        "platform": "ios",
+        "version": "1.1.0",
+        "nativeBuild": "signed SDK27.1 debug simulator",
+        "nativeArtifactSha256": "506a41f396ddce7e4721dbe50a059f3de410e891583699209874e77d10954549",
+        "sourceFingerprint": "8714e04f566cd12731c6554853bf57dd715fa033659ef4485ae404eb933f7805",
+        "sourceFingerprintFiles": [
+          "src/features/ledger/ui.tsx",
+          "src/features/ledger/screens/entryEditor.tsx",
+          "src/features/ledger/screens/calendar.tsx",
+          "src/features/ledger/screens/timeline.tsx",
+          "src/features/ledger/screens/entryDetail.tsx",
+          "src/hooks/useTabletLayout.ts"
+        ],
+        "capturedAt": "2026-10-09T12:53:34.613Z",
+        "os": "iOS26.5",
+        "device": "iPhone17Pro",
+        "orientation": "portrait",
+        "theme": "light",
+        "inspected": true,
+        "crop": {
+          "top": 170,
+          "bottom": 312
+        }
+      }
+    },
+    {
+      "locale": "ko",
+      "family": "apple-iphone-medium",
+      "displayType": "APP_IPHONE_61",
+      "scene": "calendar",
+      "file": "ko/apple-iphone-medium/02-calendar.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "8c08bf277a6df4c506f2f14d59e199c961f14201baf51ec7d743cde07b701f6e",
+      "bytes": 213610,
+      "capture": {
+        "family": "iphone",
+        "locale": "ko",
+        "scene": "calendar",
+        "file": "sources/iphone/ko-calendar.png",
+        "sha256": "d3623c6bf230e89a80b2cdc6de59d8e12c24f3556255b7089189a768d1bf975f",
+        "platform": "ios",
+        "version": "1.1.0",
+        "nativeBuild": "signed SDK27.1 debug simulator",
+        "nativeArtifactSha256": "506a41f396ddce7e4721dbe50a059f3de410e891583699209874e77d10954549",
+        "sourceFingerprint": "8714e04f566cd12731c6554853bf57dd715fa033659ef4485ae404eb933f7805",
+        "sourceFingerprintFiles": [
+          "src/features/ledger/ui.tsx",
+          "src/features/ledger/screens/entryEditor.tsx",
+          "src/features/ledger/screens/calendar.tsx",
+          "src/features/ledger/screens/timeline.tsx",
+          "src/features/ledger/screens/entryDetail.tsx",
+          "src/hooks/useTabletLayout.ts"
+        ],
+        "capturedAt": "2026-10-09T12:53:34.613Z",
+        "os": "iOS26.5",
+        "device": "iPhone17Pro",
+        "orientation": "portrait",
+        "theme": "light",
+        "inspected": true,
+        "crop": {
+          "top": 170,
+          "bottom": 312
+        }
+      }
+    },
+    {
+      "locale": "ko",
+      "family": "apple-iphone-medium",
+      "displayType": "APP_IPHONE_61",
+      "scene": "timeline",
+      "file": "ko/apple-iphone-medium/03-timeline.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "9d366f4e779176167ae92432ced51b6527dd79b0b84825c5f00f8a2f59320b2c",
+      "bytes": 216967,
+      "capture": {
+        "family": "iphone",
+        "locale": "ko",
+        "scene": "timeline",
+        "file": "sources/iphone/ko-timeline.png",
+        "sha256": "470ecafb282d5cb1a10d6e9fbd30ec0c8d24a8ddecc180d38c4991d271f06e3d",
+        "platform": "ios",
+        "version": "1.1.0",
+        "nativeBuild": "signed SDK27.1 debug simulator",
+        "nativeArtifactSha256": "506a41f396ddce7e4721dbe50a059f3de410e891583699209874e77d10954549",
+        "sourceFingerprint": "8714e04f566cd12731c6554853bf57dd715fa033659ef4485ae404eb933f7805",
+        "sourceFingerprintFiles": [
+          "src/features/ledger/ui.tsx",
+          "src/features/ledger/screens/entryEditor.tsx",
+          "src/features/ledger/screens/calendar.tsx",
+          "src/features/ledger/screens/timeline.tsx",
+          "src/features/ledger/screens/entryDetail.tsx",
+          "src/hooks/useTabletLayout.ts"
+        ],
+        "capturedAt": "2026-10-09T12:53:38.978Z",
+        "os": "iOS26.5",
+        "device": "iPhone17Pro",
+        "orientation": "portrait",
+        "theme": "light",
+        "inspected": true,
+        "crop": {
+          "top": 170,
+          "bottom": 312
+        }
+      }
+    },
+    {
+      "locale": "ko",
+      "family": "apple-iphone-medium",
+      "displayType": "APP_IPHONE_61",
+      "scene": "stats",
+      "file": "ko/apple-iphone-medium/04-stats.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "466d109d9900aa853104b1f477fef5ae18ad16d4531bbb1b12131c1103949d2f",
+      "bytes": 224504,
+      "capture": {
+        "family": "iphone",
+        "locale": "ko",
+        "scene": "stats",
+        "file": "sources/iphone/ko-stats.png",
+        "sha256": "84ad34ce57e7cf38b533db1b82b15a2e97e3f0c3a9c307cc73a5f1e0e5d354fc",
+        "platform": "ios",
+        "version": "1.1.0",
+        "nativeBuild": "signed SDK27.1 debug simulator",
+        "nativeArtifactSha256": "097793bea5db54235a7ad7f62f1c14c368170273eaaaac54d332ce347a1a2aaf",
+        "sourceFingerprint": "180b7a191ab201da6d723712f298aac1134b30b0a195d79fbf25e012e0fd2c81",
+        "sourceFingerprintFiles": [
+          "src/features/ledger/ui.tsx",
+          "src/features/ledger/screens/entryEditor.tsx",
+          "src/features/ledger/screens/calendar.tsx",
+          "src/features/ledger/screens/timeline.tsx",
+          "src/features/ledger/screens/entryDetail.tsx",
+          "src/hooks/useTabletLayout.ts",
+          "src/features/ledger/screens/stats.tsx",
+          "src/features/ledger/statsPresentation.ts"
+        ],
+        "capturedAt": "2026-10-09T16:52:22.933Z",
+        "os": "iOS26.5",
+        "device": "iPhone17Pro",
+        "orientation": "portrait",
+        "theme": "light",
+        "inspected": true,
+        "crop": {
+          "top": 170,
+          "bottom": 312
+        }
+      }
+    },
+    {
+      "locale": "ko",
+      "family": "apple-iphone-medium",
+      "displayType": "APP_IPHONE_61",
+      "scene": "entry",
+      "file": "ko/apple-iphone-medium/05-entry.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "9939bc472edfd6bb1ad4260c7e9875cd5275cb1e71420dcffb393e95122beeac",
+      "bytes": 138592,
+      "capture": {
+        "family": "iphone",
+        "locale": "ko",
+        "scene": "entry",
+        "file": "sources/iphone/ko-entry.png",
+        "sha256": "ec4b7f293d324d9e327ac038a7c545f0424266d5dddeae6d41da678ce40a0fdb",
+        "platform": "ios",
+        "version": "1.1.0",
+        "nativeBuild": "signed SDK27.1 debug simulator; current R91 JS from root Metro8083",
+        "nativeArtifactSha256": "097793bea5db54235a7ad7f62f1c14c368170273eaaaac54d332ce347a1a2aaf",
+        "sourceFingerprint": "9847cd32637a053d29cd172f7704a31d3367a142a932e7cbb175f625c034a763",
+        "sourceFingerprintFiles": [
+          "src/features/ledger/ui.tsx",
+          "src/features/ledger/screens/entryEditor.tsx",
+          "src/features/ledger/screens/calendar.tsx",
+          "src/features/ledger/screens/timeline.tsx",
+          "src/features/ledger/screens/entryDetail.tsx",
+          "src/hooks/useTabletLayout.ts"
+        ],
+        "capturedAt": "2026-10-10T03:11:13.786Z",
+        "os": "iOS26.5",
+        "device": "iPhone17Pro",
+        "orientation": "portrait",
+        "theme": "light",
+        "inspected": true,
+        "crop": {
+          "top": 170,
+          "bottom": 0
+        }
+      }
+    },
+    {
+      "locale": "ko",
+      "family": "apple-iphone-medium",
+      "displayType": "APP_IPHONE_61",
+      "scene": "sharing",
+      "file": "ko/apple-iphone-medium/06-sharing.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "30568d6cfbf4d725884880433f49333f89e776a70f8a060d62aaa479dd6514d1",
+      "bytes": 164672,
+      "capture": {
+        "family": "iphone",
+        "locale": "ko",
+        "scene": "sharing",
+        "file": "sources/iphone/ko-sharing.png",
+        "sha256": "9789c2926f03866455d6968eb051b94f3977868292dcf0b657362bc2367dd7d1",
+        "platform": "ios",
+        "version": "1.1.0",
+        "nativeBuild": "signed SDK27.1 debug simulator",
+        "nativeArtifactSha256": "506a41f396ddce7e4721dbe50a059f3de410e891583699209874e77d10954549",
+        "sourceFingerprint": "8714e04f566cd12731c6554853bf57dd715fa033659ef4485ae404eb933f7805",
+        "sourceFingerprintFiles": [
+          "src/features/ledger/ui.tsx",
+          "src/features/ledger/screens/entryEditor.tsx",
+          "src/features/ledger/screens/calendar.tsx",
+          "src/features/ledger/screens/timeline.tsx",
+          "src/features/ledger/screens/entryDetail.tsx",
+          "src/hooks/useTabletLayout.ts"
+        ],
+        "capturedAt": "2026-10-09T12:53:45.364Z",
+        "os": "iOS26.5",
+        "device": "iPhone17Pro",
+        "orientation": "portrait",
+        "theme": "light",
+        "inspected": true,
+        "crop": {
+          "top": 170,
+          "bottom": 0
+        }
+      }
+    },
+    {
+      "locale": "ko",
+      "family": "apple-iphone-medium",
+      "displayType": "APP_IPHONE_61",
+      "scene": "comments",
+      "file": "ko/apple-iphone-medium/07-comments.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "d5ead8f99e7a7d9425fed376df544088c49727c1ac578bda24056fdebce6a49f",
+      "bytes": 238533,
+      "capture": {
+        "family": "iphone",
+        "locale": "ko",
+        "scene": "comments",
+        "file": "sources/iphone/ko-comments.png",
+        "sha256": "c847382e7f319c833711ca001324bbd0e6895d80b5f2c1086a88a2fa5cba7c9d",
+        "platform": "ios",
+        "version": "1.1.0",
+        "nativeBuild": "signed SDK27.1 debug simulator",
+        "nativeArtifactSha256": "506a41f396ddce7e4721dbe50a059f3de410e891583699209874e77d10954549",
+        "sourceFingerprint": "8714e04f566cd12731c6554853bf57dd715fa033659ef4485ae404eb933f7805",
+        "sourceFingerprintFiles": [
+          "src/features/ledger/ui.tsx",
+          "src/features/ledger/screens/entryEditor.tsx",
+          "src/features/ledger/screens/calendar.tsx",
+          "src/features/ledger/screens/timeline.tsx",
+          "src/features/ledger/screens/entryDetail.tsx",
+          "src/hooks/useTabletLayout.ts"
+        ],
+        "capturedAt": "2026-10-09T12:53:48.466Z",
+        "os": "iOS26.5",
+        "device": "iPhone17Pro",
+        "orientation": "portrait",
+        "theme": "light",
+        "inspected": true,
+        "crop": {
+          "top": 170,
+          "bottom": 0
+        }
+      }
+    },
+    {
+      "locale": "ko",
+      "family": "apple-iphone-medium",
+      "displayType": "APP_IPHONE_61",
+      "scene": "theme",
+      "file": "ko/apple-iphone-medium/08-theme.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "4b17520eedaf2d01b69a8025a95aad3117d8050f5a3eb2ae9563d5f41e401cf3",
+      "bytes": 219100,
+      "capture": {
+        "family": "iphone",
+        "locale": "ko",
+        "scene": "theme",
+        "file": "sources/iphone/ko-theme.png",
+        "sha256": "336e227355b39cd72c243bd2c09be4696438a4176bcb4a0fc43f0f5153569cba",
+        "platform": "ios",
+        "version": "1.1.0",
+        "nativeBuild": "signed SDK27.1 debug simulator",
+        "nativeArtifactSha256": "506a41f396ddce7e4721dbe50a059f3de410e891583699209874e77d10954549",
+        "sourceFingerprint": "8714e04f566cd12731c6554853bf57dd715fa033659ef4485ae404eb933f7805",
+        "sourceFingerprintFiles": [
+          "src/features/ledger/ui.tsx",
+          "src/features/ledger/screens/entryEditor.tsx",
+          "src/features/ledger/screens/calendar.tsx",
+          "src/features/ledger/screens/timeline.tsx",
+          "src/features/ledger/screens/entryDetail.tsx",
+          "src/hooks/useTabletLayout.ts"
+        ],
+        "capturedAt": "2026-10-09T12:54:07.205Z",
+        "os": "iOS26.5",
+        "device": "iPhone17Pro",
+        "orientation": "portrait",
+        "theme": "dark",
+        "inspected": true,
+        "crop": {
+          "top": 170,
+          "bottom": 312
+        }
+      }
+    }
+  ]
+}

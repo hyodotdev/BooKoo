@@ -1,0 +1,65 @@
+appId: dev.hyo.bookoo
+---
+- openLink: bookoo://timeline
+- waitForAnimationToEnd
+- assertVisible:
+    id: authenticated-tab-shell
+- assertVisible:
+    id: timeline-day-.*
+- takeScreenshot: ${OUTPUT_ROOT}/android-timeline
+- tapOn:
+    text: Stats
+- waitForAnimationToEnd
+- assertVisible: Total
+- takeScreenshot: ${OUTPUT_ROOT}/android-stats
+- tapOn:
+    text: Monthly
+- waitForAnimationToEnd
+- assertVisible: Monthly
+- takeScreenshot: ${OUTPUT_ROOT}/android-calendar-return
+- tapOn:
+    text: List
+- waitForAnimationToEnd
+- assertVisible:
+    id: timeline-day-.*
+- takeScreenshot: ${OUTPUT_ROOT}/android-timeline-return
+- swipe:
+    start: 50%,72%
+    end: 50%,25%
+    duration: 600
+- swipe:
+    start: 50%,72%
+    end: 50%,25%
+    duration: 600
+- swipe:
+    start: 50%,72%
+    end: 50%,25%
+    duration: 600
+- swipe:
+    start: 50%,72%
+    end: 50%,25%
+    duration: 600
+- waitForAnimationToEnd
+- assertVisible:
+    id: timeline-day-.*
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: ${OUTPUT_ROOT}/android-timeline-scrolled
+- tapOn:
+    id: ledger-header-menu
+- assertVisible:
+    id: ledger-drawer-list
+- tapOn:
+    id: ledger-row-Weekend Trip Fund-select
+- waitForAnimationToEnd
+- assertVisible: Weekend Trip Fund
+- tapOn:
+    id: ledger-header-menu
+- tapOn:
+    id: ledger-row-Minji Daily Budget-select
+- waitForAnimationToEnd
+- assertVisible:
+    id: timeline-day-.*
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: ${OUTPUT_ROOT}/android-ledger-window-reset

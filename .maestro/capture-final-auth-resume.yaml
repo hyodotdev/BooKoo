@@ -1,0 +1,21 @@
+appId: dev.hyo.bookoo
+name: Resume synthetic account sign-in from email
+---
+- launchApp:
+    stopApp: false
+- assertVisible: Send code
+- inputText: ${BOOKOO_E2E_EMAIL}
+- tapOn: Send code
+- extendedWaitUntil:
+    visible: 8-digit code
+    timeout: 20000
+- tapOn: 8-digit code
+- inputText: ${BOOKOO_E2E_OTP}
+- tapOn: Next
+- extendedWaitUntil:
+    visible:
+      id: authenticated-tab-shell
+    timeout: 30000
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: ${OUTPUT_ROOT}/078-login-restored-calendar

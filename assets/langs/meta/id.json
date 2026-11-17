@@ -1,0 +1,13 @@
+{
+  "android": {
+    "app_name": "BooKoo"
+  },
+  "ios": {
+    "CFBundleDisplayName": "BooKoo",
+    "NSCameraUsageDescription": "BooKoo memerlukan akses kamera agar Anda dapat melampirkan foto ke catatan.",
+    "NSFaceIDUsageDescription": "BooKoo menggunakan Face ID untuk membuka kunci aplikasi.",
+    "NSLocationWhenInUseUsageDescription": "BooKoo menggunakan lokasi Anda saat Anda memilih tempat untuk catatan atau mencari posisi Anda di peta.",
+    "NSPhotoLibraryAddUsageDescription": "BooKoo memerlukan izin untuk menyimpan foto ke galeri Anda.",
+    "NSPhotoLibraryUsageDescription": "BooKoo memerlukan akses galeri agar Anda dapat melampirkan foto ke catatan."
+  }
+}

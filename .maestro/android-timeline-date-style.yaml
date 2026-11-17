@@ -1,0 +1,39 @@
+appId: dev.hyo.bookoo
+name: Android quiet timeline dates and pinned pagination
+---
+# Retained Home & Everyday fixture; no reset, entries or ledger mutations.
+# Caller supplies APPEARANCE (Light/Dark) and unique EVIDENCE_DIR.
+- assertVisible:
+    id: authenticated-tab-shell
+- tapOn: '^Monthly$'
+- tapOn:
+    id: calendar-parallax-menu
+- tapOn:
+    id: ledger-drawer-settings
+- tapOn: '^Theme$'
+- tapOn:
+    text: '^${APPEARANCE}$'
+    waitToSettleTimeoutMs: 1000
+- assertVisible:
+    text: '^${APPEARANCE}$'
+    checked: true
+- pressKey: BACK
+- pressKey: BACK
+- tapOn: '^List$'
+- tapOn: '^All$'
+- scrollUntilVisible:
+    element:
+      text: 'September 6th, 2026'
+    direction: UP
+    speed: 80
+    timeout: 45000
+- takeScreenshot: ${EVIDENCE_DIR}/timeline-dates
+- scrollUntilVisible:
+    element:
+      text: 'August 20th, 2026'
+    direction: DOWN
+    timeout: 90000
+- takeScreenshot: ${EVIDENCE_DIR}/timeline-dates-page-two
+- assertNotVisible:
+    id: app-error-fallback
+- tapOn: '^Monthly$'

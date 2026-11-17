@@ -1,0 +1,45 @@
+appId: dev.hyo.bookoo
+name: Verify visible photo viewer actions on iOS
+env:
+  ITEM_ID: ${ITEM_ID}
+  OUTPUT_ROOT: ${OUTPUT_ROOT}
+---
+- launchApp:
+    stopApp: false
+- extendedWaitUntil:
+    visible:
+      id: photo-viewer-delete
+    timeout: 45000
+- assertVisible:
+    id: photo-viewer-pager
+- takeScreenshot: ${OUTPUT_ROOT}/006b-photo-viewer-actions-ready
+- tapOn:
+    id: photo-viewer-delete
+- extendedWaitUntil:
+    visible: Delete this photo?
+    timeout: 15000
+- takeScreenshot: ${OUTPUT_ROOT}/007-photo-delete-confirmation
+- tapOn: Cancel
+- extendedWaitUntil:
+    visible:
+      id: photo-viewer-share
+    timeout: 10000
+- tapOn:
+    id: photo-viewer-share
+- extendedWaitUntil:
+    visible: Copy
+    timeout: 30000
+- takeScreenshot: ${OUTPUT_ROOT}/008-photo-share-sheet
+- tapOn:
+    point: 50%,12%
+- extendedWaitUntil:
+    visible:
+      id: photo-viewer-save
+    timeout: 15000
+- tapOn:
+    id: photo-viewer-save
+- extendedWaitUntil:
+    visible: Saved to your photo library.
+    timeout: 30000
+- takeScreenshot: ${OUTPUT_ROOT}/009-photo-saved-confirmation
+- tapOn: OK

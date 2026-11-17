@@ -1,0 +1,2 @@
+# Editable Blender scenes are reproducible from the checked-in generator.
+*.blend*

@@ -1,0 +1,13 @@
+{
+  "android": {
+    "app_name": "BooKoo"
+  },
+  "ios": {
+    "CFBundleDisplayName": "BooKoo",
+    "NSCameraUsageDescription": "BooKoo cần quyền truy cập máy ảnh để bạn đính kèm ảnh vào giao dịch.",
+    "NSFaceIDUsageDescription": "BooKoo dùng Face ID để mở khóa ứng dụng.",
+    "NSLocationWhenInUseUsageDescription": "BooKoo dùng vị trí của bạn khi bạn chọn địa điểm cho giao dịch hoặc tìm vị trí hiện tại trên bản đồ.",
+    "NSPhotoLibraryAddUsageDescription": "BooKoo cần quyền lưu ảnh vào thư viện ảnh của bạn.",
+    "NSPhotoLibraryUsageDescription": "BooKoo cần quyền truy cập thư viện ảnh để bạn đính kèm ảnh vào giao dịch."
+  }
+}

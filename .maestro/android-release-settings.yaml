@@ -1,0 +1,78 @@
+appId: dev.hyo.bookoo
+name: Android settings through real parent navigation
+---
+- assertVisible:
+    id: authenticated-tab-shell
+- tapOn: '^Monthly$'
+- tapOn:
+    id: calendar-parallax-menu
+- tapOn:
+    id: ledger-drawer-settings
+- assertVisible:
+    id: app-settings-sections
+- tapOn: '^Notifications$'
+- assertVisible:
+    id: notification-settings-sections
+- takeScreenshot: ${EVIDENCE_DIR}/40-notifications
+- back
+- tapOn: '^Currency$'
+- assertVisible:
+    id: default-currency-sections
+- takeScreenshot: ${EVIDENCE_DIR}/41-currency
+- back
+- tapOn:
+    text: '^Account$'
+    index: 1
+- assertVisible:
+    id: account-sign-out
+- assertVisible:
+    id: account-leave-footer
+- takeScreenshot: ${EVIDENCE_DIR}/42-account
+- back
+- scrollUntilVisible:
+    element:
+      text: '^FAQ$'
+    direction: DOWN
+- tapOn: '^FAQ$'
+- assertVisible:
+    id: faq-sections
+- tapOn: 'What is BooKoo?'
+- assertVisible: 'BooKoo is a private.*'
+- takeScreenshot: ${EVIDENCE_DIR}/43-faq-expanded
+- tapOn: 'What is BooKoo?'
+- assertNotVisible: 'BooKoo is a private.*'
+- scrollUntilVisible:
+    element:
+      text: 'Is this an update of the old BooKoo app?'
+    direction: DOWN
+- tapOn: 'Is this an update of the old BooKoo app?'
+- takeScreenshot: ${EVIDENCE_DIR}/44-faq-last
+- back
+- tapOn: '^Announcements$'
+- assertVisible:
+    id: announcement-sections
+- tapOn: 'A new BooKoo, built to share again'
+- assertVisible: 'BooKoo has been rebuilt.*'
+- takeScreenshot: ${EVIDENCE_DIR}/45-announcement-expanded
+- tapOn: 'A new BooKoo, built to share again'
+- assertNotVisible: 'BooKoo has been rebuilt.*'
+- back
+- scrollUntilVisible:
+    element:
+      text: '^Privacy and data$'
+    direction: DOWN
+- tapOn: '^Privacy and data$'
+- assertVisible:
+    id: privacy-sections
+- takeScreenshot: ${EVIDENCE_DIR}/46-privacy
+- back
+- tapOn: '^About BooKoo$'
+- assertVisible:
+    id: about-sections
+- takeScreenshot: ${EVIDENCE_DIR}/47-about
+- back
+- back
+- assertVisible:
+    id: calendar-next
+- assertNotVisible:
+    id: app-error-fallback

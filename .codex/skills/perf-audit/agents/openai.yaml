@@ -1,0 +1,4 @@
+interface:
+  display_name: "Perf Audit"
+  short_description: "Prove BooKoo lists stay paginated and snappy"
+  default_prompt: "Use $perf-audit to audit BooKoo for unbounded-data performance regressions across FlashList usage, Convex pagination, indexes, and rollups."

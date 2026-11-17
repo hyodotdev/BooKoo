@@ -1,0 +1,86 @@
+{
+  "users": {
+    "uid-owner": {
+      "info": {
+        "displayName": "Synthetic Owner",
+        "email": "owner@example.test",
+        "photoURL": "",
+        "statusMsg": "fixture",
+        "tel": ""
+      },
+      "ledgers": {"-L9xQ2fT3kZ8aB1cDeFg": true}
+    },
+    "uid-member": {
+      "info": {
+        "displayName": "Synthetic Member",
+        "email": "member@example.test",
+        "statusMsg": "",
+        "tel": ""
+      },
+      "ledgers": {"-L9xQ2fT3kZ8aB1cDeFg": true}
+    },
+    "uid-request": {
+      "info": {
+        "displayName": "Synthetic Requester",
+        "email": "request@example.test",
+        "statusMsg": "",
+        "tel": ""
+      }
+    }
+  },
+  "ledgers": {
+    "-L9xQ2fT3kZ8aB1cDeFg": {
+      "info": {"title": "Fixture Ledger", "description": "synthetic", "color": 4, "people": 1},
+      "owner": "uid-owner",
+      "visible": true,
+      "members": {"uid-owner": "uid-owner", "uid-member": "uid-member"},
+      "requests": {"uid-request": "uid-request"},
+      "items": {
+        "-M2aQ2fT3kZ8aB1cDeFg": {
+          "amount": "₩12,000",
+          "realAmount": -12000,
+          "memo": "synthetic meal",
+          "category": {"category": 0, "iconId": 0, "txt": "Synthetic custom"},
+          "selectedDate": "2026-08-24T12:00:00+09:00",
+          "created": "2026-08-24T12:00:00+09:00",
+          "updated": "2026-08-24T12:00:00+09:00",
+          "writer": "uid-owner",
+          "reviews": {
+            "-M2bQ2fT3kZ8aB1cDeFg": {
+              "text": "synthetic comment",
+              "writer": "uid-member",
+              "date": "2026-08-24T12:30:00+09:00"
+            }
+          },
+          "picture": [
+            {
+              "url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=",
+              "isBase64": true
+            }
+          ]
+        },
+        "-M2cQ2fT3kZ8aB1cDeFg": {
+          "amount": "₩50,000",
+          "realAmount": 50000,
+          "memo": "synthetic income",
+          "category": {"category": 1, "iconId": 18, "txt": ""},
+          "selectedDate": "2026-08-25T09:00:00+09:00",
+          "created": "2026-08-25T09:00:00+09:00",
+          "updated": "2026-08-25T09:00:00+09:00",
+          "writer": "uid-member"
+        }
+      }
+    }
+  },
+  "invites": {
+    "-L9xQ2fT3kZ8aB1cDeFg": {"invitee%40example%2Etest": "invitee@example.test"},
+    "invitee%40example%2Etest": {"-L9xQ2fT3kZ8aB1cDeFg": "-L9xQ2fT3kZ8aB1cDeFg"}
+  },
+  "opinions": {
+    "-M2dQ2fT3kZ8aB1cDeFg": {
+      "opinion": "synthetic feedback",
+      "createdAt": "2026-08-25",
+      "user": {"uid": "uid-owner", "displayName": "Synthetic Owner", "email": "owner@example.test"}
+    }
+  }
+}

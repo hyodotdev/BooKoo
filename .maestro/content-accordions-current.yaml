@@ -1,0 +1,32 @@
+appId: dev.hyo.bookoo
+name: FAQ and announcements expand inline
+---
+- openLink: bookoo://settings/faq
+- extendedWaitUntil:
+    visible:
+      id: faq-sections
+    timeout: 15000
+- tapOn: 'What is BooKoo?'
+- assertVisible: 'BooKoo is a private.*'
+- takeScreenshot: ${EVIDENCE_DIR}/pixel-faq-accordion-expanded
+- tapOn: 'What is BooKoo?'
+- assertNotVisible: 'BooKoo is a private.*'
+- scrollUntilVisible:
+    element:
+      text: 'Is this an update of the old BooKoo app?'
+    direction: DOWN
+- tapOn: 'Is this an update of the old BooKoo app?'
+- takeScreenshot: ${EVIDENCE_DIR}/pixel-faq-accordion-last
+- back
+- openLink: bookoo://settings/announcements
+- extendedWaitUntil:
+    visible:
+      id: announcement-sections
+    timeout: 15000
+- tapOn: 'A new BooKoo, built to share again'
+- assertVisible: 'BooKoo has been rebuilt.*'
+- takeScreenshot: ${EVIDENCE_DIR}/pixel-announcements-accordion-expanded
+- tapOn: 'A new BooKoo, built to share again'
+- assertNotVisible: 'BooKoo has been rebuilt.*'
+- assertNotVisible:
+    id: app-error-fallback

@@ -1,0 +1,58 @@
+appId: dev.hyo.bookoo
+name: Native map search and editor round trip
+---
+# Start in an already opened Location picker with a synthetic editor draft.
+# Pass EVIDENCE_DIR explicitly; a fixed default can overwrite another device's proof.
+- assertVisible:
+    id: entry-location-map
+- assertNotVisible:
+    id: entry-location-map-unavailable
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - tapOn:
+          id: entry-location-search-input
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - tapOn:
+          text: Please search...
+          index: 0
+- eraseText
+# A complete public street address avoids ambiguous landmark-only geocoding.
+- inputText: 110 Sejong-daero, Jung-gu, Seoul, South Korea
+- tapOn:
+    id: entry-location-search
+- extendedWaitUntil:
+    visible:
+      text: '^Done$'
+      enabled: true
+    timeout: 20000
+- takeScreenshot: ${EVIDENCE_DIR}/01-search
+- tapOn: Done
+- extendedWaitUntil:
+    visible:
+      id: entry-route-header
+    timeout: 20000
+- takeScreenshot: ${EVIDENCE_DIR}/02-selected-address
+- tapOn:
+    id: entry-location-picker
+- extendedWaitUntil:
+    visible:
+      id: entry-location-map
+    timeout: 10000
+- takeScreenshot: ${EVIDENCE_DIR}/03-reopened
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - back
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - tapOn: Cancel
+- assertVisible:
+    id: entry-route-header

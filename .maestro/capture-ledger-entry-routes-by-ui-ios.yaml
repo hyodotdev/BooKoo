@@ -1,0 +1,71 @@
+appId: dev.hyo.bookoo
+name: Capture active-ledger item routes through visible iOS navigation
+---
+- launchApp:
+    stopApp: true
+- extendedWaitUntil:
+    visible:
+      id: authenticated-tab-shell
+    timeout: 30000
+- openLink: bookoo://
+- extendedWaitUntil:
+    visible: Open dashboard
+    timeout: 20000
+- tapOn: Open dashboard
+- tapOn:
+    point: 40%,50%
+- tapOn:
+    point: 12%,86%
+- extendedWaitUntil:
+    visible: Add entry
+    timeout: 20000
+- tapOn: Add entry
+- extendedWaitUntil:
+    visible:
+      id: entry-route-header
+    timeout: 20000
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-simulator/routes/032-ledger-item-new
+- tapOn:
+    id: entry-category-picker
+- extendedWaitUntil:
+    visible: Category
+    timeout: 20000
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-simulator/routes/036-ledger-item-category
+- tapOn:
+    id: entry-create-category
+- extendedWaitUntil:
+    visible: Add category
+    timeout: 20000
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-simulator/routes/037-ledger-item-category-new
+- tapOn:
+    id: entry-category-create-close
+- extendedWaitUntil:
+    visible: Category
+    timeout: 20000
+- tapOn:
+    id: entry-category-close
+- tapOn:
+    id: entry-route-back
+- tapOn:
+    point: 37%,86%
+- extendedWaitUntil:
+    visible: ".*Cafe.*"
+    timeout: 20000
+- tapOn:
+    text: ".*Cafe.*"
+    index: 0
+- extendedWaitUntil:
+    visible:
+      id: ledger-item-more
+    timeout: 20000
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-simulator/routes/033-ledger-item-detail
+- tapOn:
+    id: ledger-item-more
+- tapOn: Update
+- extendedWaitUntil:
+    visible:
+      id: entry-route-header
+    timeout: 20000
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-simulator/routes/034-ledger-item-edit
+- assertNotVisible:
+    id: app-error-fallback

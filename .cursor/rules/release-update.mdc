@@ -1,0 +1,26 @@
+---
+description: Build, verify, submit, and publish BooKoo releases through EAS Build, Expo Updates, Google Play, and App Store Connect. Use when the user runs `/release-update` or `$release-update`, asks to release or deploy BooKoo, upload IPA/AAB artifacts, submit store builds for review, add release notes, choose between a native build and an OTA update, or finish a version rollout after review and E2E.
+globs:
+alwaysApply: false
+---
+
+# Release Update (Cursor)
+
+Canonical definition: `.agents/skills/release-update/SKILL.md`.
+
+Read that file — and every reference it points to — and follow it as
+written. It is agent-neutral, so no section of it is written for another
+agent. Relative paths inside it resolve under
+`.agents/skills/release-update/`.
+
+@.agents/skills/release-update/SKILL.md
+
+## Cursor Notes
+
+- Sibling skills written as `$name` are sibling rules in `.cursor/rules/`;
+  pull one in with `@<name>` or ask for it by name.
+- This rule is agent-requested (`alwaysApply: false`), so restate the goal
+  when you invoke it — it is not automatically in context.
+- Cursor has no built-in scheduler. For any interval or recurring step, finish
+  the current round and report that automatic re-entry could not be scheduled.
+  Never emulate it with `sleep`, `while true`, or a detached background process.

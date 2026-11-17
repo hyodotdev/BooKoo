@@ -1,0 +1,81 @@
+appId: dev.hyo.bookoo
+name: Final secondary route screenshot inventory
+---
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: 'bookoo://entry/${ITEM_ID}', NAME: '070-entry-alias-detail'}
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: 'bookoo://entry/${ITEM_ID}/edit', NAME: '071-entry-alias-edit'}
+- runFlow:
+    file: _capture-route.yaml
+    env:
+      {
+        ROUTE: 'bookoo://entry/category?ledgerId=${LEDGER_ID}&kind=EXPENSE&selectedKey=cafe',
+        NAME: '073-entry-category-picker',
+      }
+- runFlow:
+    file: _capture-route.yaml
+    env:
+      {
+        ROUTE: 'bookoo://entry/category/new?ledgerId=${LEDGER_ID}&kind=EXPENSE',
+        NAME: '074-entry-category-new',
+      }
+- runFlow:
+    file: _capture-route.yaml
+    env:
+      {
+        ROUTE: 'bookoo://entry/location?ledgerId=${LEDGER_ID}&label=Office&address=Seoul&lat=37.5665&lng=126.9780',
+        NAME: '075-entry-location-alias',
+      }
+- runFlow:
+    file: _capture-route.yaml
+    env:
+      {
+        ROUTE: 'bookoo://ledger/${LEDGER_ID}/item/location?label=Office&address=Seoul&lat=37.5665&lng=126.9780',
+        NAME: '076-entry-location',
+      }
+- runFlow:
+    file: _capture-route.yaml
+    env:
+      {
+        ROUTE: 'bookoo://entry/new?dayKey=20260831',
+        NAME: '077-active-ledger-entry-new',
+      }
+- runFlow:
+    file: _capture-route.yaml
+    env:
+      {
+        ROUTE: 'bookoo://stats/category/cafe?monthKey=202608',
+        NAME: '078-category-stats',
+      }
+- runFlow:
+    file: _capture-route.yaml
+    env:
+      {
+        ROUTE: 'bookoo://place/view?label=Seoul%20City%20Hall&address=110%20Sejong-daero&lat=37.5665&lng=126.9780',
+        NAME: '079-place-view',
+      }
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: 'bookoo://invite/code', NAME: '080-invite-code'}
+- runFlow:
+    file: _capture-route.yaml
+    env:
+      {
+        ROUTE: 'https://bookoo.hyo.dev/invite/BK100000000000000000000000000',
+        NAME: '081-invite-invalid',
+      }
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: 'bookoo://route-that-does-not-exist', NAME: '082-not-found'}
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: 'bookoo://account/deleted', NAME: '083-deleted-route-guard'}
+- runFlow:
+    file: _capture-route.yaml
+    env:
+      {ROUTE: 'bookoo://account/suspended', NAME: '084-suspended-route-guard'}
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: 'bookoo://lock', NAME: '085-lock-route-guard'}

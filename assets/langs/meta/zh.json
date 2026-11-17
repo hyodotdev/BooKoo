@@ -1,0 +1,13 @@
+{
+  "android": {
+    "app_name": "BooKoo"
+  },
+  "ios": {
+    "CFBundleDisplayName": "BooKoo",
+    "NSCameraUsageDescription": "BooKoo 需要访问相机，以便你为记录添加照片。",
+    "NSFaceIDUsageDescription": "BooKoo 使用面容 ID 解锁应用。",
+    "NSLocationWhenInUseUsageDescription": "BooKoo 会在你为记录选择地点或在地图上查找当前位置时使用你的位置。",
+    "NSPhotoLibraryAddUsageDescription": "BooKoo 需要相册添加权限，以便将照片保存到设备。",
+    "NSPhotoLibraryUsageDescription": "BooKoo 需要访问相册，以便你为记录添加照片。"
+  }
+}

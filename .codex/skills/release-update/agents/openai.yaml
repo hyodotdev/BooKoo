@@ -1,0 +1,4 @@
+interface:
+  display_name: "Release Update"
+  short_description: "Build, submit, and roll out a BooKoo release"
+  default_prompt: "Use $release-update to build, verify, submit, and roll out the current BooKoo release."

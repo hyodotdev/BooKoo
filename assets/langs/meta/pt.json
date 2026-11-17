@@ -1,0 +1,13 @@
+{
+  "android": {
+    "app_name": "BooKoo"
+  },
+  "ios": {
+    "CFBundleDisplayName": "BooKoo",
+    "NSCameraUsageDescription": "A BooKoo precisa de acesso à câmara para anexar uma foto a um lançamento.",
+    "NSFaceIDUsageDescription": "A BooKoo usa Face ID para desbloquear a app.",
+    "NSLocationWhenInUseUsageDescription": "O BooKoo usa a sua localização quando escolhe um local para uma entrada ou procura onde está no mapa.",
+    "NSPhotoLibraryAddUsageDescription": "A BooKoo precisa de permissão para guardar uma foto na biblioteca de fotos.",
+    "NSPhotoLibraryUsageDescription": "A BooKoo precisa de acesso à biblioteca de fotos para anexar uma foto a um lançamento."
+  }
+}

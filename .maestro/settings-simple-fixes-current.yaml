@@ -1,0 +1,32 @@
+appId: dev.hyo.bookoo
+name: Privacy empty state and leave-account wording
+---
+- launchApp:
+    # Isolate settings from a native modal left open by another flow.
+    # Restart the process, preserving the signed-in account and app data.
+    stopApp: true
+- openLink: bookoo://settings/privacy
+- runFlow:
+    when:
+      platform: iOS
+    file: ios-confirm-deep-link.yaml
+- extendedWaitUntil:
+    visible:
+      id: privacy-sections
+    timeout: 20000
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: ${EVIDENCE_DIR}/11-privacy-empty-state
+- openLink: bookoo://settings/account
+- runFlow:
+    when:
+      platform: iOS
+    file: ios-confirm-deep-link.yaml
+- extendedWaitUntil:
+    visible:
+      id: account-sections
+    timeout: 20000
+- assertVisible: 'Leave BooKoo|탈퇴하기|退会する|退出 BooKoo|Keluar dari BooKoo|Quitter BooKoo|BooKoo verlassen|Salir de BooKoo|Lascia BooKoo|BooKoo verlaten|Sair do BooKoo'
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: ${EVIDENCE_DIR}/12-leave-account

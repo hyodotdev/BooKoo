@@ -1,0 +1,59 @@
+appId: dev.hyo.bookoo
+name: Fresh sign-up resumes and accepts a pending invite
+---
+- launchApp:
+    stopApp: true
+- openLink: ${BOOKOO_E2E_INVITE_URL}
+- extendedWaitUntil:
+    visible: Login
+    timeout: 20000
+- assertVisible: ${BOOKOO_E2E_LEDGER_TITLE}
+- tapOn: Login
+- assertVisible: Continue with email
+- tapOn: Continue with email
+- inputText: ${BOOKOO_E2E_INVITEE_EMAIL}
+- tapOn: Send code
+- extendedWaitUntil:
+    visible: 8-digit code
+    timeout: 20000
+- tapOn:
+    point: 50%,31%
+- inputText: ${BOOKOO_E2E_OTP}
+- tapOn: Next
+- extendedWaitUntil:
+    visible: Choose a username
+    timeout: 30000
+- tapOn: username
+- eraseText
+- inputText: ${BOOKOO_E2E_INVITEE_USERNAME}
+- extendedWaitUntil:
+    visible: Use this username
+    timeout: 20000
+- tapOn: Use this username
+- extendedWaitUntil:
+    visible: Display name
+    timeout: 20000
+- tapOn:
+    point: 50%,24%
+- inputText: ${BOOKOO_E2E_INVITEE_NAME}
+- tapOn: Next
+- extendedWaitUntil:
+    visible: Accept
+    timeout: 30000
+- assertVisible: ${BOOKOO_E2E_LEDGER_TITLE}
+- tapOn: Accept
+- extendedWaitUntil:
+    visible:
+      id: authenticated-tab-shell
+    timeout: 30000
+- assertNotVisible:
+    id: app-error-fallback
+- tapOn:
+    id: calendar-parallax-menu
+- assertVisible:
+    id: ledger-drawer-profile
+- assertVisible:
+    id: ledger-row-${BOOKOO_E2E_LEDGER_TITLE}-select
+- assertNotVisible:
+    id: ledger-row-${BOOKOO_E2E_PRIVATE_LEDGER_TITLE}-select
+- takeScreenshot: ${BOOKOO_E2E_OUTPUT_ROOT}/fresh-invite-accepted

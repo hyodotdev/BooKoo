@@ -1,0 +1,87 @@
+appId: dev.hyo.bookoo
+name: Warm Android editor numeric and picker cancellation
+---
+# Run after the shared device preflight. No restart or fixture mutation.
+# EVIDENCE_DIR must be an absolute private run/device directory.
+- assertVisible:
+    id: authenticated-tab-shell
+- tapOn: '^Monthly$'
+- assertVisible:
+    id: calendar-parallax-add
+- tapOn:
+    id: calendar-parallax-add
+- assertVisible:
+    id: entry-route-header
+- assertVisible:
+    id: entry-amount-input
+- assertVisible:
+    id: entry-category-picker
+- assertVisible:
+    id: entry-date-picker
+- assertVisible:
+    id: entry-location-picker
+- takeScreenshot: ${EVIDENCE_DIR}/00-empty-amount
+- tapOn:
+    id: entry-amount-input
+- inputText: "1000a"
+- hideKeyboard
+- assertVisible:
+    id: entry-amount-input
+    text: "1000"
+- assertNotVisible: "1000a"
+- takeScreenshot: ${EVIDENCE_DIR}/01-numeric-expense
+- tapOn:
+    id: entry-type-INCOME
+- assertVisible:
+    id: entry-type-INCOME
+    selected: true
+- takeScreenshot: ${EVIDENCE_DIR}/02-numeric-income
+- tapOn:
+    id: entry-type-EXPENSE
+- assertVisible:
+    id: entry-type-EXPENSE
+    selected: true
+- tapOn:
+    id: entry-add-photo
+- extendedWaitUntil:
+    visible: "Select photos|Photos|사진"
+    timeout: 20000
+# Do not capture the user's system photo library. Cancel without selecting.
+- pressKey: BACK
+- assertVisible:
+    id: entry-route-header
+- tapOn:
+    id: entry-date-picker
+- pressKey: BACK
+- tapOn:
+    id: entry-date-picker
+- pressKey: BACK
+- tapOn:
+    id: entry-date-picker
+- pressKey: BACK
+- assertVisible:
+    id: entry-route-header
+- tapOn:
+    id: entry-category-picker
+- assertVisible:
+    id: entry-create-category
+- takeScreenshot: ${EVIDENCE_DIR}/03-category-sheet
+- pressKey: BACK
+- assertVisible:
+    id: entry-route-header
+- tapOn:
+    id: entry-memo-box
+- inputText: "Study"
+- takeScreenshot: ${EVIDENCE_DIR}/04-memo-keyboard
+- hideKeyboard
+# Maps have their own permission/search/round-trip gate. The retired assertion
+# that "map unavailable" is success must not certify the native map feature.
+- assertNotVisible:
+    id: app-error-fallback
+- assertVisible:
+    id: entry-amount-input
+    text: "1000"
+- takeScreenshot: ${EVIDENCE_DIR}/05-preserved-draft
+- pressKey: BACK
+- assertVisible:
+    id: calendar-parallax-add

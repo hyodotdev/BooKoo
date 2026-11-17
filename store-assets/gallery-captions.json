@@ -1,0 +1,320 @@
+{
+  "historicalScenes": [
+    "sharing",
+    "comments",
+    "calendar",
+    "timeline",
+    "stats",
+    "entry",
+    "categories",
+    "theme"
+  ],
+  "captions": {
+    "ko-KR": {
+      "sharing": [
+        "함께 쓰는 돈, 함께 보는 기록",
+        "초대 링크로 합류해 각자 기록해요"
+      ],
+      "comments": [
+        "기록마다 대화가 남아요",
+        "궁금한 지출은 그 자리에서 물어보세요"
+      ],
+      "calendar": [
+        "공동 자금의 흐름을 한눈에",
+        "날짜별 합계를 달력으로 확인하세요"
+      ],
+      "timeline": [
+        "무엇에 얼마가 나갔는지",
+        "날짜별로 차곡차곡 정리돼요"
+      ],
+      "stats": [
+        "어디에 썼는지 한눈에",
+        "카테고리별 지출 비중을 확인하세요"
+      ],
+      "entry": [
+        "지출 기록을 빠르게",
+        "금액부터 메모와 영수증까지 한곳에"
+      ],
+      "categories": [
+        "우리에게 맞는 카테고리",
+        "색상과 아이콘으로 쉽게 구분하세요"
+      ],
+      "theme": [
+        "낮에도 밤에도 편안하게",
+        "라이트와 다크 테마를 선택하세요"
+      ]
+    },
+    "en-US": {
+      "sharing": [
+        "Shared money, shared record",
+        "One invite link and everyone logs their own"
+      ],
+      "comments": [
+        "A conversation on every entry",
+        "Ask about a charge right where it sits"
+      ],
+      "calendar": [
+        "Daily totals at a glance",
+        "A calendar in the ledger’s own time zone"
+      ],
+      "timeline": [
+        "Every entry, in order",
+        "Income and expenses grouped by date"
+      ],
+      "stats": [
+        "See where the money went",
+        "Spending by category, month by month"
+      ],
+      "entry": [
+        "Add an entry in seconds",
+        "Amount, category, date, memo and receipt"
+      ],
+      "categories": [
+        "Categories that fit the group",
+        "Choose colors and icons that feel right"
+      ],
+      "theme": [
+        "Comfortable day or night",
+        "Choose light, dark or your system theme"
+      ]
+    },
+    "ja": {
+      "sharing": [
+        "みんなのお金を、みんなの記録に",
+        "招待リンクひとつで、それぞれが記録"
+      ],
+      "comments": [
+        "記録ごとに会話が残ります",
+        "気になる支出はその場で聞けます"
+      ],
+      "calendar": [
+        "共同のお金の流れをひと目で",
+        "日別の合計をカレンダーで確認"
+      ],
+      "timeline": [
+        "何にいくら使ったか",
+        "日付ごとに整理されます"
+      ],
+      "stats": [
+        "どこに使ったかひと目で",
+        "カテゴリ別の割合を確認"
+      ],
+      "entry": [
+        "記録は数秒で",
+        "金額もメモも領収書も一か所に"
+      ],
+      "categories": [
+        "自分たちに合うカテゴリ",
+        "色とアイコンで見分けやすく"
+      ],
+      "theme": [
+        "昼も夜も心地よく",
+        "ライトとダークを選べます"
+      ]
+    },
+    "zh-CN": {
+      "sharing": [
+        "一起花的钱，一起看的记录",
+        "一条邀请链接，各自记账"
+      ],
+      "comments": [
+        "每笔记录都留下对话",
+        "想问的支出当场就能问"
+      ],
+      "calendar": [
+        "共同开支一目了然",
+        "在日历上查看每日合计"
+      ],
+      "timeline": [
+        "什么花了多少",
+        "按日期整理得清清楚楚"
+      ],
+      "stats": [
+        "钱花在哪里一目了然",
+        "查看各分类的占比"
+      ],
+      "entry": [
+        "几秒记一笔",
+        "金额、备注、票据都在一处"
+      ],
+      "categories": [
+        "适合我们的分类",
+        "用颜色和图标轻松区分"
+      ],
+      "theme": [
+        "白天黑夜都舒适",
+        "可选浅色与深色主题"
+      ]
+    },
+    "id": {
+      "sharing": [
+        "Uang bersama, catatan bersama",
+        "Satu tautan undangan, semua mencatat sendiri"
+      ],
+      "comments": [
+        "Setiap catatan menyimpan percakapan",
+        "Tanya langsung di catatannya"
+      ],
+      "calendar": [
+        "Alur uang bersama sekilas",
+        "Lihat total harian di kalender"
+      ],
+      "timeline": [
+        "Apa saja dan berapa",
+        "Tersusun rapi per tanggal"
+      ],
+      "stats": [
+        "Ke mana uangnya pergi",
+        "Lihat porsi tiap kategori"
+      ],
+      "entry": [
+        "Catat dalam hitungan detik",
+        "Nominal, memo, dan struk di satu tempat"
+      ],
+      "categories": [
+        "Kategori yang pas untuk kita",
+        "Bedakan dengan warna dan ikon"
+      ],
+      "theme": [
+        "Nyaman siang maupun malam",
+        "Pilih tema terang atau gelap"
+      ]
+    },
+    "de-DE": {
+      "sharing": [
+        "Gemeinsames Geld, gemeinsame Übersicht",
+        "Ein Einladungslink, alle tragen selbst ein"
+      ],
+      "comments": [
+        "Ein Gespräch zu jedem Eintrag",
+        "Fragen direkt beim betreffenden Eintrag klären"
+      ],
+      "calendar": [
+        "Tagessummen auf einen Blick",
+        "Ein Kalender in der Zeitzone des Kassenbuchs"
+      ],
+      "timeline": [
+        "Jeder Eintrag, übersichtlich geordnet",
+        "Einnahmen und Ausgaben nach Datum"
+      ],
+      "stats": [
+        "So verteilt sich das Geld",
+        "Ausgaben nach Kategorie und Monat"
+      ],
+      "entry": [
+        "In Sekunden einen Eintrag erstellen",
+        "Betrag, Kategorie, Datum, Notiz und Beleg"
+      ],
+      "categories": [
+        "Kategorien für eure Gruppe",
+        "Mit passenden Farben und Symbolen"
+      ],
+      "theme": [
+        "Angenehm bei Tag und Nacht",
+        "Helles, dunkles oder Systemdesign wählen"
+      ]
+    },
+    "es-ES": {
+      "sharing": [
+        "Dinero compartido, registro compartido",
+        "Una invitación y cada persona anota lo suyo"
+      ],
+      "comments": [
+        "Una conversación en cada registro",
+        "Pregunta por un gasto en el mismo lugar"
+      ],
+      "calendar": [
+        "Totales diarios de un vistazo",
+        "Un calendario en la zona horaria del libro"
+      ],
+      "timeline": [
+        "Cada registro, en orden",
+        "Ingresos y gastos agrupados por fecha"
+      ],
+      "stats": [
+        "Mira en qué se fue el dinero",
+        "Gastos por categoría, mes a mes"
+      ],
+      "entry": [
+        "Añade un registro en segundos",
+        "Importe, categoría, fecha, nota y recibo"
+      ],
+      "categories": [
+        "Categorías para tu grupo",
+        "Elige los colores e iconos que encajen"
+      ],
+      "theme": [
+        "Cómodo de día y de noche",
+        "Elige tema claro, oscuro o del sistema"
+      ]
+    },
+    "fr-FR": {
+      "sharing": [
+        "Argent partagé, comptes partagés",
+        "Un lien d’invitation, chacun note ses dépenses"
+      ],
+      "comments": [
+        "Une conversation sur chaque écriture",
+        "Posez vos questions directement sur la dépense"
+      ],
+      "calendar": [
+        "Les totaux du jour en un coup d’œil",
+        "Un calendrier dans le fuseau horaire du livre"
+      ],
+      "timeline": [
+        "Chaque écriture, dans l’ordre",
+        "Recettes et dépenses regroupées par date"
+      ],
+      "stats": [
+        "Voyez où va votre argent",
+        "Les dépenses par catégorie, mois après mois"
+      ],
+      "entry": [
+        "Ajoutez une écriture en quelques secondes",
+        "Montant, catégorie, date, note et reçu"
+      ],
+      "categories": [
+        "Des catégories pour votre groupe",
+        "Choisissez vos couleurs et vos icônes"
+      ],
+      "theme": [
+        "Confortable de jour comme de nuit",
+        "Choisissez le thème clair, sombre ou système"
+      ]
+    },
+    "it-IT": {
+      "sharing": [
+        "Denaro condiviso, conti condivisi",
+        "Un link di invito e ognuno registra il suo"
+      ],
+      "comments": [
+        "Una conversazione per ogni voce",
+        "Chiedi di una spesa proprio dove si trova"
+      ],
+      "calendar": [
+        "Totali giornalieri a colpo d’occhio",
+        "Un calendario nel fuso orario del registro"
+      ],
+      "timeline": [
+        "Ogni voce, in ordine",
+        "Entrate e uscite raggruppate per data"
+      ],
+      "stats": [
+        "Scopri dove sono finiti i soldi",
+        "Spese per categoria, mese dopo mese"
+      ],
+      "entry": [
+        "Aggiungi una voce in pochi secondi",
+        "Importo, categoria, data, nota e ricevuta"
+      ],
+      "categories": [
+        "Categorie adatte al gruppo",
+        "Scegli i colori e le icone che preferisci"
+      ],
+      "theme": [
+        "Comodo di giorno e di notte",
+        "Scegli il tema chiaro, scuro o di sistema"
+      ]
+    }
+  }
+}

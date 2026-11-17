@@ -1,0 +1,22 @@
+plugins {
+  id 'com.android.library'
+  id 'expo-module-gradle-plugin'
+}
+
+group = 'dev.hyo.bookoo'
+version = '1.0.0'
+
+android {
+  namespace 'dev.hyo.bookoo.receipt'
+  defaultConfig {
+    versionCode 1
+    versionName '1.0.0'
+  }
+}
+
+dependencies {
+  implementation 'com.google.mlkit:text-recognition:16.0.1'
+  implementation 'com.google.mlkit:text-recognition-korean:16.0.1'
+  implementation 'com.google.mlkit:text-recognition-japanese:16.0.1'
+  implementation 'com.google.mlkit:text-recognition-chinese:16.0.1'
+}

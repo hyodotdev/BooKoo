@@ -1,0 +1,18 @@
+appId: dev.hyo.bookoo
+name: Release candidate iPad owner restore from current OTP screen
+---
+- launchApp:
+    stopApp: false
+- assertVisible: Login
+- tapOn:
+    point: 50%,23%
+- inputText: ${BOOKOO_E2E_OTP}
+- takeScreenshot: docs/debugs/e2e/2026-09-01-release-candidate/ipad-mini/006-otp-keyboard
+- tapOn: Next
+- extendedWaitUntil:
+    visible:
+      id: authenticated-tab-shell
+    timeout: 30000
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: docs/debugs/e2e/2026-09-01-release-candidate/ipad-mini/007-owner-ledger

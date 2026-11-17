@@ -1,0 +1,4 @@
+interface:
+  display_name: "Grow"
+  short_description: "Run one measured BooKoo growth experiment"
+  default_prompt: "Use $grow to select one privacy-preserving BooKoo growth experiment from verified aggregate evidence and record its verification date."

@@ -1,0 +1,6 @@
+{
+  "directory": "marketing/2026-10-09-v1.1.0",
+  "defaultLanguage": "en-US",
+  "locales": ["en-US", "ko-KR", "ja-JP", "zh-CN", "id"],
+  "scenes": ["intro", "calendar", "timeline", "stats", "entry", "sharing", "comments", "theme"]
+}

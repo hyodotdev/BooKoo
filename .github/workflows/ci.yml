@@ -1,0 +1,182 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: lint / typecheck / test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22.14.0
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.13
+
+      # bun install writes packages into node_modules from its global cache;
+      # caching the cache is what actually saves time across runs.
+      - name: Cache bun install cache
+        uses: actions/cache@v5
+        with:
+          path: ~/.bun/install/cache
+          key: ${{ runner.os }}-bun-copyfile-v1-${{ hashFiles('bun.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-copyfile-v1-
+
+      - name: Install modules
+        # patch-package must not mutate Bun's Linux hardlink cache. A copyfile
+        # install keeps node_modules isolated and makes reruns deterministic.
+        run: bun install --frozen-lockfile --backend copyfile
+
+      - name: Check linting
+        run: bun lint:all
+
+      - name: Build typescript
+        run: bun typecheck
+
+      - name: Test
+        run: bun run test --coverage --silent
+
+      # - name: Upload coverage to Codecov
+      #   uses: codecov/codecov-action@v5
+      #   with:
+      #     token: ${{ secrets.CODECOV_TOKEN }}
+      #     directory: ./coverage/
+      #     flags: unittests
+      #     fail_ci_if_error: false
+
+  secret-history:
+    name: full-history secret scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Scan reachable git history
+        uses: docker://ghcr.io/gitleaks/gitleaks:v8.30.1
+        with:
+          args: git --redact --verbose --no-banner
+
+  convex-budgets:
+    name: convex 100k transaction budgets
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22.14.0
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.13
+
+      - name: Cache bun install cache
+        uses: actions/cache@v5
+        with:
+          path: ~/.bun/install/cache
+          key: ${{ runner.os }}-bun-copyfile-v1-${{ hashFiles('bun.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-copyfile-v1-
+
+      - name: Install modules
+        # patch-package must not mutate Bun's Linux hardlink cache. A copyfile
+        # install keeps node_modules isolated and makes reruns deterministic.
+        run: bun install --frozen-lockfile --backend copyfile
+
+      # A non-interactive Convex CLI provisions an anonymous local backend.
+      # It consumes no cloud slot, credential or project quota. The child
+      # command seeds and measures while `convex dev` keeps that backend alive.
+      - name: Assert every SCHEMA query budget locally
+        env:
+          CONVEX_AGENT_MODE: anonymous
+          CONVEX_BUDGET_SUCCESS_FILE: ${{ runner.temp }}/bookoo-convex-budget-passed
+        run: >-
+          bunx convex dev
+          --once
+          --typecheck enable
+          --tail-logs disable
+          --start "bun scripts/perf/run-local-budgets.ts"
+
+      # Convex 1.45 may return zero after a failing --start child in --once
+      # mode. The child writes this marker only after Jest succeeds.
+      - name: Require completed local budget suite
+        env:
+          CONVEX_BUDGET_SUCCESS_FILE: ${{ runner.temp }}/bookoo-convex-budget-passed
+        run: test -f "$CONVEX_BUDGET_SUCCESS_FILE"
+
+  deploy-production:
+    name: deploy production Convex
+    # Production deploys run only from the canonical repository, and only after
+    # the maintainer opts in with the CONVEX_PRODUCTION_DEPLOY repository variable.
+    # Forks never deploy. Once enabled, a missing key still fails loudly below.
+    if: >-
+      github.event_name == 'push' && github.ref == 'refs/heads/main' &&
+      github.repository == 'hyodotdev/BooKoo' &&
+      vars.CONVEX_PRODUCTION_DEPLOY == 'enabled'
+    needs: [check, secret-history, convex-budgets]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    concurrency:
+      group: convex-production
+      cancel-in-progress: false
+    env:
+      CONVEX_DEPLOY_KEY: ${{ secrets.CONVEX_PRODUCTION_DEPLOY_KEY }}
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22.14.0
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.13
+
+      - name: Cache bun install cache
+        uses: actions/cache@v5
+        with:
+          path: ~/.bun/install/cache
+          key: ${{ runner.os }}-bun-copyfile-v1-${{ hashFiles('bun.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-copyfile-v1-
+
+      - name: Install modules
+        run: bun install --frozen-lockfile --backend copyfile
+
+      - name: Require production deploy key
+        run: test -n "$CONVEX_DEPLOY_KEY"
+
+      - name: Deploy exact main commit
+        run: >-
+          bunx convex deploy
+          --typecheck enable
+          --message "GitHub main ${{ github.sha }}"

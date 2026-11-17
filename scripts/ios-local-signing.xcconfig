@@ -1,0 +1,7 @@
+// EAS imports this exact certificate name into its temporary keychain. The
+// generic `iPhone Distribution` alias can resolve to an unrelated
+// `Apple Distribution` identity left in another local keychain.
+CODE_SIGN_IDENTITY[sdk=iphoneos*] = iPhone Distribution: Hyo Jang (PRDQGB267K)
+// Swift package resource bundles also need the app's signing team for archives.
+DEVELOPMENT_TEAM[sdk=iphoneos*] = PRDQGB267K
+CODE_SIGN_STYLE[sdk=iphoneos*] = Manual

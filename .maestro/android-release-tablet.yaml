@@ -1,0 +1,28 @@
+appId: dev.hyo.bookoo
+name: Android tablet calendar and timeline orientation
+---
+# The caller records and sets orientation, then restores original device settings.
+- assertVisible:
+    id: authenticated-tab-shell
+- tapOn: '^Monthly$'
+- assertVisible:
+    id: calendar-next
+- takeScreenshot: ${EVIDENCE_DIR}/monthly
+- tapOn: '^List$'
+- extendedWaitUntil:
+    visible: '^All$'
+    timeout: 20000
+- takeScreenshot: ${EVIDENCE_DIR}/timeline
+- tapOn:
+    text: '^Lodging$'
+    index: 0
+- assertVisible:
+    id: ledger-item-comment-field
+- takeScreenshot: ${EVIDENCE_DIR}/timeline-selected
+- tapOn: '^Stats$'
+- assertVisible:
+    id: stats-next-month
+- takeScreenshot: ${EVIDENCE_DIR}/stats
+- tapOn: '^Monthly$'
+- assertNotVisible:
+    id: app-error-fallback

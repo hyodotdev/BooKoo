@@ -1,0 +1,41 @@
+appId: dev.hyo.bookoo
+name: Android category sheet inset and reachable Save
+---
+# Warm retained synthetic session; no saved category or entry mutation.
+- assertVisible:
+    id: authenticated-tab-shell
+- tapOn: '^Monthly$'
+- tapOn:
+    id: calendar-parallax-add
+- assertVisible:
+    id: entry-category-picker
+- tapOn:
+    id: entry-category-picker
+- assertVisible:
+    id: entry-create-category
+- takeScreenshot: ${EVIDENCE_DIR}/11-picker-final
+- tapOn:
+    id: entry-create-category
+- assertVisible:
+    id: entry-category-create-close
+- assertVisible: '^Save$'
+- takeScreenshot: ${EVIDENCE_DIR}/12-creator-initial-final
+- tapOn: 'Please write name of the category.'
+- inputText: 'Study'
+- assertVisible: '^Study$'
+- assertVisible: '^Save$'
+- takeScreenshot: ${EVIDENCE_DIR}/13-creator-keyboard-final
+- hideKeyboard
+- assertVisible: '^Save$'
+- tapOn:
+    id: entry-category-create-close
+- assertVisible:
+    id: entry-create-category
+- pressKey: BACK
+- assertVisible:
+    id: entry-route-header
+- pressKey: BACK
+- assertVisible:
+    id: calendar-parallax-add
+- assertNotVisible:
+    id: app-error-fallback

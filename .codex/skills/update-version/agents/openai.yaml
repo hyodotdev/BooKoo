@@ -1,0 +1,4 @@
+interface:
+  display_name: "Update Version"
+  short_description: "Bump the BooKoo app version and force-update record"
+  default_prompt: "Use $update-version to bump the BooKoo app version and, when asked, configure the Convex force-update record."

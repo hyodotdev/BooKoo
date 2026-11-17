@@ -1,0 +1,21 @@
+appId: dev.hyo.bookoo
+name: Android two-line parallax title and short-list collapse
+---
+# Precondition: authorized synthetic ledger already has a two-line title.
+# Caller records/restores its exact original title; this flow is read-only.
+# Do not use eraseText to replace a title: it clears only before the caret.
+- assertVisible:
+    id: authenticated-tab-shell
+- tapOn: '^Monthly$'
+- assertVisible:
+    id: calendar-parallax-expanded-title
+- takeScreenshot: ${EVIDENCE_DIR}/70-title-expanded
+- swipe:
+    start: 50%, 80%
+    end: 50%, 35%
+    duration: 600
+- takeScreenshot: ${EVIDENCE_DIR}/71-title-collapsed
+- assertVisible:
+    id: calendar-parallax-menu
+- assertNotVisible:
+    id: app-error-fallback

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review Self"
+  short_description: "Review and stabilize current BooKoo changes"
+  default_prompt: "Use $review-self to review and improve the current BooKoo work until stable."

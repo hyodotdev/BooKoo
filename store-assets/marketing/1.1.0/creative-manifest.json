@@ -1,0 +1,115 @@
+{
+  "version": "1.1.0",
+  "complete": true,
+  "source": "Inspected native iOS calendar pixels mapped into Blender phone geometry; R92 original-scale logo moved upper-left; no synthetic UI; exact lossless PNG optimization.",
+  "images": [
+    {
+      "locale": "en-US",
+      "file": "en-US/creative.png",
+      "width": 5244,
+      "height": 2950,
+      "sha256": "af7310d8836c08e94794a3a465916dce169cb34b3c7779bec458a4a7e9cb32af",
+      "sourceFile": "iphone/en-US-calendar.png",
+      "sourceSha256": "edde6b013b02419cfc85a80b62ab06fda9513d4de1af35bcf267a3a23b373ce4",
+      "nativeArtifactSha256": "506a41f396ddce7e4721dbe50a059f3de410e891583699209874e77d10954549",
+      "inspected": true,
+      "composition": "R92 original-scale pig/B mark in generous upper-left mint space; native phone/calendar composition retained"
+    },
+    {
+      "locale": "ko",
+      "file": "ko/creative.png",
+      "width": 5244,
+      "height": 2950,
+      "sha256": "aa7a22de235d8d85940bfc9f322cfb0bbf19c1f24f76deffbf7d0d27ad7e7219",
+      "sourceFile": "iphone/ko-calendar.png",
+      "sourceSha256": "d3623c6bf230e89a80b2cdc6de59d8e12c24f3556255b7089189a768d1bf975f",
+      "nativeArtifactSha256": "506a41f396ddce7e4721dbe50a059f3de410e891583699209874e77d10954549",
+      "inspected": true,
+      "composition": "R92 original-scale pig/B mark in generous upper-left mint space; native phone/calendar composition retained"
+    },
+    {
+      "locale": "ja",
+      "file": "ja/creative.png",
+      "width": 5244,
+      "height": 2950,
+      "sha256": "72d0911b07016f9e738643caf858b94446297978628bde9bee8b4fe23f2505a3",
+      "sourceFile": "iphone/ja-calendar.png",
+      "sourceSha256": "01000bdb05364eaf6558fe491c400eb4f60b31fbea61239e235b7d48bea138c7",
+      "nativeArtifactSha256": "506a41f396ddce7e4721dbe50a059f3de410e891583699209874e77d10954549",
+      "inspected": true,
+      "composition": "R92 original-scale pig/B mark in generous upper-left mint space; native phone/calendar composition retained"
+    },
+    {
+      "locale": "zh-Hans",
+      "file": "zh-Hans/creative.png",
+      "width": 5244,
+      "height": 2950,
+      "sha256": "90baac74c19831696c478b357fd5986ad75d41591b8d738fcd230152e525cd7f",
+      "sourceFile": "iphone/zh-Hans-calendar.png",
+      "sourceSha256": "3a7a2bd05f1a3a1504fdf09dbdea8ac47530022f97e8362f3900c10db5922220",
+      "nativeArtifactSha256": "506a41f396ddce7e4721dbe50a059f3de410e891583699209874e77d10954549",
+      "inspected": true,
+      "composition": "R92 original-scale pig/B mark in generous upper-left mint space; native phone/calendar composition retained"
+    },
+    {
+      "locale": "id",
+      "file": "id/creative.png",
+      "width": 5244,
+      "height": 2950,
+      "sha256": "c7e2ac27f6fb803d2684c7d30131b4cbc7a60ceba2126cf035c99fc5eafdec55",
+      "sourceFile": "iphone/id-calendar.png",
+      "sourceSha256": "376378e10bae06536797705d165c7d76a643c5e91ec976883dc5ba1d23e33127",
+      "nativeArtifactSha256": "506a41f396ddce7e4721dbe50a059f3de410e891583699209874e77d10954549",
+      "inspected": true,
+      "composition": "R92 original-scale pig/B mark in generous upper-left mint space; native phone/calendar composition retained"
+    },
+    {
+      "locale": "de-DE",
+      "file": "de-DE/creative.png",
+      "width": 5244,
+      "height": 2950,
+      "sha256": "eceff54fccf1289282b97b57354170020fe810d0c7b3e4bf6b3d426d77501a42",
+      "sourceFile": "iphone/de-DE-calendar.png",
+      "sourceSha256": "51c1c6f946422d9f5f126d523b49eccaacb258e39168c1df765cb1de81712b4d",
+      "nativeArtifactSha256": "506a41f396ddce7e4721dbe50a059f3de410e891583699209874e77d10954549",
+      "inspected": true,
+      "composition": "R92 original-scale pig/B mark in generous upper-left mint space; native phone/calendar composition retained"
+    },
+    {
+      "locale": "es-ES",
+      "file": "es-ES/creative.png",
+      "width": 5244,
+      "height": 2950,
+      "sha256": "e018dcfc88e3a880bbf824060db1910a2a6efb2d0e59e62fa4237e69e2301e35",
+      "sourceFile": "iphone/es-ES-calendar.png",
+      "sourceSha256": "4b77599c96d1ffed31ab3a2b42970c80e7bde10d8238ab33194fa35199b554e2",
+      "nativeArtifactSha256": "506a41f396ddce7e4721dbe50a059f3de410e891583699209874e77d10954549",
+      "inspected": true,
+      "composition": "R92 original-scale pig/B mark in generous upper-left mint space; native phone/calendar composition retained"
+    },
+    {
+      "locale": "fr-FR",
+      "file": "fr-FR/creative.png",
+      "width": 5244,
+      "height": 2950,
+      "sha256": "e0e68d8fa24c4054ec221788c2dd2dd9171edaec49642a61fcec93de6c3b9c01",
+      "sourceFile": "iphone/fr-FR-calendar.png",
+      "sourceSha256": "c859d3d6127e6a6646c4ba4e44c3618f7565502079efb327c1f32ce1c1a01846",
+      "nativeArtifactSha256": "506a41f396ddce7e4721dbe50a059f3de410e891583699209874e77d10954549",
+      "inspected": true,
+      "composition": "R92 original-scale pig/B mark in generous upper-left mint space; native phone/calendar composition retained"
+    },
+    {
+      "locale": "it",
+      "file": "it-IT/creative.png",
+      "width": 5244,
+      "height": 2950,
+      "sha256": "9c534d3d3816acd9f760f42e2d9934a0cf47121bdf738facf77ed490a521baa1",
+      "sourceFile": "iphone/it-IT-calendar.png",
+      "sourceSha256": "9d735e15cd892c9d687d0a9405f508ff6b3008693525fc2eff698ed0a2cebb83",
+      "nativeArtifactSha256": "506a41f396ddce7e4721dbe50a059f3de410e891583699209874e77d10954549",
+      "inspected": true,
+      "composition": "R92 original-scale pig/B mark in generous upper-left mint space; native phone/calendar composition retained"
+    }
+  ]
+}

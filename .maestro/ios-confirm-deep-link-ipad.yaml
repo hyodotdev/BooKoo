@@ -1,0 +1,6 @@
+appId: dev.hyo.bookoo
+---
+- tapOn:
+    point: 57%,51%
+- waitForAnimationToEnd:
+    timeout: 5000

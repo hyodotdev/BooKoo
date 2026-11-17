@@ -1,0 +1,345 @@
+{
+  "version": "1.1.0",
+  "scenes": [
+    "intro",
+    "calendar",
+    "timeline",
+    "stats",
+    "entry",
+    "sharing",
+    "comments",
+    "theme"
+  ],
+  "panels": [
+    {
+      "locale": "es-ES",
+      "family": "apple-iphone-duo",
+      "displayType": "APP_IPHONE_DUO",
+      "scene": "intro",
+      "file": "es-ES/apple-iphone-duo/01-intro.png",
+      "width": 2007,
+      "height": 2853,
+      "sha256": "0553cb36595e38402869a8adea0e783a2e321c7bd516e747acd7454dfb931782",
+      "bytes": 3475415,
+      "capture": {
+        "family": "duo",
+        "locale": "es-ES",
+        "scene": "calendar",
+        "file": "sources/duo/es-ES-calendar.png",
+        "sha256": "0a6470358bd34efba4e70a35659d965ae2e47d0dd5f836e2c7a897643b17f711",
+        "platform": "ios",
+        "version": "1.1.0",
+        "nativeBuild": "signed SDK27.1 debug simulator",
+        "nativeArtifactSha256": "097793bea5db54235a7ad7f62f1c14c368170273eaaaac54d332ce347a1a2aaf",
+        "sourceFingerprint": "fce5b50715d84fec36f51bada636f7897efd6b3bf2d521b2fab47a6e6fa8abc2",
+        "sourceFingerprintFiles": [
+          "src/features/ledger/ui.tsx",
+          "src/features/ledger/screens/entryEditor.tsx",
+          "src/features/ledger/screens/calendar.tsx",
+          "src/features/ledger/screens/timeline.tsx",
+          "src/features/ledger/screens/entryDetail.tsx",
+          "src/hooks/useTabletLayout.ts"
+        ],
+        "capturedAt": "2026-10-09T17:08:56.499Z",
+        "os": "iOS27.1",
+        "device": "iPhoneDuo",
+        "orientation": "opened portrait",
+        "theme": "light",
+        "inspected": true,
+        "crop": {
+          "top": 240,
+          "bottom": 300
+        }
+      }
+    },
+    {
+      "locale": "es-ES",
+      "family": "apple-iphone-duo",
+      "displayType": "APP_IPHONE_DUO",
+      "scene": "calendar",
+      "file": "es-ES/apple-iphone-duo/02-calendar.png",
+      "width": 2007,
+      "height": 2853,
+      "sha256": "537d713c05b9d42bb1662d344c2a329a8d84390072dfc6e45ca8f7e26f192ec4",
+      "bytes": 263024,
+      "capture": {
+        "family": "duo",
+        "locale": "es-ES",
+        "scene": "calendar",
+        "file": "sources/duo/es-ES-calendar.png",
+        "sha256": "0a6470358bd34efba4e70a35659d965ae2e47d0dd5f836e2c7a897643b17f711",
+        "platform": "ios",
+        "version": "1.1.0",
+        "nativeBuild": "signed SDK27.1 debug simulator",
+        "nativeArtifactSha256": "097793bea5db54235a7ad7f62f1c14c368170273eaaaac54d332ce347a1a2aaf",
+        "sourceFingerprint": "fce5b50715d84fec36f51bada636f7897efd6b3bf2d521b2fab47a6e6fa8abc2",
+        "sourceFingerprintFiles": [
+          "src/features/ledger/ui.tsx",
+          "src/features/ledger/screens/entryEditor.tsx",
+          "src/features/ledger/screens/calendar.tsx",
+          "src/features/ledger/screens/timeline.tsx",
+          "src/features/ledger/screens/entryDetail.tsx",
+          "src/hooks/useTabletLayout.ts"
+        ],
+        "capturedAt": "2026-10-09T17:08:56.499Z",
+        "os": "iOS27.1",
+        "device": "iPhoneDuo",
+        "orientation": "opened portrait",
+        "theme": "light",
+        "inspected": true,
+        "crop": {
+          "top": 240,
+          "bottom": 300
+        }
+      }
+    },
+    {
+      "locale": "es-ES",
+      "family": "apple-iphone-duo",
+      "displayType": "APP_IPHONE_DUO",
+      "scene": "timeline",
+      "file": "es-ES/apple-iphone-duo/03-timeline.png",
+      "width": 2007,
+      "height": 2853,
+      "sha256": "0b796a22f099709ab978e7e85b0f277a891f2ea541fd5f1c3f643ea360b18720",
+      "bytes": 344764,
+      "capture": {
+        "family": "duo",
+        "locale": "es-ES",
+        "scene": "timeline",
+        "file": "sources/duo/es-ES-timeline.png",
+        "sha256": "9327e82e3c3a791afff2529c1c17ec6972856502c51c31bea475508b04f94dde",
+        "platform": "ios",
+        "version": "1.1.0",
+        "nativeBuild": "signed SDK27.1 debug simulator",
+        "nativeArtifactSha256": "097793bea5db54235a7ad7f62f1c14c368170273eaaaac54d332ce347a1a2aaf",
+        "sourceFingerprint": "fce5b50715d84fec36f51bada636f7897efd6b3bf2d521b2fab47a6e6fa8abc2",
+        "sourceFingerprintFiles": [
+          "src/features/ledger/ui.tsx",
+          "src/features/ledger/screens/entryEditor.tsx",
+          "src/features/ledger/screens/calendar.tsx",
+          "src/features/ledger/screens/timeline.tsx",
+          "src/features/ledger/screens/entryDetail.tsx",
+          "src/hooks/useTabletLayout.ts"
+        ],
+        "capturedAt": "2026-10-09T17:02:34.773Z",
+        "os": "iOS27.1",
+        "device": "iPhoneDuo",
+        "orientation": "opened portrait",
+        "theme": "light",
+        "inspected": true,
+        "crop": {
+          "top": 240,
+          "bottom": 300
+        }
+      }
+    },
+    {
+      "locale": "es-ES",
+      "family": "apple-iphone-duo",
+      "displayType": "APP_IPHONE_DUO",
+      "scene": "stats",
+      "file": "es-ES/apple-iphone-duo/04-stats.png",
+      "width": 2007,
+      "height": 2853,
+      "sha256": "b3cea9a62224ac182c970b5a29c47dbdff1b5abb75a5e89ca63da43322e9faa0",
+      "bytes": 327823,
+      "capture": {
+        "family": "duo",
+        "locale": "es-ES",
+        "scene": "stats",
+        "file": "sources/duo/es-ES-stats.png",
+        "sha256": "1e53db4ac6ed873faf1ed3e21703748a82c3b0dbd9ad702fb187b61532a5a662",
+        "platform": "ios",
+        "version": "1.1.0",
+        "nativeBuild": "signed SDK27.1 debug simulator",
+        "nativeArtifactSha256": "097793bea5db54235a7ad7f62f1c14c368170273eaaaac54d332ce347a1a2aaf",
+        "sourceFingerprint": "180b7a191ab201da6d723712f298aac1134b30b0a195d79fbf25e012e0fd2c81",
+        "sourceFingerprintFiles": [
+          "src/features/ledger/ui.tsx",
+          "src/features/ledger/screens/entryEditor.tsx",
+          "src/features/ledger/screens/calendar.tsx",
+          "src/features/ledger/screens/timeline.tsx",
+          "src/features/ledger/screens/entryDetail.tsx",
+          "src/hooks/useTabletLayout.ts",
+          "src/features/ledger/screens/stats.tsx",
+          "src/features/ledger/statsPresentation.ts"
+        ],
+        "capturedAt": "2026-10-09T17:03:53.112Z",
+        "os": "iOS27.1",
+        "device": "iPhoneDuo",
+        "orientation": "opened portrait",
+        "theme": "light",
+        "inspected": true,
+        "crop": {
+          "top": 240,
+          "bottom": 300
+        }
+      }
+    },
+    {
+      "locale": "es-ES",
+      "family": "apple-iphone-duo",
+      "displayType": "APP_IPHONE_DUO",
+      "scene": "entry",
+      "file": "es-ES/apple-iphone-duo/05-entry.png",
+      "width": 2007,
+      "height": 2853,
+      "sha256": "0fffe79c0648af518c44a63adbeba6379e96c6fee1fe884b3fda96d9a6b82060",
+      "bytes": 225221,
+      "capture": {
+        "family": "duo",
+        "locale": "es-ES",
+        "scene": "entry",
+        "file": "sources/duo/es-ES-entry.png",
+        "sha256": "265b3757daeaaf01daf5b0a8ba7e8c3fbcf12006a6361efdfb8ee2d1f9ba43ca",
+        "platform": "ios",
+        "version": "1.1.0",
+        "nativeBuild": "signed SDK27.1 debug simulator; current R91 JS from root Metro8083",
+        "nativeArtifactSha256": "097793bea5db54235a7ad7f62f1c14c368170273eaaaac54d332ce347a1a2aaf",
+        "sourceFingerprint": "9847cd32637a053d29cd172f7704a31d3367a142a932e7cbb175f625c034a763",
+        "sourceFingerprintFiles": [
+          "src/features/ledger/ui.tsx",
+          "src/features/ledger/screens/entryEditor.tsx",
+          "src/features/ledger/screens/calendar.tsx",
+          "src/features/ledger/screens/timeline.tsx",
+          "src/features/ledger/screens/entryDetail.tsx",
+          "src/hooks/useTabletLayout.ts"
+        ],
+        "capturedAt": "2026-10-10T04:21:13.418921+00:00",
+        "os": "iOS27.1",
+        "device": "iPhoneDuo",
+        "orientation": "opened portrait",
+        "theme": "light",
+        "inspected": true,
+        "crop": {
+          "top": 240,
+          "bottom": 0
+        }
+      }
+    },
+    {
+      "locale": "es-ES",
+      "family": "apple-iphone-duo",
+      "displayType": "APP_IPHONE_DUO",
+      "scene": "sharing",
+      "file": "es-ES/apple-iphone-duo/06-sharing.png",
+      "width": 2007,
+      "height": 2853,
+      "sha256": "193b3e1e9dcb97a9e587371587fcf64cc801db66539e43d3d8a1f659a4e0036e",
+      "bytes": 286447,
+      "capture": {
+        "family": "duo",
+        "locale": "es-ES",
+        "scene": "sharing",
+        "file": "sources/duo/es-ES-sharing.png",
+        "sha256": "a2ded30182aff38b906215a7ed396fd56a16551db5d2d08de6de1e21334e0c6f",
+        "platform": "ios",
+        "version": "1.1.0",
+        "nativeBuild": "signed SDK27.1 debug simulator",
+        "nativeArtifactSha256": "097793bea5db54235a7ad7f62f1c14c368170273eaaaac54d332ce347a1a2aaf",
+        "sourceFingerprint": "fce5b50715d84fec36f51bada636f7897efd6b3bf2d521b2fab47a6e6fa8abc2",
+        "sourceFingerprintFiles": [
+          "src/features/ledger/ui.tsx",
+          "src/features/ledger/screens/entryEditor.tsx",
+          "src/features/ledger/screens/calendar.tsx",
+          "src/features/ledger/screens/timeline.tsx",
+          "src/features/ledger/screens/entryDetail.tsx",
+          "src/hooks/useTabletLayout.ts"
+        ],
+        "capturedAt": "2026-10-09T17:04:46.750Z",
+        "os": "iOS27.1",
+        "device": "iPhoneDuo",
+        "orientation": "opened portrait",
+        "theme": "light",
+        "inspected": true,
+        "crop": {
+          "top": 0,
+          "bottom": 0
+        }
+      }
+    },
+    {
+      "locale": "es-ES",
+      "family": "apple-iphone-duo",
+      "displayType": "APP_IPHONE_DUO",
+      "scene": "comments",
+      "file": "es-ES/apple-iphone-duo/07-comments.png",
+      "width": 2007,
+      "height": 2853,
+      "sha256": "68db2c2988f58a0e171f7d8651541c146d493ed0502a647ea853d0f956ff0ba9",
+      "bytes": 342502,
+      "capture": {
+        "family": "duo",
+        "locale": "es-ES",
+        "scene": "comments",
+        "file": "sources/duo/es-ES-comments.png",
+        "sha256": "1c16eb33711fcc7e8362f75b1f236fe2e30d7c64d2958ce5218a475e0ce8cc6b",
+        "platform": "ios",
+        "version": "1.1.0",
+        "nativeBuild": "signed SDK27.1 debug simulator",
+        "nativeArtifactSha256": "097793bea5db54235a7ad7f62f1c14c368170273eaaaac54d332ce347a1a2aaf",
+        "sourceFingerprint": "fce5b50715d84fec36f51bada636f7897efd6b3bf2d521b2fab47a6e6fa8abc2",
+        "sourceFingerprintFiles": [
+          "src/features/ledger/ui.tsx",
+          "src/features/ledger/screens/entryEditor.tsx",
+          "src/features/ledger/screens/calendar.tsx",
+          "src/features/ledger/screens/timeline.tsx",
+          "src/features/ledger/screens/entryDetail.tsx",
+          "src/hooks/useTabletLayout.ts"
+        ],
+        "capturedAt": "2026-10-09T17:05:10.679Z",
+        "os": "iOS27.1",
+        "device": "iPhoneDuo",
+        "orientation": "opened portrait",
+        "theme": "light",
+        "inspected": true,
+        "crop": {
+          "top": 240,
+          "bottom": 0
+        }
+      }
+    },
+    {
+      "locale": "es-ES",
+      "family": "apple-iphone-duo",
+      "displayType": "APP_IPHONE_DUO",
+      "scene": "theme",
+      "file": "es-ES/apple-iphone-duo/08-theme.png",
+      "width": 2007,
+      "height": 2853,
+      "sha256": "ddbc0178a08622667cf6e1be03f99e31414addb0fef547825f73490cfc144cc7",
+      "bytes": 275804,
+      "capture": {
+        "family": "duo",
+        "locale": "es-ES",
+        "scene": "theme",
+        "file": "sources/duo/es-ES-theme.png",
+        "sha256": "9a7cf234172ad2d6a1080ca0a51092fe2ce02f598f687c5f2aa5da0a2bead4c6",
+        "platform": "ios",
+        "version": "1.1.0",
+        "nativeBuild": "signed SDK27.1 debug simulator",
+        "nativeArtifactSha256": "097793bea5db54235a7ad7f62f1c14c368170273eaaaac54d332ce347a1a2aaf",
+        "sourceFingerprint": "fce5b50715d84fec36f51bada636f7897efd6b3bf2d521b2fab47a6e6fa8abc2",
+        "sourceFingerprintFiles": [
+          "src/features/ledger/ui.tsx",
+          "src/features/ledger/screens/entryEditor.tsx",
+          "src/features/ledger/screens/calendar.tsx",
+          "src/features/ledger/screens/timeline.tsx",
+          "src/features/ledger/screens/entryDetail.tsx",
+          "src/hooks/useTabletLayout.ts"
+        ],
+        "capturedAt": "2026-10-09T17:14:24.963Z",
+        "os": "iOS27.1",
+        "device": "iPhoneDuo",
+        "orientation": "opened portrait",
+        "theme": "dark",
+        "inspected": true,
+        "crop": {
+          "top": 240,
+          "bottom": 300
+        }
+      }
+    }
+  ]
+}

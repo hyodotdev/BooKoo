@@ -1,0 +1,164 @@
+{
+  "device": "Pixel 10 emulator profile, Android 14 (API 34), default font",
+  "package": "dev.hyo.bookoo.receiptqa",
+  "artifactSha256": null,
+  "fixture": "isolated local, localized synthetic gallery accounts; no draft saved",
+  "sources": [
+    {
+      "locale": "en-US",
+      "scene": "stats",
+      "file": "en-US-stats.png",
+      "sha256": "98e2fb78f4d682da393bcba30bef73ad6dc1f46b23f8516b1ec7653de08aa859",
+      "capturedAt": "2026-10-09T18:50:28.309121+00:00",
+      "width": 1080,
+      "height": 2424,
+      "nativeArtifactSha256": "b93fa8b2cc383322482b62ce92f48584ac7a2767c24fccca627c3d0d504f2fee"
+    },
+    {
+      "locale": "en-US",
+      "scene": "entry",
+      "file": "en-US-entry.png",
+      "sha256": "fc7c0fde9e21ed318c188daa283fc2e3f62b49f993829e8523a4aa7a953cb387",
+      "capturedAt": "2026-10-10T04:06:58.411961+00:00",
+      "width": 1080,
+      "height": 2424,
+      "nativeArtifactSha256": "4d73e04413bb27f814abb8ecec5235857d972ed44682dea18dfd9f1c012c5c2e",
+      "sourceFingerprint": "9847cd32637a053d29cd172f7704a31d3367a142a932e7cbb175f625c034a763",
+      "sourceFingerprintFiles": [
+        "src/features/ledger/ui.tsx",
+        "src/features/ledger/screens/entryEditor.tsx",
+        "src/features/ledger/screens/calendar.tsx",
+        "src/features/ledger/screens/timeline.tsx",
+        "src/features/ledger/screens/entryDetail.tsx",
+        "src/hooks/useTabletLayout.ts"
+      ],
+      "inspected": true,
+      "nativeBuild": "LOCAL compatible QA debug shell; current root R91 JS via Metro8083 bridge8084"
+    },
+    {
+      "locale": "ko-KR",
+      "scene": "stats",
+      "file": "ko-KR-stats.png",
+      "sha256": "1477136a7388022623425c4d74c9de063aa6d1c5783e153bd5daf9df8e809912",
+      "capturedAt": "2026-10-09T18:58:26.987264+00:00",
+      "width": 1080,
+      "height": 2424,
+      "nativeArtifactSha256": "b93fa8b2cc383322482b62ce92f48584ac7a2767c24fccca627c3d0d504f2fee"
+    },
+    {
+      "locale": "ko-KR",
+      "scene": "entry",
+      "file": "ko-KR-entry.png",
+      "sha256": "dc6abe7dcee480a8ea8530dc3d4fcadba3cdb35b7c2a290eb01754d4cc0fc3b1",
+      "capturedAt": "2026-10-10T03:50:02.261241+00:00",
+      "width": 1080,
+      "height": 2424,
+      "nativeArtifactSha256": "4d73e04413bb27f814abb8ecec5235857d972ed44682dea18dfd9f1c012c5c2e",
+      "sourceFingerprint": "9847cd32637a053d29cd172f7704a31d3367a142a932e7cbb175f625c034a763",
+      "sourceFingerprintFiles": [
+        "src/features/ledger/ui.tsx",
+        "src/features/ledger/screens/entryEditor.tsx",
+        "src/features/ledger/screens/calendar.tsx",
+        "src/features/ledger/screens/timeline.tsx",
+        "src/features/ledger/screens/entryDetail.tsx",
+        "src/hooks/useTabletLayout.ts"
+      ],
+      "inspected": true,
+      "nativeBuild": "LOCAL compatible QA debug shell; current root R91 JS via Metro8083 bridge8084"
+    },
+    {
+      "locale": "ja",
+      "scene": "stats",
+      "file": "ja-stats.png",
+      "sha256": "246e6a1bd9cc2e296426a51927e776abb9f5850abda06496f9f8d9c99e9aadaf",
+      "capturedAt": "2026-10-09T18:59:45.380742+00:00",
+      "width": 1080,
+      "height": 2424,
+      "nativeArtifactSha256": "b93fa8b2cc383322482b62ce92f48584ac7a2767c24fccca627c3d0d504f2fee"
+    },
+    {
+      "locale": "ja",
+      "scene": "entry",
+      "file": "ja-entry.png",
+      "sha256": "30e99632f4f134f75ce4c4792019cf0f4cd083a73fa0e8bb1ad2b0111d2c523d",
+      "capturedAt": "2026-10-10T03:53:41.651383+00:00",
+      "width": 1080,
+      "height": 2424,
+      "nativeArtifactSha256": "4d73e04413bb27f814abb8ecec5235857d972ed44682dea18dfd9f1c012c5c2e",
+      "sourceFingerprint": "9847cd32637a053d29cd172f7704a31d3367a142a932e7cbb175f625c034a763",
+      "sourceFingerprintFiles": [
+        "src/features/ledger/ui.tsx",
+        "src/features/ledger/screens/entryEditor.tsx",
+        "src/features/ledger/screens/calendar.tsx",
+        "src/features/ledger/screens/timeline.tsx",
+        "src/features/ledger/screens/entryDetail.tsx",
+        "src/hooks/useTabletLayout.ts"
+      ],
+      "inspected": true,
+      "nativeBuild": "LOCAL compatible QA debug shell; current root R91 JS via Metro8083 bridge8084"
+    },
+    {
+      "locale": "zh-CN",
+      "scene": "stats",
+      "file": "zh-CN-stats.png",
+      "sha256": "765849895bac27dd984cb7e607d127a0f73725d6b54ea66a839886cd96aef8e3",
+      "capturedAt": "2026-10-09T19:01:07.314998+00:00",
+      "width": 1080,
+      "height": 2424,
+      "nativeArtifactSha256": "b93fa8b2cc383322482b62ce92f48584ac7a2767c24fccca627c3d0d504f2fee"
+    },
+    {
+      "locale": "zh-CN",
+      "scene": "entry",
+      "file": "zh-CN-entry.png",
+      "sha256": "70acd86b63375fb358399d9d991566f24e0aa13b0de538b7007bd50d0b74e49f",
+      "capturedAt": "2026-10-10T03:58:16.977888+00:00",
+      "width": 1080,
+      "height": 2424,
+      "nativeArtifactSha256": "4d73e04413bb27f814abb8ecec5235857d972ed44682dea18dfd9f1c012c5c2e",
+      "sourceFingerprint": "9847cd32637a053d29cd172f7704a31d3367a142a932e7cbb175f625c034a763",
+      "sourceFingerprintFiles": [
+        "src/features/ledger/ui.tsx",
+        "src/features/ledger/screens/entryEditor.tsx",
+        "src/features/ledger/screens/calendar.tsx",
+        "src/features/ledger/screens/timeline.tsx",
+        "src/features/ledger/screens/entryDetail.tsx",
+        "src/hooks/useTabletLayout.ts"
+      ],
+      "inspected": true,
+      "nativeBuild": "LOCAL compatible QA debug shell; current root R91 JS via Metro8083 bridge8084"
+    },
+    {
+      "locale": "id",
+      "scene": "stats",
+      "file": "id-stats.png",
+      "sha256": "cf2e960df1c823d811e64d9b7e61f072e904bf6e0f08ca4ec9cc0f98df8fbb18",
+      "capturedAt": "2026-10-09T19:02:25.599552+00:00",
+      "width": 1080,
+      "height": 2424,
+      "nativeArtifactSha256": "b93fa8b2cc383322482b62ce92f48584ac7a2767c24fccca627c3d0d504f2fee"
+    },
+    {
+      "locale": "id",
+      "scene": "entry",
+      "file": "id-entry.png",
+      "sha256": "7064022fb0763e83cd4563a3a3b3d5bbf10062840a23e3c46e40c7d2621f058c",
+      "capturedAt": "2026-10-10T04:01:05.412906+00:00",
+      "width": 1080,
+      "height": 2424,
+      "nativeArtifactSha256": "4d73e04413bb27f814abb8ecec5235857d972ed44682dea18dfd9f1c012c5c2e",
+      "sourceFingerprint": "9847cd32637a053d29cd172f7704a31d3367a142a932e7cbb175f625c034a763",
+      "sourceFingerprintFiles": [
+        "src/features/ledger/ui.tsx",
+        "src/features/ledger/screens/entryEditor.tsx",
+        "src/features/ledger/screens/calendar.tsx",
+        "src/features/ledger/screens/timeline.tsx",
+        "src/features/ledger/screens/entryDetail.tsx",
+        "src/hooks/useTabletLayout.ts"
+      ],
+      "inspected": true,
+      "nativeBuild": "LOCAL compatible QA debug shell; current root R91 JS via Metro8083 bridge8084"
+    }
+  ],
+  "source": "Mixed inspected native captures: unchanged stats retain original artifact identity; R91 entry has per-record native/JS provenance"
+}

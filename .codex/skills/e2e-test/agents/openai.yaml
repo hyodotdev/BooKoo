@@ -1,0 +1,4 @@
+interface:
+  display_name: "E2E Test"
+  short_description: "Run BooKoo simulator and emulator ledger regression"
+  default_prompt: "Use $e2e-test to run the BooKoo ledger flows on the iOS simulator and Android emulator and report PASS/FAIL with evidence."

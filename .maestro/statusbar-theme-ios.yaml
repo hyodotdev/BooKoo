@@ -1,0 +1,21 @@
+appId: dev.hyo.bookoo
+name: Status bar follows light and dark themes on existing iPad
+---
+- launchApp:
+    stopApp: false
+- openLink: bookoo://settings/appearance
+- assertVisible: Theme
+- tapOn: Dark
+- openLink: bookoo://
+- assertVisible:
+    id: authenticated-tab-shell
+- takeScreenshot: docs/debugs/e2e/2026-08-31-exact/ipad-mini/statusbar-dark-after-policy
+- openLink: bookoo://settings/appearance
+- tapOn: Light
+- openLink: bookoo://
+- assertVisible:
+    id: authenticated-tab-shell
+- takeScreenshot: docs/debugs/e2e/2026-08-31-exact/ipad-mini/statusbar-light-after-policy-maestro
+- openLink: bookoo://settings/appearance
+- tapOn: System
+- openLink: bookoo://

@@ -1,0 +1,19 @@
+appId: dev.hyo.bookoo
+name: Select populated synthetic capture ledger
+---
+- openLink: bookoo://timeline
+- extendedWaitUntil:
+    visible:
+      id: authenticated-tab-shell
+    timeout: 20000
+- tapOn:
+    id: ledger-header-menu
+- assertVisible:
+    id: ledger-drawer-list
+- tapOn:
+    id: ledger-row-Minji Daily Budget-select
+- waitForAnimationToEnd
+- assertVisible:
+    id: timeline-day-.*
+- assertNotVisible:
+    id: app-error-fallback

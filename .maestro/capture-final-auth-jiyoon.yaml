@@ -1,0 +1,43 @@
+appId: dev.hyo.bookoo
+name: Final tutorial, auth, and owner account restore
+---
+- launchApp:
+    clearState: true
+    stopApp: true
+- extendedWaitUntil:
+    visible: Record it.
+    timeout: 30000
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-simulator/auth/001-tutorial-record
+- tapOn: Next
+- assertVisible: Share it.
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-simulator/auth/002-tutorial-share
+- tapOn: Next
+- assertVisible: Manage it.
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-simulator/auth/003-tutorial-track
+- tapOn: Get started
+- assertVisible: Continue with email
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-simulator/auth/004-sign-in
+- tapOn: Sign-in help
+- assertVisible: Sign-in help
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-simulator/auth/005-sign-in-help
+- tapOn: Back
+- assertVisible: Continue with email
+- tapOn: Continue with email
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-simulator/auth/006-email-empty-keyboard
+- inputText: ${BOOKOO_E2E_OWNER_EMAIL}
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-simulator/auth/007-email-filled-keyboard
+- tapOn: Send code
+- extendedWaitUntil:
+    visible: Next
+    timeout: 20000
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-simulator/auth/008-otp-empty
+- inputText: ${BOOKOO_E2E_OTP}
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-simulator/auth/009-otp-filled-keyboard
+- tapOn: Next
+- extendedWaitUntil:
+    visible:
+      id: authenticated-tab-shell
+    timeout: 30000
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-simulator/auth/010-owner-login-restored

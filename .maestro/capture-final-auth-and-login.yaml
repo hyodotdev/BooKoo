@@ -1,0 +1,39 @@
+appId: dev.hyo.bookoo
+name: Final auth screenshots and synthetic account restore
+---
+- launchApp:
+    stopApp: true
+- assertVisible: Record it.
+- takeScreenshot: ${OUTPUT_ROOT}/070-tutorial-record
+- tapOn: Next
+- assertVisible: Share it.
+- takeScreenshot: ${OUTPUT_ROOT}/071-tutorial-share
+- tapOn: Next
+- assertVisible: Manage it.
+- takeScreenshot: ${OUTPUT_ROOT}/072-tutorial-track
+- tapOn: Get started
+- assertVisible: Continue with email
+- takeScreenshot: ${OUTPUT_ROOT}/073-sign-in
+- tapOn: Continue with email
+- assertVisible: Send code
+- takeScreenshot: ${OUTPUT_ROOT}/074-email-empty-keyboard
+- inputText: ${BOOKOO_E2E_EMAIL}
+- takeScreenshot: ${OUTPUT_ROOT}/075-email-filled-keyboard
+- tapOn: Send code
+- extendedWaitUntil:
+    visible: 8-digit code
+    timeout: 20000
+- takeScreenshot: ${OUTPUT_ROOT}/076-otp-empty
+- tapOn: 8-digit code
+- inputText: ${BOOKOO_E2E_OTP}
+- takeScreenshot: ${OUTPUT_ROOT}/077-otp-filled-keyboard
+- tapOn:
+    text: Login
+    index: 1
+- extendedWaitUntil:
+    visible:
+      id: authenticated-tab-shell
+    timeout: 30000
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: ${OUTPUT_ROOT}/078-login-restored-calendar

@@ -1,0 +1,46 @@
+{
+  "locale": "en",
+  "releaseNotesVersion": "1.4.0",
+  "apple": {
+    "name": "BooKoo: Shared Expense Tracker",
+    "subtitle": "Couples, families & roommates",
+    "keywords": "club,dues,team,trip,travel,treasurer,roommates,household,ledger,income,money,calendar,comments",
+    "promoText": "Record income and spending together. Keep household bills, couple and roommate costs in one ledger, attach receipts, and ask about any entry right where it sits.",
+    "releaseNotes": "Added Vietnamese language support and improved translations throughout the app.",
+    "description": "BooKoo is a shared expense tracker for recording income and spending in one place. Start a personal expense log, or keep household bills, couple and roommate expenses, group funds and travel costs together. Add receipts and comments to each entry, then review your spending in a calendar and category charts. New ledgers support two members free, or up to five with BooKoo Pro.\n\n■ Read a receipt on your device\nReview the amount and date from a receipt photo before applying them to your draft.\n\n■ Every entry keeps its conversation\nAsk about a charge right where it sits. The receipt photo and the answer stay next to the amount.\n\n■ Nobody carries the book alone\nOne invite link and members start logging for themselves. Owners and admins manage members and invitations; members add entries and comments; view-only members can read.\n\n■ Calendar and statistics at a glance\nA calendar in the ledger’s own time zone with daily totals, category statistics, and a 12-month trend.\n\n■ Made to fit your group\nChoose category names, colors, and icons, and use light or dark mode on phone and tablet. Export your data any time. The app itself is available in English, Korean, Japanese, Chinese, Indonesian, German, Spanish, French, Italian, Dutch, Portuguese, and Vietnamese.\n\nA ledger is visible only to the members you invite — it is not a public board. BooKoo is a manual record: it does not connect to banks, move money between people, split or settle balances, track unpaid dues per member, approve spending, convert currencies, or track users across apps. Entries are recorded in the ledger’s own currency. Free may show one limited non-personalized banner directly below the main tabs. The only payment is the optional subscription below, handled by the app store.\n\nBooKoo Pro (optional subscription)\nFree BooKoo keeps one ledger you own, 2 members in each new ledger, unlimited entries, full access to your own data, and a limited banner below the main tabs. BooKoo Pro removes ads, lets you create additional ledgers, and supports up to 5 members in each new ledger.\n\n• Available as a monthly or an annual subscription\n• The annual plan includes a 7-day free trial for new subscribers\n• The ledger owner subscribes and the whole ledger is covered — invited members never pay\n• Payment is charged to your store account at confirmation of purchase\n• Renews automatically unless cancelled at least 24 hours before the period ends\n• Manage or cancel any time in your store account settings\n• Prices are shown in the app and vary by region\n\nTerms of Use: https://bookoo.hyo.dev/legal/terms?lang=en\nPrivacy Policy: https://bookoo.hyo.dev/legal/privacy?lang=en"
+  },
+  "google": {
+    "name": "BooKoo: Shared Expense Tracker",
+    "shortDescription": "Shared expense tracker for couples, roommates & trips. Log income and spending.",
+    "fullDescription": "BooKoo is a shared expense tracker for recording income and spending in one place. Start a personal expense log, or keep household bills, couple and roommate expenses, group funds and travel costs together. Add receipts and comments to each entry, then review your spending in a calendar and category charts. New ledgers support two members free, or up to five with BooKoo Pro.\n\nNobody carries the book alone\nShared money usually lands on one person. They keep the receipts, they write the summary, and they field every \"what was that one?\" One invite link, and each member records their own spending into the same ledger.\n\nA conversation on every entry\nAsk about a charge right where it sits. The receipt photo and the answer stay next to the amount.\n\nFeatures\n• On-device receipt scanning with review before saving\n• Find past income and expenses in a clear timeline\n• Daily totals on a calendar in the ledger’s own time zone\n• Category donut and 12-month income and expense trend\n• Photos, comments, invitation links, and member roles\n• Personal export and administrator ledger export\n• Account deletion with a 30-day recovery period\n• Light and dark themes for phones and tablets\n• English, Korean, Japanese, Simplified Chinese, Indonesian, German, Spanish, French, Italian, Dutch, Portuguese, and Vietnamese\n\nWho can see it\nA ledger is visible only to the members you invite — it is not a public board. Owners and admins manage members and invitations; members add entries and comments; view-only members can read.\n\nFAQ\nHow many people can share a ledger?\nEach new ledger holds 2 members on Free and up to 5 members with BooKoo Pro.\n\nCan I use it on my own?\nYes. Start a personal ledger and invite people when you need to.\n\nDoes it import my bank or card transactions?\nNo. BooKoo is a manual record and does not provide bank connections, money transfer between people, automatic settle-up or bill splitting, per-member dues tracking, spending approval, currency conversion, investment, or cross-app tracking. Entries are recorded in the ledger’s own currency. Free may show one limited non-personalized banner directly below the main tabs.\n\nBooKoo Pro (optional subscription)\nFree BooKoo keeps one ledger you own, 2 members in each new ledger, unlimited entries, full access to your own data, and a limited banner below the main tabs. BooKoo Pro removes ads, lets you create additional ledgers, and supports up to 5 members in each new ledger.\n\n• Available as a monthly or an annual subscription\n• The annual plan includes a 7-day free trial for new subscribers\n• The ledger owner subscribes and the whole ledger is covered — invited members never pay\n• Payment is charged to your store account at confirmation of purchase\n• Renews automatically unless cancelled at least 24 hours before the period ends\n• Manage or cancel any time in your store account settings\n• Prices are shown in the app and vary by region\n\nTerms of Use: https://bookoo.hyo.dev/legal/terms?lang=en\nPrivacy Policy: https://bookoo.hyo.dev/legal/privacy?lang=en",
+    "releaseNotes": "Added Vietnamese language support and improved translations throughout the app.",
+    "promoVideo": null
+  },
+  "urls": {
+    "privacy": "https://bookoo.hyo.dev/legal/privacy?lang=en",
+    "terms": "https://bookoo.hyo.dev/legal/terms?lang=en",
+    "support": "https://bookoo.hyo.dev/support?lang=en",
+    "privacyChoices": "https://bookoo.hyo.dev/privacy-choices?lang=en",
+    "accountDeletion": "https://bookoo.hyo.dev/account-deletion?lang=en"
+  },
+  "screenshotScenes": [
+    "intro",
+    "calendar",
+    "timeline",
+    "stats",
+    "entry",
+    "sharing",
+    "comments",
+    "theme"
+  ],
+  "screenshotAltText": [
+    "Mint BooKoo brand introduction with angled white phones showing the native ledger calendar",
+    "Monthly shared-ledger calendar with a selected date and its entry",
+    "Paginated ledger timeline grouped by date, with category and memo per entry",
+    "Expense statistics with a multi-color donut chart and ranked category list",
+    "Full-page ledger item editor for amount, category, date, location, memo, and photos",
+    "Ledger member list showing an owner and an invited member with their roles",
+    "Expense detail with a three-message comment thread between two members",
+    "Dark ledger calendar with a selected date and a recorded group expense"
+  ]
+}

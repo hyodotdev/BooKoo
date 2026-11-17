@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review PR"
+  short_description: "Review a BooKoo pull request and handle its comments"
+  default_prompt: "Use $review-pr to review the current BooKoo pull request and address its review comments."

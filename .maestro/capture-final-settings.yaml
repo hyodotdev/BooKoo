@@ -1,0 +1,59 @@
+appId: dev.hyo.bookoo
+name: Final settings route screenshot inventory
+---
+- launchApp:
+    stopApp: true
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: "bookoo://settings", NAME: "040-settings"}
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: "bookoo://settings/appearance", NAME: "041-appearance"}
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: "bookoo://settings/language", NAME: "042-language"}
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: "bookoo://settings/default-currency", NAME: "043-default-currency"}
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: "bookoo://settings/notifications", NAME: "044-notification-settings"}
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: "bookoo://settings/lock", NAME: "045-app-lock"}
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: "bookoo://settings/account", NAME: "046-account"}
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: "bookoo://settings/about", NAME: "047-about"}
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: "bookoo://settings/faq", NAME: "048-faq"}
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: "bookoo://settings/announcements", NAME: "050-announcements"}
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: "bookoo://settings/privacy", NAME: "053-privacy-and-data"}
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: "bookoo://settings/diagnostics", NAME: "054-diagnostics"}
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: "bookoo://settings/ops", NAME: "055-operations"}
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: "bookoo://settings/legal/terms", NAME: "056-terms"}
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: "bookoo://settings/legal/privacy", NAME: "057-privacy-policy"}
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: "bookoo://settings/legal/choices", NAME: "059-privacy-choices"}
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: "bookoo://settings/legal/deletion", NAME: "060-account-deletion-guide"}
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: "bookoo://settings/legal/support", NAME: "061-support"}

@@ -1,0 +1,66 @@
+appId: dev.hyo.bookoo
+name: Concise ledger More and two-level management
+---
+- launchApp:
+    # Native Paywall presentation from another flow must not cover this route.
+    # Preserve app data; only restart the process.
+    stopApp: true
+- openLink: bookoo://
+- runFlow:
+    when:
+      platform: iOS
+    file: ios-confirm-deep-link.yaml
+- extendedWaitUntil:
+    visible:
+      id: calendar-next
+    timeout: 30000
+- tapOn: '^More$'
+- extendedWaitUntil:
+    visible:
+      id: ledger-settings-list
+    timeout: 20000
+- assertVisible:
+    id: ledger-settings-row-manage
+- assertNotVisible:
+    id: ledger-settings-row-export
+- assertNotVisible:
+    id: ledger-settings-row-deleted
+- assertNotVisible: 'Language|언어|言語|语言|Bahasa|Sprache|Idioma|Langue|Lingua|Taal'
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: ${EVIDENCE_DIR}/11-ledger-more
+- tapOn:
+    id: ledger-settings-row-manage
+- extendedWaitUntil:
+    notVisible:
+      id: ledger-settings-row-manage
+    timeout: 20000
+- scrollUntilVisible:
+    direction: DOWN
+    element:
+      id: ledger-settings-row-deleted
+- assertVisible:
+    id: ledger-settings-row-export
+- assertVisible:
+    id: ledger-settings-row-deleted
+- assertNotVisible:
+    id: ledger-settings-row-details
+- assertNotVisible:
+    id: ledger-settings-row-members
+- assertNotVisible:
+    id: ledger-settings-row-pro
+- assertNotVisible:
+    id: ledger-settings-row-currency
+- assertNotVisible:
+    id: ledger-settings-row-timezone
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: ${EVIDENCE_DIR}/12-ledger-manage
+- tapOn: '^Back$'
+- extendedWaitUntil:
+    visible:
+      id: ledger-settings-row-manage
+    timeout: 20000
+- assertNotVisible:
+    id: ledger-settings-row-export
+- takeScreenshot: ${EVIDENCE_DIR}/13-returned-to-more

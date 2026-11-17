@@ -1,0 +1,4 @@
+interface:
+  display_name: "Analyze"
+  short_description: "Analyze BooKoo aggregate product and growth metrics"
+  default_prompt: "Use $analyze to interpret BooKoo's verified aggregate product, store, RevenueCat, and operational evidence without exposing private ledger data."

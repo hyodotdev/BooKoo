@@ -1,0 +1,54 @@
+appId: dev.hyo.bookoo
+name: Finish synthetic item photo attachment on iOS
+env:
+  OUTPUT_ROOT: ${OUTPUT_ROOT}
+---
+- tapOn:
+    point: 16%,17%
+- extendedWaitUntil:
+    visible: Add photo
+    timeout: 45000
+- takeScreenshot: ${OUTPUT_ROOT}/002-first-photo-attached
+- tapOn: Add photo
+- extendedWaitUntil:
+    visible: Photos
+    timeout: 30000
+- tapOn:
+    point: 50%,17%
+- extendedWaitUntil:
+    visible: Add photo
+    timeout: 45000
+- takeScreenshot: ${OUTPUT_ROOT}/003-two-photos-attached
+- tapOn:
+    text: Photo
+    index: 0
+- extendedWaitUntil:
+    visible: Photo 1/2
+    timeout: 30000
+- takeScreenshot: ${OUTPUT_ROOT}/004-photo-viewer-first
+- tapOn: Zoom in
+- takeScreenshot: ${OUTPUT_ROOT}/005-photo-viewer-zoomed
+- tapOn: Zoom out
+- swipe:
+    start: 82%,50%
+    end: 18%,50%
+    duration: 600
+- assertVisible: Photo 2/2
+- takeScreenshot: ${OUTPUT_ROOT}/006-photo-viewer-swiped
+- tapOn: Delete photo
+- assertVisible: Delete this photo?
+- takeScreenshot: ${OUTPUT_ROOT}/007-photo-delete-confirmation
+- tapOn: Cancel
+- tapOn: Share
+- extendedWaitUntil:
+    visible: Copy
+    timeout: 30000
+- takeScreenshot: ${OUTPUT_ROOT}/008-photo-share-sheet
+- tapOn:
+    point: 50%,17%
+- tapOn: Save
+- extendedWaitUntil:
+    visible: Saved to your photo library.
+    timeout: 30000
+- takeScreenshot: ${OUTPUT_ROOT}/009-photo-saved-confirmation
+- tapOn: OK

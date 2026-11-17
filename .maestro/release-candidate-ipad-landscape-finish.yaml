@@ -1,0 +1,28 @@
+appId: dev.hyo.bookoo
+name: Release candidate iPad landscape finish
+env:
+  LEDGER_ID: ns714ycjvtq4z653adfvfwpwn58dgdsk
+  ITEM_ID: n576hmvb67ex9ph02m5c4awnc58dh8x0
+---
+- launchApp:
+    stopApp: false
+- takeScreenshot: docs/debugs/e2e/2026-09-01-release-candidate/ipad-mini/019-timeline-landscape-loaded
+- openLink: bookoo://ledger/${LEDGER_ID}/item/${ITEM_ID}
+- extendedWaitUntil:
+    visible:
+      id: ledger-item-comment-field
+    timeout: 20000
+- takeScreenshot: docs/debugs/e2e/2026-09-01-release-candidate/ipad-mini/020-entry-detail-landscape
+- openLink: bookoo://stats
+- extendedWaitUntil:
+    visible: Total
+    timeout: 30000
+- takeScreenshot: docs/debugs/e2e/2026-09-01-release-candidate/ipad-mini/021-stats-landscape
+- openLink: bookoo://settings
+- extendedWaitUntil:
+    visible: Preferences
+    timeout: 30000
+- takeScreenshot: docs/debugs/e2e/2026-09-01-release-candidate/ipad-mini/022-settings-landscape
+- assertNotVisible:
+    id: app-error-fallback
+- setOrientation: PORTRAIT

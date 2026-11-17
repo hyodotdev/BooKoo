@@ -1,0 +1,90 @@
+[
+  {
+    "build": "local iOS Release working tree",
+    "device": "iPhone 17 Pro Max simulator",
+    "dimensions": "1320x2868",
+    "file": "01-calendar.png",
+    "locale": "en-US",
+    "route": "/(app)/(tabs)/(root)",
+    "sha256": "a966650ed185310fce7160593a3dfee41cdb20588b1f2206c7c89cf830256ebf",
+    "theme": "light",
+    "version": "1.0.0"
+  },
+  {
+    "build": "local iOS Release working tree",
+    "device": "iPhone 17 Pro Max simulator",
+    "dimensions": "1320x2868",
+    "file": "02-timeline.png",
+    "locale": "en-US",
+    "route": "/(app)/(tabs)/(root)/timeline",
+    "sha256": "8bbedb04412f3998b2c15d6b6008e178a50805688df75043fd50c090698f97ad",
+    "theme": "light",
+    "version": "1.0.0"
+  },
+  {
+    "build": "local iOS Release working tree",
+    "device": "iPhone 17 Pro Max simulator",
+    "dimensions": "1320x2868",
+    "file": "03-stats.png",
+    "locale": "en-US",
+    "route": "/(app)/(tabs)/(root)/stats",
+    "sha256": "f2244324fe3a3fe9084d57d725c12ecdfc7be62babd0ecf95e769fdf1f2707ca",
+    "theme": "light",
+    "version": "1.0.0"
+  },
+  {
+    "build": "local iOS Release working tree",
+    "device": "iPhone 17 Pro Max simulator",
+    "dimensions": "1320x2868",
+    "file": "04-ledger-switcher.png",
+    "locale": "en-US",
+    "route": "/(app)/(tabs)#drawer",
+    "sha256": "038c62fc2862fe42896a321a3a3012d2bc254e4bfce04c1d00cd08e5ea906044",
+    "theme": "light",
+    "version": "1.0.0"
+  },
+  {
+    "build": "local iOS Release working tree",
+    "device": "iPhone 17 Pro Max simulator",
+    "dimensions": "1320x2868",
+    "file": "05-members.png",
+    "locale": "en-US",
+    "route": "/ledger/[ledgerId]/members",
+    "sha256": "485b3356773208964f567421c6cab7115a2a0fe381cab8079a1810e1b8561c5c",
+    "theme": "light",
+    "version": "1.0.0"
+  },
+  {
+    "build": "local iOS Release working tree",
+    "device": "iPhone 17 Pro Max simulator",
+    "dimensions": "1320x2868",
+    "file": "06-category-picker.png",
+    "locale": "en-US",
+    "route": "/ledger/[ledgerId]/item/new#category",
+    "sha256": "6984f9779109617c447310749e83c697302c52b058702196d2be29036e4cd868",
+    "theme": "light",
+    "version": "1.0.0"
+  },
+  {
+    "build": "local iOS Release working tree",
+    "device": "iPhone 17 Pro Max simulator",
+    "dimensions": "1320x2868",
+    "file": "07-new-entry.png",
+    "locale": "en-US",
+    "route": "/ledger/[ledgerId]/item/new",
+    "sha256": "1102fe76af8ff8fbca3ee26a64f686753f7b8bcf68f72c0fc68f0829e588dbb3",
+    "theme": "light",
+    "version": "1.0.0"
+  },
+  {
+    "build": "local iOS Release working tree",
+    "device": "iPhone 17 Pro Max simulator",
+    "dimensions": "1320x2868",
+    "file": "08-more.png",
+    "locale": "en-US",
+    "route": "/(app)/(tabs)/(root)/me",
+    "sha256": "bbbc589bb6031bf37f6af89f55a9450db6575618e4cbc96df1714870eeb8cf8e",
+    "theme": "light",
+    "version": "1.0.0"
+  }
+]

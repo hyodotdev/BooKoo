@@ -1,0 +1,54 @@
+appId: dev.hyo.bookoo
+name: Inspect saved Dark and System OpenIAP Pro screen appearance
+# Android focused batch. Original preference must be System; restore it below.
+# Read the captures: matching text cannot prove the native color scheme.
+---
+- assertVisible:
+    id: authenticated-tab-shell
+- tapOn:
+    text: '^More$'
+    waitToSettleTimeoutMs: 1000
+- tapOn:
+    id: ledger-header-menu
+    waitToSettleTimeoutMs: 1000
+- tapOn:
+    id: ledger-drawer-settings
+    waitToSettleTimeoutMs: 1000
+- tapOn:
+    text: '^Theme$'
+    waitToSettleTimeoutMs: 1000
+- tapOn:
+    text: '^Dark$'
+    waitToSettleTimeoutMs: 1000
+- assertVisible:
+    text: '^Dark$'
+    checked: true
+- takeScreenshot: ${EVIDENCE_DIR}/dark-preference
+- back
+- back
+- runFlow:
+    file: openiap-pro-select-close.yaml
+    env:
+      EVIDENCE_DIR: ${EVIDENCE_DIR}/dark
+- tapOn:
+    id: ledger-header-menu
+    waitToSettleTimeoutMs: 1000
+- tapOn:
+    id: ledger-drawer-settings
+    waitToSettleTimeoutMs: 1000
+- tapOn:
+    text: '^Theme$'
+    waitToSettleTimeoutMs: 1000
+- tapOn:
+    text: '^System$'
+    waitToSettleTimeoutMs: 1000
+- assertVisible:
+    text: '^System$'
+    checked: true
+- takeScreenshot: ${EVIDENCE_DIR}/system-preference
+- back
+- back
+- runFlow:
+    file: openiap-pro-select-close.yaml
+    env:
+      EVIDENCE_DIR: ${EVIDENCE_DIR}/system

@@ -1,0 +1,163 @@
+appId: dev.hyo.bookoo
+name: Capture active-ledger routes through visible iOS navigation
+---
+- launchApp:
+    stopApp: true
+- extendedWaitUntil:
+    visible:
+      id: authenticated-tab-shell
+    timeout: 30000
+- openLink: bookoo://
+- extendedWaitUntil:
+    visible: Open dashboard
+    timeout: 20000
+- tapOn: Open dashboard
+- tapOn:
+    point: 40%,50%
+- tapOn:
+    point: 88%,89%
+- extendedWaitUntil:
+    visible:
+      id: ledger-settings-list
+    timeout: 20000
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-simulator/routes/020-ledger-settings
+
+- tapOn:
+    id: ledger-settings-row-details
+- extendedWaitUntil:
+    visible: Ledger details
+    timeout: 20000
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-simulator/routes/021-ledger-details
+- tapOn: Back
+
+- tapOn:
+    id: ledger-settings-row-members
+- extendedWaitUntil:
+    visible: Members
+    timeout: 20000
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-simulator/routes/022-ledger-members
+- tapOn: Back
+
+- tapOn:
+    id: ledger-settings-row-invites
+- extendedWaitUntil:
+    visible: Invite links
+    timeout: 20000
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-simulator/routes/023-ledger-invites
+- tapOn: Back
+
+- tapOn:
+    id: ledger-settings-row-categories
+- extendedWaitUntil:
+    visible: Categories
+    timeout: 20000
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-simulator/routes/025-ledger-categories
+- tapOn: Back
+
+- scrollUntilVisible:
+    direction: DOWN
+    element:
+      id: ledger-settings-row-manage
+- tapOn:
+    id: ledger-settings-row-manage
+- extendedWaitUntil:
+    visible:
+      id: ledger-settings-list
+    timeout: 20000
+
+- scrollUntilVisible:
+    direction: DOWN
+    element:
+      id: ledger-settings-row-photos
+- swipe:
+    start: 50%,70%
+    end: 50%,30%
+    duration: 400
+- tapOn:
+    id: ledger-settings-row-photos
+- extendedWaitUntil:
+    visible: No photos yet.
+    timeout: 20000
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-simulator/routes/028-ledger-photos
+- tapOn: Back
+
+- scrollUntilVisible:
+    direction: UP
+    element:
+      id: ledger-settings-row-currency
+- swipe:
+    start: 50%,30%
+    end: 50%,75%
+    duration: 400
+- tapOn:
+    id: ledger-settings-row-currency
+- extendedWaitUntil:
+    visible: Currency
+    timeout: 20000
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-simulator/routes/026-ledger-currency
+- tapOn: Back
+
+- tapOn:
+    id: ledger-settings-row-timezone
+- extendedWaitUntil:
+    visible: Time zone
+    timeout: 20000
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-simulator/routes/027-ledger-timezone
+- tapOn: Back
+
+- scrollUntilVisible:
+    direction: DOWN
+    element:
+      id: ledger-settings-row-deleted
+- swipe:
+    start: 50%,70%
+    end: 50%,25%
+    duration: 500
+- swipe:
+    start: 50%,70%
+    end: 50%,25%
+    duration: 500
+- tapOn:
+    id: ledger-settings-row-deleted
+- extendedWaitUntil:
+    visible: Recently deleted
+    timeout: 20000
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-simulator/routes/029-ledger-deleted
+- tapOn: Back
+
+- scrollUntilVisible:
+    direction: DOWN
+    element:
+      id: ledger-settings-row-requests
+- tapOn:
+    id: ledger-settings-row-requests
+- extendedWaitUntil:
+    visible: Join requests
+    timeout: 20000
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-simulator/routes/024-ledger-requests
+- tapOn: Back
+
+- scrollUntilVisible:
+    direction: DOWN
+    element:
+      id: ledger-settings-row-audit
+- tapOn:
+    id: ledger-settings-row-audit
+- extendedWaitUntil:
+    visible: Activity log
+    timeout: 20000
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-simulator/routes/030-ledger-audit
+- tapOn: Back
+
+- scrollUntilVisible:
+    direction: DOWN
+    element:
+      id: ledger-settings-row-danger
+- tapOn:
+    id: ledger-settings-row-danger
+- extendedWaitUntil:
+    visible: Archive or delete ledger
+    timeout: 20000
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-simulator/routes/031-ledger-danger
+- assertNotVisible:
+    id: app-error-fallback

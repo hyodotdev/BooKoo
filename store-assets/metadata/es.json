@@ -1,0 +1,45 @@
+{
+  "locale": "es",
+  "releaseNotesVersion": "1.4.0",
+  "apple": {
+    "name": "BooKoo - Gastos compartidos",
+    "subtitle": "Cuentas de pareja y familia",
+    "keywords": "grupo,equipo,viaje,tesorero,ingresos,registro,dinero,calendario,familia,compañeros",
+    "promoText": "Anota gastos e ingresos en pareja, en familia o con tus compañeros de piso en un mismo libro de cuentas, con fotos de recibos y preguntas en cada movimiento.",
+    "releaseNotes": "Añadimos el vietnamita y mejoramos las traducciones de la aplicación.",
+    "description": "BooKoo es un registro de gastos e ingresos para llevar tus cuentas de forma manual. Úsalo como libro de cuentas personal o comparte los gastos de casa, de pareja, de piso, de un grupo o de un viaje. Añade fotos de recibos y comentarios a cada movimiento y consulta el calendario y las estadísticas por categoría. Cada libro nuevo admite 2 miembros gratis o hasta 5 con BooKoo Pro.\n\n• Escanea recibos en el dispositivo y revísalos antes de guardar\n• Historial paginado y fluido aunque crezcan los datos\n• Calendario y totales diarios en la zona horaria del libro\n• Estadísticas por categoría y tendencia de 12 meses\n• Fotos, comentarios, invitaciones y permisos\n• Exportación personal y para administradores\n• Modo oscuro y diseños para móvil y tableta\n\nCada libro es privado y funciona por invitación. BooKoo es un registro manual: no conecta bancos, no mueve dinero entre personas, no calcula repartos ni reembolsos, no controla cuotas pendientes por miembro, no aprueba gastos y no convierte divisas. Los apuntes se anotan en la moneda del libro. Tampoco rastrea al usuario entre apps. La versión gratuita puede mostrar un banner no personalizado y limitado justo debajo de las pestañas principales. La única compra es la suscripción opcional que se explica a continuación y que procesa la tienda.\n\nBooKoo Pro (suscripción opcional)\nBooKoo gratuito incluye un libro propio, 2 miembros en cada libro nuevo, registros ilimitados, acceso completo a tus datos y publicidad limitada bajo las pestañas principales. BooKoo Pro elimina los anuncios, permite crear libros adicionales y amplía cada libro nuevo hasta 5 miembros.\n\n• Suscripción mensual o anual\n• El plan anual ofrece 7 días de prueba gratis a nuevos suscriptores\n• Se suscribe quien posee el libro y cubre a todos sus miembros; los miembros invitados no pagan\n• El cargo se realiza en la cuenta de la tienda al confirmar la compra\n• Se renueva automáticamente salvo cancelación al menos 24 horas antes del fin del periodo\n• Se puede gestionar o cancelar en cualquier momento en la cuenta de la tienda\n• Los precios aparecen en la app y varían según la región\n\nTérminos de uso: https://bookoo.hyo.dev/legal/terms?lang=en\nPolítica de privacidad: https://bookoo.hyo.dev/legal/privacy?lang=en"
+  },
+  "google": {
+    "name": "BooKoo - Gastos compartidos",
+    "shortDescription": "Gastos e ingresos para parejas, familia y viajes en cuentas compartidas.",
+    "fullDescription": "BooKoo es un registro de gastos e ingresos para llevar tus cuentas de forma manual. Úsalo como libro de cuentas personal o comparte los gastos de casa, de pareja, de piso, de un grupo o de un viaje. Añade fotos de recibos y comentarios a cada movimiento y consulta el calendario y las estadísticas por categoría. Cada libro nuevo admite 2 miembros gratis o hasta 5 con BooKoo Pro.\n\nFunciones\n• Escanea recibos en el dispositivo y revísalos antes de guardar\n• Historial paginado y fluido aunque crezcan los datos\n• Calendario y totales diarios en la zona horaria del libro\n• Estadísticas por categoría y tendencia de 12 meses\n• Fotos, comentarios, enlaces de invitación y permisos\n• Exportación personal y para administradores\n• Eliminación de cuenta con 30 días de recuperación\n• Temas claro y oscuro para móvil y tableta\n\nLos libros solo son visibles para miembros invitados. BooKoo es un registro manual y no ofrece conexión bancaria, transferencias de dinero, reparto o reembolso calculado, control de cuotas pendientes por miembro, aprobación de gastos, conversión de divisas, inversión ni rastreo entre apps. Los apuntes se anotan en la moneda del libro. La versión gratuita puede mostrar un banner no personalizado y limitado justo debajo de las pestañas principales. La única compra es la suscripción opcional que se explica a continuación y que procesa la tienda.\n\nBooKoo Pro (suscripción opcional)\nBooKoo gratuito incluye un libro propio, 2 miembros en cada libro nuevo, registros ilimitados, acceso completo a tus datos y publicidad limitada bajo las pestañas principales. BooKoo Pro elimina los anuncios, permite crear libros adicionales y amplía cada libro nuevo hasta 5 miembros.\n\n• Suscripción mensual o anual\n• El plan anual ofrece 7 días de prueba gratis a nuevos suscriptores\n• Se suscribe quien posee el libro y cubre a todos sus miembros; los miembros invitados no pagan\n• El cargo se realiza en la cuenta de la tienda al confirmar la compra\n• Se renueva automáticamente salvo cancelación al menos 24 horas antes del fin del periodo\n• Se puede gestionar o cancelar en cualquier momento en la cuenta de la tienda\n• Los precios aparecen en la app y varían según la región\n\nTérminos de uso: https://bookoo.hyo.dev/legal/terms?lang=en\nPolítica de privacidad: https://bookoo.hyo.dev/legal/privacy?lang=en",
+    "releaseNotes": "Añadimos el vietnamita y mejoramos las traducciones de la aplicación."
+  },
+  "urls": {
+    "privacy": "https://bookoo.hyo.dev/legal/privacy?lang=en",
+    "terms": "https://bookoo.hyo.dev/legal/terms?lang=en",
+    "support": "https://bookoo.hyo.dev/support?lang=en",
+    "privacyChoices": "https://bookoo.hyo.dev/privacy-choices?lang=en",
+    "accountDeletion": "https://bookoo.hyo.dev/account-deletion?lang=en"
+  },
+  "screenshotScenes": [
+    "intro",
+    "calendar",
+    "timeline",
+    "stats",
+    "entry",
+    "sharing",
+    "comments",
+    "theme"
+  ],
+  "screenshotAltText": [
+    "Presentación de BooKoo en verde menta con logotipo y vistas inclinadas del calendario",
+    "Calendario mensual del libro compartido con el día seleccionado",
+    "Historial paginado de ingresos y gastos agrupado por fecha",
+    "Estadísticas de gastos con gráfico multicolor y lista por categoría",
+    "Editor de movimientos con importe, fecha, lugar, nota y fotos de recibos",
+    "Invitación al libro compartido y gestión de los roles de los miembros",
+    "Comentarios y respuestas junto a un movimiento",
+    "Calendario mensual del libro compartido con el tema oscuro"
+  ]
+}

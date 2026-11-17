@@ -1,0 +1,41 @@
+appId: dev.hyo.bookoo
+name: Phone entry controls and empty statistics
+# Caller must supply an absolute, run-specific EVIDENCE directory with -e.
+---
+- launchApp:
+    stopApp: true
+- openLink: bookoo://
+- extendedWaitUntil:
+    visible:
+      id: calendar-parallax-add
+    timeout: 30000
+- tapOn:
+    id: calendar-parallax-add
+- extendedWaitUntil:
+    visible: Amount
+    timeout: 20000
+- takeScreenshot: ${EVIDENCE}/01-entry-expense
+- swipe:
+    start: 80%,16%
+    end: 20%,16%
+    duration: 500
+- waitForAnimationToEnd
+- assertVisible:
+    id: entry-type-INCOME
+    selected: true
+- takeScreenshot: ${EVIDENCE}/02-entry-income-swipe
+- tapOn:
+    id: entry-route-back
+- openLink: bookoo://stats
+- extendedWaitUntil:
+    visible:
+      id: stats-next-month
+    timeout: 20000
+- tapOn:
+    id: stats-next-month
+- extendedWaitUntil:
+    visible: No entries in this month
+    timeout: 20000
+- takeScreenshot: ${EVIDENCE}/03-stats-empty
+- assertNotVisible:
+    id: app-error-fallback

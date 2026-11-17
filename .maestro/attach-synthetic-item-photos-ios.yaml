@@ -1,0 +1,27 @@
+appId: dev.hyo.bookoo
+name: Attach synthetic item photos on iOS
+env:
+  LEDGER_ID: ${LEDGER_ID}
+  ITEM_ID: ${ITEM_ID}
+  OUTPUT_ROOT: ${OUTPUT_ROOT}
+---
+- launchApp:
+    stopApp: false
+- openLink: bookoo://ledger/${LEDGER_ID}/item/${ITEM_ID}/edit
+- extendedWaitUntil:
+    visible:
+      id: entry-add-photo
+    timeout: 30000
+- tapOn:
+    id: entry-add-photo
+- extendedWaitUntil:
+    visible: Add photo
+    timeout: 30000
+- tapOn: Add photo
+- tapOn:
+    text: Allow Full Access
+    optional: true
+- extendedWaitUntil:
+    visible: Photos
+    timeout: 30000
+- takeScreenshot: ${OUTPUT_ROOT}/001-system-photo-picker

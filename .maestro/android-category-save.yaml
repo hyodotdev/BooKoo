@@ -1,0 +1,44 @@
+appId: dev.hyo.bookoo
+name: Android native sheet Save selects the new category
+---
+# Run once on the approved development fixture; this creates one category,
+# not an entry. Do not replay after success and silently add duplicates.
+- runFlow:
+    when:
+      visible:
+        id: calendar-parallax-add
+    commands:
+      - tapOn:
+          id: calendar-parallax-add
+- assertVisible:
+    id: entry-amount-input
+- tapOn:
+    id: entry-category-picker
+- tapOn:
+    id: entry-create-category
+- tapOn: 'Please write name of the category.'
+- inputText: 'Study supplies QA'
+- assertVisible: 'Study supplies QA'
+- assertVisible:
+    text: '^Save$'
+    enabled: true
+- takeScreenshot: ${EVIDENCE_DIR}/50-category-before-save
+- tapOn:
+    text: '^Save$'
+    enabled: true
+- extendedWaitUntil:
+    visible:
+      id: entry-amount-input
+    timeout: 15000
+- assertVisible: 'Study supplies QA'
+- takeScreenshot: ${EVIDENCE_DIR}/51-category-selected
+- tapOn:
+    id: entry-amount-input
+- inputText: '12.34'
+- hideKeyboard
+- takeScreenshot: ${EVIDENCE_DIR}/52-decimal-draft
+- pressKey: BACK
+- assertVisible:
+    id: calendar-next
+- assertNotVisible:
+    id: app-error-fallback

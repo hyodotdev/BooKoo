@@ -1,0 +1,21 @@
+/** Public BooKooOpen brand palette, with accessible companions kept in theme.ts. */
+export const BOOKOO_PALETTE = {
+  apple: '#000000',
+  blue: '#679EFF',
+  brandNavy: '#253250',
+  carnation: '#FF728D',
+  cloudyBlue: '#AFC2DB',
+  dusk: '#414D6B',
+  google: '#E04238',
+  green: '#24CD97',
+  lightGray: '#DDE2EC',
+  main: '#1DD3A9',
+  mediumGray: '#869AB7',
+  orange: '#F6A623',
+  paleGrey: '#DDE2EC',
+  purple: '#B669F9',
+  red: '#E6677E',
+  white: '#FFFFFF',
+  whiteGray: '#F9FBFD',
+  yellow: '#EED100',
+} as const;

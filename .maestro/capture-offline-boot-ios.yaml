@@ -1,0 +1,15 @@
+appId: dev.hyo.bookoo
+name: Capture honest offline cold-session recovery
+---
+- launchApp:
+    stopApp: true
+- extendedWaitUntil:
+    visible:
+      id: session-offline-recovery
+    timeout: 30000
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-simulator/offline/003-cold-session-connection-required
+- assertVisible: Check your connection and try again.
+- assertVisible: Try again
+- assertVisible: Open settings
+- assertNotVisible:
+    id: app-error-fallback

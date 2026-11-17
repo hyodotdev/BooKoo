@@ -1,0 +1,366 @@
+{
+  "capturedAt": "2026-09-13",
+  "source": "Native Android emulator, development synthetic fixture. Status bar demo mode. Unretouched UI with proportional resize and a consistent bottom crop inside a device frame.",
+  "panels": [
+    {
+      "locale": "ko-KR",
+      "file": "01-sharing.png",
+      "headline": "함께 쓰는 돈, 함께 보는 기록",
+      "source": "sources/ko-KR-sharing.png",
+      "sourceSha256": "05f05cfb82ed4154548c512735f3eadacf8516ce7c6766338ba95a0754ce849a",
+      "sha256": "61288eeb210edcc7f7d0580a166467b35af043b964b9ef125d0127c42b6c437e",
+      "bytes": 113151
+    },
+    {
+      "locale": "ko-KR",
+      "file": "02-comments.png",
+      "headline": "기록마다 대화가 남아요",
+      "source": "sources/ko-KR-comments.png",
+      "sourceSha256": "9821296668c6c0cf92632ffd7d47443434228e7f4ad3db0a8bc30172549c91dc",
+      "sha256": "33f02177f20417ae9067760d34ecc0f6308d51238f0991925d043eab45a061f0",
+      "bytes": 132733
+    },
+    {
+      "locale": "ko-KR",
+      "file": "03-calendar.png",
+      "headline": "공동 자금의 흐름을 한눈에",
+      "source": "sources/ko-KR-calendar.png",
+      "sourceSha256": "d8ec344fa17849ee40639f2ee374d2ebc4f9b69e05fda830b546878c64d2e671",
+      "sha256": "623d33ab87985412327075da8b5518c372a1755ef320f5ed38bcda959707a98c",
+      "bytes": 137220
+    },
+    {
+      "locale": "ko-KR",
+      "file": "04-timeline.png",
+      "headline": "무엇에 얼마가 나갔는지",
+      "source": "sources/ko-KR-timeline.png",
+      "sourceSha256": "75c9c50eac13ab9b140d0b11aceb6b38d2d0e20b8d3417af6de6a22c3871cd30",
+      "sha256": "aeecff31d48f79ffe06f7ad26bea490f2ee5527c53fbcae0b90023a3544294e0",
+      "bytes": 154641
+    },
+    {
+      "locale": "ko-KR",
+      "file": "05-stats.png",
+      "headline": "어디에 썼는지 한눈에",
+      "source": "sources/ko-KR-stats.png",
+      "sourceSha256": "b937d1576828cfc85d62ad367fb2a7cca92f79830c2e67f1395cb7a5e49e46cc",
+      "sha256": "aef8419102b69fd498d0f1a3fabde0c41e54dc7986d6df6d1eb999c949e42e64",
+      "bytes": 156613
+    },
+    {
+      "locale": "ko-KR",
+      "file": "06-entry.png",
+      "headline": "지출 기록을 빠르게",
+      "source": "sources/ko-KR-entry.png",
+      "sourceSha256": "efa7515779de4685ac069677058b4504faa5d16ede11bc0d35d073087fc533d1",
+      "sha256": "50f5a14c586a77bc0acea4ca1a5babb08780ed701767e3419ad18cb8001cc5f4",
+      "bytes": 74869
+    },
+    {
+      "locale": "ko-KR",
+      "file": "07-categories.png",
+      "headline": "우리에게 맞는 카테고리",
+      "source": "sources/ko-KR-categories.png",
+      "sourceSha256": "d0a66a483c8dd908beaba480c24efc92ebe069685fd091156bef025bdd41307a",
+      "sha256": "cad6c2c9ea966281f8962b18172a9e4e6436e27219733d94d909084fa29736cd",
+      "bytes": 175005
+    },
+    {
+      "locale": "ko-KR",
+      "file": "08-theme.png",
+      "headline": "낮에도 밤에도 편안하게",
+      "source": "sources/ko-KR-theme.png",
+      "sourceSha256": "ec41ef15b43f7475fdd583f3e7510199f410c9f0114d7fc81bdd6e998e1af85a",
+      "sha256": "49db039cbce3fdedc91c4a3bdbccc76944e7148a5f471f9cd055804f29236951",
+      "bytes": 66097
+    },
+    {
+      "locale": "en-US",
+      "file": "01-sharing.png",
+      "headline": "Shared money, shared record",
+      "source": "sources/en-US-sharing.png",
+      "sourceSha256": "e830cd043c94ec1096672af0dbca2dc5bd96459426f37b2c0977791897a10f02",
+      "sha256": "a70fdf1b23cba4217f264c3f4d46cd55837d41343d54a6361ad6e26e731dea86",
+      "bytes": 130076
+    },
+    {
+      "locale": "en-US",
+      "file": "02-comments.png",
+      "headline": "A conversation on every entry",
+      "source": "sources/en-US-comments.png",
+      "sourceSha256": "93f2f750a41ee5ca5f61a275e0e47e647c047bcec5903f64c65c726982cf5f4b",
+      "sha256": "ba4aa8e7ec6adbd5d112fd4ffcb1cc7376559b53847875fc0747a877d8c5039b",
+      "bytes": 161539
+    },
+    {
+      "locale": "en-US",
+      "file": "03-calendar.png",
+      "headline": "Daily totals at a glance",
+      "source": "sources/en-US-calendar.png",
+      "sourceSha256": "bca1cbaf2026c8322a7bb5498c8f1d5278cbd62c42b7a5e31dccf33174985a66",
+      "sha256": "b63e54839528f17f238fd0383c9ecd40daa88fbee053a2c4b985805fc8adee23",
+      "bytes": 134105
+    },
+    {
+      "locale": "en-US",
+      "file": "04-timeline.png",
+      "headline": "Every entry, in order",
+      "source": "sources/en-US-timeline.png",
+      "sourceSha256": "eda35f4c5f94d88b38b0d48cbb235d73b239fa8610ba4db667a4baf12c06df96",
+      "sha256": "c3e09f97ebdd245a38d8e0af67c6e7d0590c9b6dd359938b123bec6754122e98",
+      "bytes": 179768
+    },
+    {
+      "locale": "en-US",
+      "file": "05-stats.png",
+      "headline": "See where the money went",
+      "source": "sources/en-US-stats.png",
+      "sourceSha256": "e63d3628a8a4c01019dcc1162f29ee2c8df14592cf12d0a7528ebbef66745fc8",
+      "sha256": "e87aaed8d776adf2e4e8f1ff5e07c8f1feb3f389e158319ad6ca89c7168f2aff",
+      "bytes": 172525
+    },
+    {
+      "locale": "en-US",
+      "file": "06-entry.png",
+      "headline": "Add an entry in seconds",
+      "source": "sources/en-US-entry.png",
+      "sourceSha256": "925d7863965fdc34a0dac994756746a56f5cf199a6eca0ce1d56d29ccd52fe8d",
+      "sha256": "2a3a66e4aa4dd6745bb8225f1eee69a94efcbe31bb74d09b2fe695db86273d99",
+      "bytes": 89768
+    },
+    {
+      "locale": "en-US",
+      "file": "07-categories.png",
+      "headline": "Categories that fit the group",
+      "source": "sources/en-US-categories.png",
+      "sourceSha256": "13f28fd0b4a23592a681abd3ec2dead742664ff2a64c108f6ee838c9c4796269",
+      "sha256": "0e87b2ae596408936076f7791c9101e16114db234e14f731eea63c7abbe501b0",
+      "bytes": 122768
+    },
+    {
+      "locale": "en-US",
+      "file": "08-theme.png",
+      "headline": "Comfortable day or night",
+      "source": "sources/en-US-theme.png",
+      "sourceSha256": "7fbb77860121dcdc88f86a85babbc8e2f61667d8e529a0bcec6e950c36f0ece3",
+      "sha256": "e6b254f83e618745d6584f9f69b71950c754e732182e0b57db47c01966c06db9",
+      "bytes": 76305
+    },
+    {
+      "locale": "ja",
+      "file": "01-sharing.png",
+      "headline": "みんなのお金を、みんなの記録に",
+      "source": "sources/ja-sharing.png",
+      "sourceSha256": "176b9a21ba3869714633538d8781a63c17384ce3f9fd7f4c03d8546ef2e46a61",
+      "sha256": "aa79475d665f22bffe2112914f09975e41a5cdbcd4734c4b71a9dd8b169325ed",
+      "bytes": 135405
+    },
+    {
+      "locale": "ja",
+      "file": "02-comments.png",
+      "headline": "記録ごとに会話が残ります",
+      "source": "sources/ja-comments.png",
+      "sourceSha256": "0f8b4ae4bbd03a848ee983683f4881f4eea566be851e46d4fd10a9eacca53860",
+      "sha256": "b34f263537b88b3688fa67aec0760ca754ed0e97242e4b7a147bdd234721b645",
+      "bytes": 155554
+    },
+    {
+      "locale": "ja",
+      "file": "03-calendar.png",
+      "headline": "共同のお金の流れをひと目で",
+      "source": "sources/ja-calendar.png",
+      "sourceSha256": "036778922c6d966be42465ae964aeacae4d923f100cdf4aca02b0633d1675761",
+      "sha256": "06e2b4c42379e29a9d2c30acf1025fffffa8b70e470bef6e0e65857391170628",
+      "bytes": 151688
+    },
+    {
+      "locale": "ja",
+      "file": "04-timeline.png",
+      "headline": "何にいくら使ったか",
+      "source": "sources/ja-timeline.png",
+      "sourceSha256": "b092a6793f0d855d1ad5eb86dda96c7127dc4ce2a00cb2e7420a98b32ae43c95",
+      "sha256": "1c2a53cda5dcb0371048198353bec9c94b356e33e490ba0a9b604ecfce46d9d5",
+      "bytes": 165241
+    },
+    {
+      "locale": "ja",
+      "file": "05-stats.png",
+      "headline": "どこに使ったかひと目で",
+      "source": "sources/ja-stats.png",
+      "sourceSha256": "d930ea56a0920d272a7b8714c9cf7352eaf93e6c706769f95d894a172900cabe",
+      "sha256": "785f06c1c1b188c7e4f7dfa768b32a278d07198e6a071b1457c2c179d21f65c2",
+      "bytes": 169246
+    },
+    {
+      "locale": "ja",
+      "file": "06-entry.png",
+      "headline": "記録は数秒で",
+      "source": "sources/ja-entry.png",
+      "sourceSha256": "4dc04d021d34c2f33fcf00cb06de040cf1ae610b23b85b9e809413b729bde638",
+      "sha256": "67db31c509da19c3140f1188d0c5e04ef04c1cce7178ae30f1d1e4849df41540",
+      "bytes": 80254
+    },
+    {
+      "locale": "ja",
+      "file": "07-categories.png",
+      "headline": "自分たちに合うカテゴリ",
+      "source": "sources/ja-categories.png",
+      "sourceSha256": "318def6a3796242a5d2c5c29cc581729c772e4c70bc0da0e01121a4328647ae0",
+      "sha256": "fd01c1a78f112b900b164c1e9761425afb8a1f702ca638d0d8198090c67c4421",
+      "bytes": 113746
+    },
+    {
+      "locale": "ja",
+      "file": "08-theme.png",
+      "headline": "昼も夜も心地よく",
+      "source": "sources/ja-theme.png",
+      "sourceSha256": "09a3a35bf0bba7d8670feba63f75648e78cd5a586427580d76ad91be6e510aea",
+      "sha256": "bbf34985dfff42fc2b86917e4c5495e336b7c068e97d3e66fd414087e5020117",
+      "bytes": 69147
+    },
+    {
+      "locale": "zh-CN",
+      "file": "01-sharing.png",
+      "headline": "一起花的钱，一起看的记录",
+      "source": "sources/zh-CN-sharing.png",
+      "sourceSha256": "0e794d386134f9f1437edea5307a9092663d078d301d44b92b5d49bd14aafe5d",
+      "sha256": "309f5705e22248ce6ad0f4fdcf158433db24800d66a0b4d24bc147a4ee0870f8",
+      "bytes": 125181
+    },
+    {
+      "locale": "zh-CN",
+      "file": "02-comments.png",
+      "headline": "每笔记录都留下对话",
+      "source": "sources/zh-CN-comments.png",
+      "sourceSha256": "5acde96e7df0f6aa86c004e250faade51821c9b9604937771df3cd9f6eb2a90c",
+      "sha256": "3ae39d06b336b6c60721e0abb6fbb15062448d36c0d68697a09afe609daa73bb",
+      "bytes": 139895
+    },
+    {
+      "locale": "zh-CN",
+      "file": "03-calendar.png",
+      "headline": "共同开支一目了然",
+      "source": "sources/zh-CN-calendar.png",
+      "sourceSha256": "224c3f55e4e20ada969be40a22f4b6f50b16f8925b36e7de289d33e7468e54c2",
+      "sha256": "90213390e63895631a91aacda75ce5087285b588e2ce48af93678a7829f198f0",
+      "bytes": 133164
+    },
+    {
+      "locale": "zh-CN",
+      "file": "04-timeline.png",
+      "headline": "什么花了多少",
+      "source": "sources/zh-CN-timeline.png",
+      "sourceSha256": "8516c4434c3c98c2dcb99f1bf8ea1f52926b7efe710d629b38ae7567521ae66d",
+      "sha256": "a6d72936c5d31dde7f0cc3937a520a260daa85c085e3433b18df45c0aebc59f7",
+      "bytes": 157491
+    },
+    {
+      "locale": "zh-CN",
+      "file": "05-stats.png",
+      "headline": "钱花在哪里一目了然",
+      "source": "sources/zh-CN-stats.png",
+      "sourceSha256": "9691fab06f621324261b5928200877469f47d5354869b983d00b9e967299b6df",
+      "sha256": "f48589b3b60381dc1f0f9caf8e22210b8c48a96a28880da41eb1257bbdcdb42d",
+      "bytes": 160786
+    },
+    {
+      "locale": "zh-CN",
+      "file": "06-entry.png",
+      "headline": "几秒记一笔",
+      "source": "sources/zh-CN-entry.png",
+      "sourceSha256": "ed59c3656b43e28b70d59771b2f4f9c9fcfef979a358ce8264277fb09a56994e",
+      "sha256": "a0fba56aa0dc44b1a42f0afdfb64de745d4e3ddac65d5297ff56f44b3a68e803",
+      "bytes": 76834
+    },
+    {
+      "locale": "zh-CN",
+      "file": "07-categories.png",
+      "headline": "适合我们的分类",
+      "source": "sources/zh-CN-categories.png",
+      "sourceSha256": "284057d3184c3570a8618986056a9504dd59494e7643d5c111b7bbb309a675fe",
+      "sha256": "2c836407d333477cdd9d2b57aae0754d35ae297239abfbb376d5aec3a587b5a9",
+      "bytes": 112376
+    },
+    {
+      "locale": "zh-CN",
+      "file": "08-theme.png",
+      "headline": "白天黑夜都舒适",
+      "source": "sources/zh-CN-theme.png",
+      "sourceSha256": "b48478d1403a3eb8ec894967192ca53051b756b537541f9176c9c172df7087b0",
+      "sha256": "3b677ca46193401aeba1caec09ebe9cd5504ab65926e1dcc7db7af3f91e7ee4c",
+      "bytes": 73525
+    },
+    {
+      "locale": "id",
+      "file": "01-sharing.png",
+      "headline": "Uang bersama, catatan bersama",
+      "source": "sources/id-sharing.png",
+      "sourceSha256": "137b66b19cb8bef20f3675204e9583c9923a3e1d235b53e1d957304470134f57",
+      "sha256": "03364125378ff18887144c31c7a46ac0b04ff0707642ff36e78216b608cd9b16",
+      "bytes": 140057
+    },
+    {
+      "locale": "id",
+      "file": "02-comments.png",
+      "headline": "Setiap catatan menyimpan percakapan",
+      "source": "sources/id-comments.png",
+      "sourceSha256": "6f9dbec35eb3de2b176f4f6e229f7915b35fb5b06817db963139e0573905f311",
+      "sha256": "846743d3554367648f0cb4e0f913d9792d418cffa097cc6b045fc77bf9ec9506",
+      "bytes": 163489
+    },
+    {
+      "locale": "id",
+      "file": "03-calendar.png",
+      "headline": "Alur uang bersama sekilas",
+      "source": "sources/id-calendar.png",
+      "sourceSha256": "c2633c3c84163dd450f9430b84b25090ec07b41a7c3c4fc167215f296fdea511",
+      "sha256": "861776cdf0abcb294c143c33f0cf538e352d3a9efed6ddb38464cb1ddd4bbc0b",
+      "bytes": 151487
+    },
+    {
+      "locale": "id",
+      "file": "04-timeline.png",
+      "headline": "Apa saja dan berapa",
+      "source": "sources/id-timeline.png",
+      "sourceSha256": "382faad5a8fe468dacb0ffda9f0ad2c2c4f605ba05dfdc61154ef95edd1c99ae",
+      "sha256": "30da1c46788c7eb91a5ecaec9caf09d68305fa4f439f4666cf12e63d3128d9b1",
+      "bytes": 192548
+    },
+    {
+      "locale": "id",
+      "file": "05-stats.png",
+      "headline": "Ke mana uangnya pergi",
+      "source": "sources/id-stats.png",
+      "sourceSha256": "a5a15ea947364c33e25674d014b8373a7c26bc1ca6b254abb71e0bbf89a74454",
+      "sha256": "17e742404f26099a07eb2f0ce1f6cfc9257996bca9801c24336c629ddfcea0f7",
+      "bytes": 183786
+    },
+    {
+      "locale": "id",
+      "file": "06-entry.png",
+      "headline": "Catat dalam hitungan detik",
+      "source": "sources/id-entry.png",
+      "sourceSha256": "cbfe630b07743f22def0f74a825b574f251c6410fed7527cc4314f5afaebb766",
+      "sha256": "be587ac30d6e0916459bb5d0511c567bbdbe21aa1b98860b2e0f672ae7856aa9",
+      "bytes": 90622
+    },
+    {
+      "locale": "id",
+      "file": "07-categories.png",
+      "headline": "Kategori yang pas untuk kita",
+      "source": "sources/id-categories.png",
+      "sourceSha256": "3e9a2364b792ff60bce01e98b6e171c9e375d3feae197e4d3fd528211eb693b0",
+      "sha256": "1eb03ffc06aef142fb072b412a298db377c6fa7f4cc15308c1419b320dda2b7b",
+      "bytes": 130487
+    },
+    {
+      "locale": "id",
+      "file": "08-theme.png",
+      "headline": "Nyaman siang maupun malam",
+      "source": "sources/id-theme.png",
+      "sourceSha256": "70e5649517032c4f63bcd22a78fcb6b058014d454aa2bc5f6825f532a8404d8f",
+      "sha256": "4630ea0e279f419a1007ede23aa17091a5ef031bda08da5d22a3da30907b9232",
+      "bytes": 74595
+    }
+  ]
+}

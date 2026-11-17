@@ -1,0 +1,40 @@
+appId: dev.hyo.bookoo
+name: Release candidate iPad onboarding and owner restore
+---
+- launchApp:
+    stopApp: true
+- extendedWaitUntil:
+    visible: Record it.
+    timeout: 30000
+- takeScreenshot: docs/debugs/e2e/2026-09-01-release-candidate/ipad-mini/001-onboarding-record
+- tapOn: Next
+- assertVisible: Share it.
+- takeScreenshot: docs/debugs/e2e/2026-09-01-release-candidate/ipad-mini/002-onboarding-share
+- tapOn: Next
+- assertVisible: Manage it.
+- takeScreenshot: docs/debugs/e2e/2026-09-01-release-candidate/ipad-mini/003-onboarding-track
+- tapOn: Get started
+- assertVisible: Continue with email
+- takeScreenshot: docs/debugs/e2e/2026-09-01-release-candidate/ipad-mini/004-sign-in
+- tapOn: Continue with email
+- assertVisible: Email
+- tapOn:
+    id: auth-email-input
+- inputText: ${BOOKOO_E2E_OWNER_EMAIL}
+- takeScreenshot: docs/debugs/e2e/2026-09-01-release-candidate/ipad-mini/005-email-keyboard
+- tapOn: Send code
+- extendedWaitUntil:
+    visible: 8-digit code
+    timeout: 20000
+- tapOn:
+    id: auth-otp-input
+- inputText: ${BOOKOO_E2E_OTP}
+- takeScreenshot: docs/debugs/e2e/2026-09-01-release-candidate/ipad-mini/006-otp-keyboard
+- tapOn: Next
+- extendedWaitUntil:
+    visible:
+      id: authenticated-tab-shell
+    timeout: 30000
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: docs/debugs/e2e/2026-09-01-release-candidate/ipad-mini/007-owner-ledger

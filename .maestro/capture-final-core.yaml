@@ -1,0 +1,44 @@
+appId: dev.hyo.bookoo
+name: Final core route screenshot inventory
+---
+- launchApp:
+    stopApp: true
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: "bookoo://", NAME: "001-calendar"}
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: "bookoo://timeline", NAME: "002-timeline"}
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: "bookoo://stats", NAME: "003-stats"}
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: "bookoo://me", NAME: "004-more"}
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: "bookoo://search", NAME: "005-search"}
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: "bookoo://notifications", NAME: "006-notifications"}
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: "bookoo://pro", NAME: "007-pro-overview"}
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: "bookoo://ledgers", NAME: "008-ledgers"}
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: "bookoo://ledgers/new", NAME: "009-ledger-new"}
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: "bookoo://profile/me", NAME: "010-my-profile"}
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: "bookoo://profile/edit", NAME: "011-profile-edit"}
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: "bookoo://profile/handle", NAME: "012-handle-edit"}
+- runFlow:
+    file: _capture-route.yaml
+    env: {ROUTE: "bookoo://u/minji.workstudy26", NAME: "013-public-profile-self-redirect"}

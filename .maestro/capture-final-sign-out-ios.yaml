@@ -1,0 +1,20 @@
+appId: dev.hyo.bookoo
+name: Final iOS sign-out transition
+---
+- launchApp:
+    stopApp: false
+- openLink: bookoo://settings/account
+- extendedWaitUntil:
+    visible: Logout
+    timeout: 20000
+- tapOn: Logout
+- assertVisible: Sign out of BooKoo on this device? Your synced ledgers will still be here when you sign in again.
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-simulator/auth/000-sign-out-confirmation
+- tapOn:
+    text: Logout
+    index: 1
+- extendedWaitUntil:
+    visible: Record it.
+    timeout: 30000
+- assertNotVisible:
+    id: authenticated-tab-shell

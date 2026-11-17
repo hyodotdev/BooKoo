@@ -1,0 +1,6 @@
+appId: dev.hyo.bookoo
+---
+- tapOn:
+    text: Open
+    optional: true
+- waitForAnimationToEnd

@@ -1,0 +1,66 @@
+appId: dev.hyo.bookoo
+name: Settings route stress on Android
+---
+- launchApp:
+    stopApp: false
+- openLink: bookoo://settings
+- assertVisible:
+    id: app-settings-sections
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: docs/debugs/e2e/2026-08-30-exact/pixel10/settings/001-home
+- openLink: bookoo://settings/appearance
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: docs/debugs/e2e/2026-08-30-exact/pixel10/settings/002-appearance
+- openLink: bookoo://settings/language
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: docs/debugs/e2e/2026-08-30-exact/pixel10/settings/003-language
+- openLink: bookoo://settings/default-currency
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: docs/debugs/e2e/2026-08-30-exact/pixel10/settings/004-currency
+- openLink: bookoo://settings/notifications
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: docs/debugs/e2e/2026-08-30-exact/pixel10/settings/005-notifications
+- openLink: bookoo://settings/account
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: docs/debugs/e2e/2026-08-30-exact/pixel10/settings/006-account
+- openLink: bookoo://settings/about
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: docs/debugs/e2e/2026-08-30-exact/pixel10/settings/007-about
+- openLink: bookoo://settings/faq
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: docs/debugs/e2e/2026-08-30-exact/pixel10/settings/008-faq
+- openLink: bookoo://settings/announcements
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: docs/debugs/e2e/2026-08-30-exact/pixel10/settings/010-announcements
+- openLink: bookoo://settings/privacy
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: docs/debugs/e2e/2026-08-30-exact/pixel10/settings/011-privacy
+- openLink: bookoo://settings/diagnostics
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: docs/debugs/e2e/2026-08-30-exact/pixel10/settings/012-diagnostics
+- openLink: bookoo://settings/ops
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: docs/debugs/e2e/2026-08-30-exact/pixel10/settings/013-operations
+- openLink: bookoo://profile/me
+- assertVisible:
+    id: my-profile-screen
+- assertNotVisible:
+    id: app-error-fallback
+- takeScreenshot: docs/debugs/e2e/2026-08-30-exact/pixel10/settings/014-profile
+- openLink: bookoo://
+- assertVisible:
+    id: authenticated-tab-shell
+- assertNotVisible:
+    id: app-error-fallback

@@ -1,0 +1,573 @@
+{
+  "capturedAt": "2026-09",
+  "designedAt": "2026-10-09",
+  "status": "local candidate, not uploaded",
+  "source": "Inspected September native Android captures with localized synthetic fixtures. Original UI pixels, proportional mapping, and documented system/ad crops. The cover uses a local Blender scene; AI is used only for composition exploration.",
+  "panels": [
+    {
+      "locale": "en-US",
+      "file": "01-intro.png",
+      "scene": "intro",
+      "headline": null,
+      "crop": {
+        "top": 0,
+        "bottom": 234
+      },
+      "renderer": "Blender native screenshot texture",
+      "source": "../2026-09-13/sources/en-US-calendar.png",
+      "sourceSha256": "bca1cbaf2026c8322a7bb5498c8f1d5278cbd62c42b7a5e31dccf33174985a66",
+      "sha256": "fb210ab2cb2ef050e862d9f10b00a148e7fb2ab206db80c37e53a392150e0747",
+      "bytes": 1847246
+    },
+    {
+      "locale": "en-US",
+      "file": "02-calendar.png",
+      "scene": "calendar",
+      "headline": "Daily totals at a glance",
+      "crop": {
+        "top": 0,
+        "bottom": 234
+      },
+      "source": "../2026-09-13/sources/en-US-calendar.png",
+      "sourceSha256": "bca1cbaf2026c8322a7bb5498c8f1d5278cbd62c42b7a5e31dccf33174985a66",
+      "sha256": "2e55dc55b880d43748574e5874c2f64d6ad36524c3fcfeea096e94f90261fc7e",
+      "bytes": 138840
+    },
+    {
+      "locale": "en-US",
+      "file": "03-timeline.png",
+      "scene": "timeline",
+      "headline": "Every entry, in order",
+      "crop": {
+        "top": 0,
+        "bottom": 234
+      },
+      "source": "../2026-09-13/sources/en-US-timeline.png",
+      "sourceSha256": "eda35f4c5f94d88b38b0d48cbb235d73b239fa8610ba4db667a4baf12c06df96",
+      "sha256": "bc00d654e83d9e5c18eb026f55f0832987bb3e6d4e7d74384d31584b88d017a9",
+      "bytes": 184496
+    },
+    {
+      "locale": "en-US",
+      "file": "04-stats.png",
+      "scene": "stats",
+      "headline": "See where the money went",
+      "crop": {
+        "top": 0,
+        "bottom": 234
+      },
+      "source": "../2026-09-13/sources/en-US-stats.png",
+      "sourceSha256": "e63d3628a8a4c01019dcc1162f29ee2c8df14592cf12d0a7528ebbef66745fc8",
+      "sha256": "14a2ecafed4500e92455ed22760414e068ae2ea05e5885d8eba660f84b74381e",
+      "bytes": 177279
+    },
+    {
+      "locale": "en-US",
+      "file": "05-entry.png",
+      "scene": "entry",
+      "headline": "Add an entry in seconds",
+      "crop": {
+        "top": 0,
+        "bottom": 234
+      },
+      "source": "../2026-09-13/sources/en-US-entry.png",
+      "sourceSha256": "925d7863965fdc34a0dac994756746a56f5cf199a6eca0ce1d56d29ccd52fe8d",
+      "sha256": "573a6fc27c21d6046da9758794a411e9d4c80756bbd88d88005614b4713f988e",
+      "bytes": 86886
+    },
+    {
+      "locale": "en-US",
+      "file": "06-sharing.png",
+      "scene": "sharing",
+      "headline": "Shared money, shared record",
+      "crop": {
+        "top": 0,
+        "bottom": 234
+      },
+      "source": "../2026-09-13/sources/en-US-sharing.png",
+      "sourceSha256": "e830cd043c94ec1096672af0dbca2dc5bd96459426f37b2c0977791897a10f02",
+      "sha256": "9ca3a6c4746963800063bdd5147c80fa6318433bd3583e97b7139642564ba428",
+      "bytes": 126518
+    },
+    {
+      "locale": "en-US",
+      "file": "07-comments.png",
+      "scene": "comments",
+      "headline": "A conversation on every entry",
+      "crop": {
+        "top": 0,
+        "bottom": 234
+      },
+      "source": "../2026-09-13/sources/en-US-comments.png",
+      "sourceSha256": "93f2f750a41ee5ca5f61a275e0e47e647c047bcec5903f64c65c726982cf5f4b",
+      "sha256": "2e11cad1014437547589c8a8bcb49d5480c438ba1bfb0c19cbfe2b099b7bca5a",
+      "bytes": 159446
+    },
+    {
+      "locale": "en-US",
+      "file": "08-theme.png",
+      "scene": "theme",
+      "headline": "Comfortable day or night",
+      "crop": {
+        "top": 0,
+        "bottom": 234
+      },
+      "source": "../2026-09-13/sources/en-US-theme.png",
+      "sourceSha256": "7fbb77860121dcdc88f86a85babbc8e2f61667d8e529a0bcec6e950c36f0ece3",
+      "sha256": "d3cc914c04c549271e4965a41e713146dcac0b1b2df781167f9b120f3408f7db",
+      "bytes": 73686
+    },
+    {
+      "locale": "ko-KR",
+      "file": "01-intro.png",
+      "scene": "intro",
+      "headline": null,
+      "crop": {
+        "top": 173,
+        "bottom": 234
+      },
+      "renderer": "Blender native screenshot texture",
+      "source": "../2026-09-13/sources/ko-KR-calendar.png",
+      "sourceSha256": "d8ec344fa17849ee40639f2ee374d2ebc4f9b69e05fda830b546878c64d2e671",
+      "sha256": "4237641cc946dc2f4e26df01ed0a00d68eeb5d1d8dcad2098a58f352d221fb78",
+      "bytes": 1849202
+    },
+    {
+      "locale": "ko-KR",
+      "file": "02-calendar.png",
+      "scene": "calendar",
+      "headline": "공동 자금의 흐름을 한눈에",
+      "crop": {
+        "top": 173,
+        "bottom": 234
+      },
+      "source": "../2026-09-13/sources/ko-KR-calendar.png",
+      "sourceSha256": "d8ec344fa17849ee40639f2ee374d2ebc4f9b69e05fda830b546878c64d2e671",
+      "sha256": "b5589678e3c3c580f42ae6ea4accd6ec50d13b3ca39cb74ee15195ce81a97a66",
+      "bytes": 133530
+    },
+    {
+      "locale": "ko-KR",
+      "file": "03-timeline.png",
+      "scene": "timeline",
+      "headline": "무엇에 얼마가 나갔는지",
+      "crop": {
+        "top": 173,
+        "bottom": 234
+      },
+      "source": "../2026-09-13/sources/ko-KR-timeline.png",
+      "sourceSha256": "75c9c50eac13ab9b140d0b11aceb6b38d2d0e20b8d3417af6de6a22c3871cd30",
+      "sha256": "db6004099eaa06c61516b14412d994ffeb1037795deab0c2029a52db7290337b",
+      "bytes": 150865
+    },
+    {
+      "locale": "ko-KR",
+      "file": "04-stats.png",
+      "scene": "stats",
+      "headline": "어디에 썼는지 한눈에",
+      "crop": {
+        "top": 173,
+        "bottom": 234
+      },
+      "source": "../2026-09-13/sources/ko-KR-stats.png",
+      "sourceSha256": "b937d1576828cfc85d62ad367fb2a7cca92f79830c2e67f1395cb7a5e49e46cc",
+      "sha256": "e4904efdfb0043a0e0eaf8f5d9dd7e6c26ff25e79a4c956368b45096a7c09d40",
+      "bytes": 152939
+    },
+    {
+      "locale": "ko-KR",
+      "file": "05-entry.png",
+      "scene": "entry",
+      "headline": "지출 기록을 빠르게",
+      "crop": {
+        "top": 173,
+        "bottom": 234
+      },
+      "source": "../2026-09-13/sources/ko-KR-entry.png",
+      "sourceSha256": "efa7515779de4685ac069677058b4504faa5d16ede11bc0d35d073087fc533d1",
+      "sha256": "b1d084b268557363714581c6fd8417f94a72961bda4a7eece31224756401f427",
+      "bytes": 71236
+    },
+    {
+      "locale": "ko-KR",
+      "file": "06-sharing.png",
+      "scene": "sharing",
+      "headline": "함께 쓰는 돈, 함께 보는 기록",
+      "crop": {
+        "top": 173,
+        "bottom": 234
+      },
+      "source": "../2026-09-13/sources/ko-KR-sharing.png",
+      "sourceSha256": "05f05cfb82ed4154548c512735f3eadacf8516ce7c6766338ba95a0754ce849a",
+      "sha256": "9028fe9f81b78ff4efb9093e2050b42b9b1a1a256513ddd925cc69740e26eefc",
+      "bytes": 109134
+    },
+    {
+      "locale": "ko-KR",
+      "file": "07-comments.png",
+      "scene": "comments",
+      "headline": "기록마다 대화가 남아요",
+      "crop": {
+        "top": 173,
+        "bottom": 234
+      },
+      "source": "../2026-09-13/sources/ko-KR-comments.png",
+      "sourceSha256": "9821296668c6c0cf92632ffd7d47443434228e7f4ad3db0a8bc30172549c91dc",
+      "sha256": "0cf4c9ec9ce51b93066d11f87b1c4939020e275f23cba742c0cda4fecb36b525",
+      "bytes": 129157
+    },
+    {
+      "locale": "ko-KR",
+      "file": "08-theme.png",
+      "scene": "theme",
+      "headline": "낮에도 밤에도 편안하게",
+      "crop": {
+        "top": 173,
+        "bottom": 234
+      },
+      "source": "../2026-09-13/sources/ko-KR-theme.png",
+      "sourceSha256": "ec41ef15b43f7475fdd583f3e7510199f410c9f0114d7fc81bdd6e998e1af85a",
+      "sha256": "1997749f6789df66618c1d08f95e9225059c54325e93d112620d36599fbed7be",
+      "bytes": 62371
+    },
+    {
+      "locale": "ja",
+      "file": "01-intro.png",
+      "scene": "intro",
+      "headline": null,
+      "crop": {
+        "top": 0,
+        "bottom": 234
+      },
+      "renderer": "Blender native screenshot texture",
+      "source": "../2026-09-13/sources/ja-calendar.png",
+      "sourceSha256": "036778922c6d966be42465ae964aeacae4d923f100cdf4aca02b0633d1675761",
+      "sha256": "bd61e7a2c9a29a7bb36d8a04d8ceca30bfd71f592b5372b91d5f2824ddea9146",
+      "bytes": 1862556
+    },
+    {
+      "locale": "ja",
+      "file": "02-calendar.png",
+      "scene": "calendar",
+      "headline": "共同のお金の流れをひと目で",
+      "crop": {
+        "top": 0,
+        "bottom": 234
+      },
+      "source": "../2026-09-13/sources/ja-calendar.png",
+      "sourceSha256": "036778922c6d966be42465ae964aeacae4d923f100cdf4aca02b0633d1675761",
+      "sha256": "583936774b445585eec58fe09f88fc4bafa0a6b4d33b277f44216002e145b15c",
+      "bytes": 155712
+    },
+    {
+      "locale": "ja",
+      "file": "03-timeline.png",
+      "scene": "timeline",
+      "headline": "何にいくら使ったか",
+      "crop": {
+        "top": 0,
+        "bottom": 234
+      },
+      "source": "../2026-09-13/sources/ja-timeline.png",
+      "sourceSha256": "b092a6793f0d855d1ad5eb86dda96c7127dc4ce2a00cb2e7420a98b32ae43c95",
+      "sha256": "9c5121b0c33c9dc0dcfa2e206b8edb4288b643edd38e6c6eca448663882b6ca8",
+      "bytes": 169641
+    },
+    {
+      "locale": "ja",
+      "file": "04-stats.png",
+      "scene": "stats",
+      "headline": "どこに使ったかひと目で",
+      "crop": {
+        "top": 0,
+        "bottom": 234
+      },
+      "source": "../2026-09-13/sources/ja-stats.png",
+      "sourceSha256": "d930ea56a0920d272a7b8714c9cf7352eaf93e6c706769f95d894a172900cabe",
+      "sha256": "c9d3aebe3a601b80e187deed707e4310ba67d9ab66ad5ed2fbd11e752dc03bc3",
+      "bytes": 173785
+    },
+    {
+      "locale": "ja",
+      "file": "05-entry.png",
+      "scene": "entry",
+      "headline": "記録は数秒で",
+      "crop": {
+        "top": 0,
+        "bottom": 234
+      },
+      "source": "../2026-09-13/sources/ja-entry.png",
+      "sourceSha256": "4dc04d021d34c2f33fcf00cb06de040cf1ae610b23b85b9e809413b729bde638",
+      "sha256": "fb6dce92a6b91b4724a8171b8dae967a681c15e58b3c4b39e1c5370616ae971c",
+      "bytes": 77119
+    },
+    {
+      "locale": "ja",
+      "file": "06-sharing.png",
+      "scene": "sharing",
+      "headline": "みんなのお金を、みんなの記録に",
+      "crop": {
+        "top": 0,
+        "bottom": 234
+      },
+      "source": "../2026-09-13/sources/ja-sharing.png",
+      "sourceSha256": "176b9a21ba3869714633538d8781a63c17384ce3f9fd7f4c03d8546ef2e46a61",
+      "sha256": "0d393a092a5ada96da0f82651c20eb81947cbad3aa12e6e502a17a90fd856753",
+      "bytes": 131303
+    },
+    {
+      "locale": "ja",
+      "file": "07-comments.png",
+      "scene": "comments",
+      "headline": "記録ごとに会話が残ります",
+      "crop": {
+        "top": 0,
+        "bottom": 234
+      },
+      "source": "../2026-09-13/sources/ja-comments.png",
+      "sourceSha256": "0f8b4ae4bbd03a848ee983683f4881f4eea566be851e46d4fd10a9eacca53860",
+      "sha256": "5eaa6536ed7bbea8275f9575d973d4355d0bb1f07c0d0a0ed90a6865717c68f3",
+      "bytes": 152454
+    },
+    {
+      "locale": "ja",
+      "file": "08-theme.png",
+      "scene": "theme",
+      "headline": "昼も夜も心地よく",
+      "crop": {
+        "top": 0,
+        "bottom": 234
+      },
+      "source": "../2026-09-13/sources/ja-theme.png",
+      "sourceSha256": "09a3a35bf0bba7d8670feba63f75648e78cd5a586427580d76ad91be6e510aea",
+      "sha256": "33e60ae0cabf7b7d8cfaf82c2041cc55dc8d652e2757654c1a280ecbd7536c14",
+      "bytes": 65769
+    },
+    {
+      "locale": "zh-CN",
+      "file": "01-intro.png",
+      "scene": "intro",
+      "headline": null,
+      "crop": {
+        "top": 53,
+        "bottom": 234
+      },
+      "renderer": "Blender native screenshot texture",
+      "source": "../2026-09-13/sources/zh-CN-calendar.png",
+      "sourceSha256": "224c3f55e4e20ada969be40a22f4b6f50b16f8925b36e7de289d33e7468e54c2",
+      "sha256": "7ac55315bb570f9347e17dd8008465b063261669926a5379dcc1aadefaed2233",
+      "bytes": 1856857
+    },
+    {
+      "locale": "zh-CN",
+      "file": "02-calendar.png",
+      "scene": "calendar",
+      "headline": "共同开支一目了然",
+      "crop": {
+        "top": 53,
+        "bottom": 234
+      },
+      "source": "../2026-09-13/sources/zh-CN-calendar.png",
+      "sourceSha256": "224c3f55e4e20ada969be40a22f4b6f50b16f8925b36e7de289d33e7468e54c2",
+      "sha256": "4e8babe0edf7e7a437f1ac2def192bfddbb401931b1aa0c35d5fd6072b7c439e",
+      "bytes": 139880
+    },
+    {
+      "locale": "zh-CN",
+      "file": "03-timeline.png",
+      "scene": "timeline",
+      "headline": "什么花了多少",
+      "crop": {
+        "top": 53,
+        "bottom": 234
+      },
+      "source": "../2026-09-13/sources/zh-CN-timeline.png",
+      "sourceSha256": "8516c4434c3c98c2dcb99f1bf8ea1f52926b7efe710d629b38ae7567521ae66d",
+      "sha256": "2742cdf763cfcbf1eb60ea331275d275d47d66d86ed30aeaf9554d40e188513c",
+      "bytes": 164217
+    },
+    {
+      "locale": "zh-CN",
+      "file": "04-stats.png",
+      "scene": "stats",
+      "headline": "钱花在哪里一目了然",
+      "crop": {
+        "top": 53,
+        "bottom": 234
+      },
+      "source": "../2026-09-13/sources/zh-CN-stats.png",
+      "sourceSha256": "9691fab06f621324261b5928200877469f47d5354869b983d00b9e967299b6df",
+      "sha256": "fdc4a5553f62f1c046dc778c93778a15cae1713804fa8a0e47f68299961485b0",
+      "bytes": 167727
+    },
+    {
+      "locale": "zh-CN",
+      "file": "05-entry.png",
+      "scene": "entry",
+      "headline": "几秒记一笔",
+      "crop": {
+        "top": 53,
+        "bottom": 234
+      },
+      "source": "../2026-09-13/sources/zh-CN-entry.png",
+      "sourceSha256": "ed59c3656b43e28b70d59771b2f4f9c9fcfef979a358ce8264277fb09a56994e",
+      "sha256": "2323a18c3c82d057ded0b05fee6a973cf856c71d5be619f1f72152ec68692ef0",
+      "bytes": 73303
+    },
+    {
+      "locale": "zh-CN",
+      "file": "06-sharing.png",
+      "scene": "sharing",
+      "headline": "一起花的钱，一起看的记录",
+      "crop": {
+        "top": 53,
+        "bottom": 234
+      },
+      "source": "../2026-09-13/sources/zh-CN-sharing.png",
+      "sourceSha256": "0e794d386134f9f1437edea5307a9092663d078d301d44b92b5d49bd14aafe5d",
+      "sha256": "514dce0ea41330c399226aa64fd0d29cdc168b24cde84ad6d0e41824e04ed7f2",
+      "bytes": 121113
+    },
+    {
+      "locale": "zh-CN",
+      "file": "07-comments.png",
+      "scene": "comments",
+      "headline": "每笔记录都留下对话",
+      "crop": {
+        "top": 53,
+        "bottom": 234
+      },
+      "source": "../2026-09-13/sources/zh-CN-comments.png",
+      "sourceSha256": "5acde96e7df0f6aa86c004e250faade51821c9b9604937771df3cd9f6eb2a90c",
+      "sha256": "2e36bc5256239b2b4eeec45a4785ed2ba8cb874ff7a5d033a25cc6e12957b905",
+      "bytes": 136822
+    },
+    {
+      "locale": "zh-CN",
+      "file": "08-theme.png",
+      "scene": "theme",
+      "headline": "白天黑夜都舒适",
+      "crop": {
+        "top": 53,
+        "bottom": 234
+      },
+      "source": "../2026-09-13/sources/zh-CN-theme.png",
+      "sourceSha256": "b48478d1403a3eb8ec894967192ca53051b756b537541f9176c9c172df7087b0",
+      "sha256": "4af1d0a2f919deba2e3d8ec298b9b791f89f69a246104b4ef5aa99d881ecd88c",
+      "bytes": 68931
+    },
+    {
+      "locale": "id",
+      "file": "01-intro.png",
+      "scene": "intro",
+      "headline": null,
+      "crop": {
+        "top": 0,
+        "bottom": 234
+      },
+      "renderer": "Blender native screenshot texture",
+      "source": "../2026-09-13/sources/id-calendar.png",
+      "sourceSha256": "c2633c3c84163dd450f9430b84b25090ec07b41a7c3c4fc167215f296fdea511",
+      "sha256": "f5dc6fb98af43988fae5b9bacb95fcc4af776883026c84151326cf42131c6512",
+      "bytes": 1861910
+    },
+    {
+      "locale": "id",
+      "file": "02-calendar.png",
+      "scene": "calendar",
+      "headline": "Alur uang bersama sekilas",
+      "crop": {
+        "top": 0,
+        "bottom": 234
+      },
+      "source": "../2026-09-13/sources/id-calendar.png",
+      "sourceSha256": "c2633c3c84163dd450f9430b84b25090ec07b41a7c3c4fc167215f296fdea511",
+      "sha256": "82b61745e86bcc3d8558e823629d55ee5d0a91623ce4816f91485d414e28acd5",
+      "bytes": 158543
+    },
+    {
+      "locale": "id",
+      "file": "03-timeline.png",
+      "scene": "timeline",
+      "headline": "Apa saja dan berapa",
+      "crop": {
+        "top": 0,
+        "bottom": 234
+      },
+      "source": "../2026-09-13/sources/id-timeline.png",
+      "sourceSha256": "382faad5a8fe468dacb0ffda9f0ad2c2c4f605ba05dfdc61154ef95edd1c99ae",
+      "sha256": "95e03671573a7f95cbee49f15854d1c1e58889fee0fc89184d660343e1027a85",
+      "bytes": 199943
+    },
+    {
+      "locale": "id",
+      "file": "04-stats.png",
+      "scene": "stats",
+      "headline": "Ke mana uangnya pergi",
+      "crop": {
+        "top": 0,
+        "bottom": 234
+      },
+      "source": "../2026-09-13/sources/id-stats.png",
+      "sourceSha256": "a5a15ea947364c33e25674d014b8373a7c26bc1ca6b254abb71e0bbf89a74454",
+      "sha256": "d0d2a9c3560a824359dd0ba8ba71c3a9242413b637d078127e2531ff16788152",
+      "bytes": 191298
+    },
+    {
+      "locale": "id",
+      "file": "05-entry.png",
+      "scene": "entry",
+      "headline": "Catat dalam hitungan detik",
+      "crop": {
+        "top": 0,
+        "bottom": 234
+      },
+      "source": "../2026-09-13/sources/id-entry.png",
+      "sourceSha256": "cbfe630b07743f22def0f74a825b574f251c6410fed7527cc4314f5afaebb766",
+      "sha256": "23695eb8331e2aaa83944820415d8399452b48c3a98936e6cd3d1a13e9319da7",
+      "bytes": 87710
+    },
+    {
+      "locale": "id",
+      "file": "06-sharing.png",
+      "scene": "sharing",
+      "headline": "Uang bersama, catatan bersama",
+      "crop": {
+        "top": 0,
+        "bottom": 234
+      },
+      "source": "../2026-09-13/sources/id-sharing.png",
+      "sourceSha256": "137b66b19cb8bef20f3675204e9583c9923a3e1d235b53e1d957304470134f57",
+      "sha256": "4c751cf88b50ea8297ff2fe8a4b8aa009dede1f9def50bc40c4c547f6bdb3dc5",
+      "bytes": 136086
+    },
+    {
+      "locale": "id",
+      "file": "07-comments.png",
+      "scene": "comments",
+      "headline": "Setiap catatan menyimpan percakapan",
+      "crop": {
+        "top": 0,
+        "bottom": 234
+      },
+      "source": "../2026-09-13/sources/id-comments.png",
+      "sourceSha256": "6f9dbec35eb3de2b176f4f6e229f7915b35fb5b06817db963139e0573905f311",
+      "sha256": "3873f3bf6725ce901b3cb3295247dba62564f3aee19aee50e25787de6a6bbb4f",
+      "bytes": 161394
+    },
+    {
+      "locale": "id",
+      "file": "08-theme.png",
+      "scene": "theme",
+      "headline": "Nyaman siang maupun malam",
+      "crop": {
+        "top": 0,
+        "bottom": 234
+      },
+      "source": "../2026-09-13/sources/id-theme.png",
+      "sourceSha256": "70e5649517032c4f63bcd22a78fcb6b058014d454aa2bc5f6825f532a8404d8f",
+      "sha256": "581e2d24d35f2a910b9f10e9ff2ac6278a350175b3a4f3ddd186f080c4a91f96",
+      "bytes": 72248
+    }
+  ]
+}

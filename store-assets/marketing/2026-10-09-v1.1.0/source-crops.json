@@ -1,0 +1,152 @@
+{
+  "en-US": {
+    "calendar": {
+      "top": 92,
+      "bottom": 312
+    },
+    "timeline": {
+      "top": 92,
+      "bottom": 312
+    },
+    "stats": {
+      "top": 72,
+      "bottom": 240
+    },
+    "entry": {
+      "top": 72,
+      "bottom": 72
+    },
+    "sharing": {
+      "top": 92,
+      "bottom": 144
+    },
+    "comments": {
+      "top": 92,
+      "bottom": 144
+    },
+    "theme": {
+      "top": 92,
+      "bottom": 312
+    }
+  },
+  "ko-KR": {
+    "calendar": {
+      "top": 92,
+      "bottom": 312
+    },
+    "timeline": {
+      "top": 92,
+      "bottom": 312
+    },
+    "stats": {
+      "top": 72,
+      "bottom": 240
+    },
+    "entry": {
+      "top": 72,
+      "bottom": 72
+    },
+    "sharing": {
+      "top": 92,
+      "bottom": 144
+    },
+    "comments": {
+      "top": 92,
+      "bottom": 144
+    },
+    "theme": {
+      "top": 92,
+      "bottom": 312
+    }
+  },
+  "ja": {
+    "calendar": {
+      "top": 92,
+      "bottom": 312
+    },
+    "timeline": {
+      "top": 92,
+      "bottom": 312
+    },
+    "stats": {
+      "top": 72,
+      "bottom": 240
+    },
+    "entry": {
+      "top": 72,
+      "bottom": 72
+    },
+    "sharing": {
+      "top": 92,
+      "bottom": 144
+    },
+    "comments": {
+      "top": 92,
+      "bottom": 144
+    },
+    "theme": {
+      "top": 92,
+      "bottom": 312
+    }
+  },
+  "zh-CN": {
+    "calendar": {
+      "top": 92,
+      "bottom": 312
+    },
+    "timeline": {
+      "top": 92,
+      "bottom": 312
+    },
+    "stats": {
+      "top": 72,
+      "bottom": 240
+    },
+    "entry": {
+      "top": 72,
+      "bottom": 72
+    },
+    "sharing": {
+      "top": 92,
+      "bottom": 144
+    },
+    "comments": {
+      "top": 92,
+      "bottom": 144
+    },
+    "theme": {
+      "top": 92,
+      "bottom": 312
+    }
+  },
+  "id": {
+    "calendar": {
+      "top": 92,
+      "bottom": 312
+    },
+    "timeline": {
+      "top": 92,
+      "bottom": 312
+    },
+    "stats": {
+      "top": 72,
+      "bottom": 240
+    },
+    "entry": {
+      "top": 72,
+      "bottom": 72
+    },
+    "sharing": {
+      "top": 92,
+      "bottom": 144
+    },
+    "comments": {
+      "top": 92,
+      "bottom": 144
+    },
+    "theme": {
+      "top": 92,
+      "bottom": 312
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "PRDQGB267K.dev.hyo.bookoo"
+        ],
+        "components": [
+          {
+            "/": "/invite/*",
+            "comment": "Open BooKoo ledger invitations in the installed app."
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,52 @@
+appId: dev.hyo.bookoo
+name: Tablet calendar orientation and entry alignment
+# Caller must supply an absolute, run-specific EVIDENCE directory with -e.
+---
+- launchApp:
+    stopApp: true
+- setOrientation: PORTRAIT
+- openLink: bookoo://
+- extendedWaitUntil:
+    visible:
+      id: calendar-next
+    timeout: 30000
+- tapOn:
+    id: calendar-next
+- waitForAnimationToEnd
+- takeScreenshot: ${EVIDENCE}/01-calendar-portrait
+- setOrientation: LANDSCAPE_LEFT
+- waitForAnimationToEnd
+- assertVisible:
+    id: calendar-next
+- takeScreenshot: ${EVIDENCE}/02-calendar-landscape
+- setOrientation: PORTRAIT
+- tapOn:
+    id: calendar-empty-add
+- extendedWaitUntil:
+    visible: Amount
+    timeout: 20000
+- takeScreenshot: ${EVIDENCE}/03-entry-expense
+- tapOn:
+    id: entry-type-INCOME
+- waitForAnimationToEnd
+- takeScreenshot: ${EVIDENCE}/04-entry-income
+- assertVisible:
+    id: entry-type-INCOME
+    selected: true
+- tapOn:
+    id: entry-type-EXPENSE
+- tapOn:
+    id: entry-route-back
+- openLink: bookoo://stats
+- extendedWaitUntil:
+    visible:
+      id: stats-next-month
+    timeout: 20000
+- tapOn:
+    id: stats-next-month
+- extendedWaitUntil:
+    visible: No entries in this month
+    timeout: 20000
+- takeScreenshot: ${EVIDENCE}/05-stats-empty
+- assertNotVisible:
+    id: app-error-fallback

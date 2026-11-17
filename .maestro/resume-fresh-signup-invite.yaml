@@ -1,0 +1,29 @@
+appId: dev.hyo.bookoo
+name: Resume fresh sign-up invite from display name
+---
+- launchApp:
+    stopApp: true
+- extendedWaitUntil:
+    visible: Display name
+    timeout: 20000
+- tapOn:
+    point: 50%,24%
+- inputText: ${BOOKOO_E2E_INVITEE_NAME}
+- tapOn: Next
+- extendedWaitUntil:
+    visible: Accept
+    timeout: 30000
+- assertVisible: ${BOOKOO_E2E_LEDGER_TITLE}
+- tapOn: Accept
+- extendedWaitUntil:
+    visible:
+      id: authenticated-tab-shell
+    timeout: 30000
+- assertNotVisible:
+    id: app-error-fallback
+- tapOn:
+    id: calendar-parallax-menu
+- assertVisible: ${BOOKOO_E2E_INVITEE_NAME}
+- assertVisible: ${BOOKOO_E2E_LEDGER_TITLE}
+- assertNotVisible: ${BOOKOO_E2E_PRIVATE_LEDGER_TITLE}
+- takeScreenshot: ${BOOKOO_E2E_OUTPUT_ROOT}/fresh-invite-accepted

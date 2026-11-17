@@ -1,0 +1,72 @@
+{
+  // eas.json is parsed as JSON first and as JSON5 on failure (eas-cli
+  // `packages/eas-json/src/accessor.ts`), so `//` comments are supported here.
+  // Do NOT feed this file to a plain `JSON.parse()` — use JSON5.
+  "cli": {
+    "version": ">= 5.9.1",
+    // Build numbers / versionCode live on EAS, never in the repo. Bump the
+    // user-facing version in package.json (`app.config.ts` reads it).
+    "appVersionSource": "remote"
+  },
+  "build": {
+    // `STAGE` is read by app.config.ts. Local developer commands may use a
+    // gitignored `.env.<STAGE>`, but EAS builds receive values only from the
+    // matching EAS Environment. `.easignore` deliberately strips every real
+    // `.env*` file so credentials never enter a build archive from the repo.
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "channel": "development",
+      "env": {"STAGE": "development", "BOOKOO_APP_VARIANT": "qa"}
+    },
+    "preview": {
+      "channel": "preview",
+      "distribution": "internal",
+      "env": {
+        // LevelPlay uses the matching environment's BooKoo app/unit IDs.
+        // Enroll QA devices in LevelPlay test devices before requesting ads.
+        "STAGE": "preview",
+        "BOOKOO_APP_VARIANT": "qa"
+      },
+      "cache": {"disabled": true},
+      "android": {
+        // APK so testers can sideload without Play internal testing.
+        "buildType": "apk"
+      }
+    },
+    "production": {
+      "channel": "production",
+      "autoIncrement": true,
+      "env": {"STAGE": "production", "BOOKOO_APP_VARIANT": "production"},
+      "cache": {"disabled": true},
+      "android": {"buildType": "app-bundle"}
+    },
+    // Play license-test receipts are sandbox receipts. Use the dev backend for
+    // positive purchase/restore tests; the later production build increments
+    // again so tester devices can update without clearing app data.
+    "purchase-test": {
+      "extends": "preview",
+      "distribution": "store",
+      "environment": "preview",
+      "env": {"STAGE": "preview", "BOOKOO_APP_VARIANT": "production"},
+      "autoIncrement": true,
+      "android": {"buildType": "app-bundle"}
+    }
+  },
+  "submit": {
+    "production": {
+      "android": {
+        // Internal testing only. Public production release remains a deliberate
+        // manual action outside this profile.
+        "track": "internal"
+      },
+      "ios": {
+        // Numeric Apple ID for the new `dev.hyo.bookoo` listing. Never
+        // substitute the 2017 `com.dooboolab.bookoo` listing here.
+        "ascAppId": "6805969489",
+        "appleTeamId": "PRDQGB267K",
+        "metadataPath": "./store.config.js"
+      }
+    }
+  }
+}

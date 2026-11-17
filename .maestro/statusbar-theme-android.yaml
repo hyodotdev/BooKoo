@@ -1,0 +1,25 @@
+appId: dev.hyo.bookoo
+name: Status bar follows light and dark themes on physical Pixel
+---
+- launchApp:
+    stopApp: false
+- openLink: bookoo://settings/appearance
+- assertNotVisible:
+    id: app-error-fallback
+- tapOn:
+    text: "Dark|다크"
+- openLink: bookoo://
+- assertVisible:
+    id: authenticated-tab-shell
+- takeScreenshot: docs/debugs/e2e/2026-08-31-exact/pixel10/statusbar-dark-after-policy
+- openLink: bookoo://settings/appearance
+- tapOn:
+    text: "Light|라이트"
+- openLink: bookoo://
+- assertVisible:
+    id: authenticated-tab-shell
+- takeScreenshot: docs/debugs/e2e/2026-08-31-exact/pixel10/statusbar-light-after-policy
+- openLink: bookoo://settings/appearance
+- tapOn:
+    text: "System|시스템"
+- openLink: bookoo://

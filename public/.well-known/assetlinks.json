@@ -1,0 +1,16 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "dev.hyo.bookoo",
+      "sha256_cert_fingerprints": [
+        "1D:EC:04:47:8F:4C:4F:8D:8A:4A:9D:60:0A:DE:3C:73:12:69:F9:3A:D6:F9:9B:1B:21:6B:D8:89:A2:6B:98:E7",
+        "A1:86:1E:6C:45:25:63:64:F5:27:1D:7A:A9:76:95:9D:77:70:40:F2:3C:AD:14:39:55:16:A6:8A:B9:A4:B1:01",
+        "C0:EB:CC:84:8F:67:89:B5:B1:E2:2F:42:38:BC:7A:EB:BA:6B:77:DD:75:CE:63:81:4B:BA:79:B8:51:11:49:AA"
+      ]
+    }
+  }
+]

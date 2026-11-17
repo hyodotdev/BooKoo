@@ -1,0 +1,18 @@
+appId: dev.hyo.bookoo
+name: Capture entry location picker from the active edit route
+---
+- launchApp:
+    stopApp: false
+- extendedWaitUntil:
+    visible:
+      id: entry-route-header
+    timeout: 20000
+- tapOn:
+    id: entry-location-picker
+- extendedWaitUntil:
+    visible:
+      id: entry-location-map
+    timeout: 20000
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-simulator/routes/076-entry-location
+- assertNotVisible:
+    id: app-error-fallback

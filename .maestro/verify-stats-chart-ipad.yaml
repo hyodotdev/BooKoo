@@ -1,0 +1,18 @@
+appId: dev.hyo.bookoo
+name: Stats chart iPad verification
+---
+- launchApp:
+    clearState: false
+    stopApp: true
+- setOrientation: PORTRAIT
+- openLink: bookoo://calendar
+- openLink: bookoo://stats
+- assertVisible: Total
+- tapOn:
+    id: stats-previous-month
+- assertVisible: 2026.08
+- setOrientation: LANDSCAPE_LEFT
+- takeScreenshot: docs/debugs/e2e/2026-09-02-server-authority/ios-ipad/interactions/023-stats-multiple-categories-landscape
+- assertNotVisible:
+    id: app-error-fallback
+- setOrientation: PORTRAIT

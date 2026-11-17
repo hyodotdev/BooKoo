@@ -1,0 +1,45 @@
+{
+  "users": [
+    {
+      "localId": "uid-owner",
+      "email": "owner@example.test",
+      "emailVerified": true,
+      "displayName": "Synthetic Owner",
+      "providerUserInfo": [{"providerId": "google.com"}],
+      "createdAt": "1700000000000",
+      "lastSignedInAt": "1720000000000",
+      "disabled": false
+    },
+    {
+      "localId": "uid-member",
+      "email": "member@example.test",
+      "emailVerified": true,
+      "displayName": "Synthetic Member",
+      "providerUserInfo": [{"providerId": "password"}],
+      "createdAt": "1700000001000",
+      "lastSignedInAt": "1720000001000",
+      "disabled": false
+    },
+    {
+      "localId": "uid-request",
+      "email": "request@example.test",
+      "emailVerified": true,
+      "displayName": "Synthetic Requester",
+      "providerUserInfo": [{"providerId": "password"}],
+      "createdAt": "1700000002000",
+      "lastSignedInAt": "1720000002000",
+      "disabled": false
+    },
+    {
+      "localId": "uid-avatar",
+      "email": "avatar@example.test",
+      "emailVerified": true,
+      "displayName": "Synthetic Avatar",
+      "photoUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=",
+      "providerUserInfo": [{"providerId": "google.com"}],
+      "createdAt": "1700000003000",
+      "lastSignedInAt": "1720000003000",
+      "disabled": false
+    }
+  ]
+}
