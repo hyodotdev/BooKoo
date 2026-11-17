@@ -20,6 +20,7 @@ const TRANSFORMED_NODE_MODULES = [
   '.pnpm',
   '(jest-)?react-native', // + react-native-{svg,mmkv,gesture-handler,reanimated,worklets,keyboard-controller,edge-to-edge,safe-area-context,screens,web,error-boundary}
   '@react-native', // + @react-native-community, @react-native-seoul/*, @react-native-google-signin/*
+  '@codemagic/react-native-patch',
   'expo(nent)?', // + expo-*
   '@expo(nent)?', // + @expo/vector-icons, @expo/match-media, @expo/react-native-action-sheet
   '@expo-google-fonts',
@@ -97,6 +98,8 @@ export default async (): Promise<Config.InitialOptions> => {
     setupFiles: [
       '<rootDir>/test/testSetup.ts',
       './node_modules/react-native-gesture-handler/jestSetup.js',
+      // Fakes the Patch TurboModule: a store binary with no update waiting.
+      './node_modules/@codemagic/react-native-patch/jest-setup.js',
     ],
     cacheDirectory: '.jest/cache',
     setupFilesAfterEnv: ['<rootDir>/test/testSetupAfterEnv.ts'],

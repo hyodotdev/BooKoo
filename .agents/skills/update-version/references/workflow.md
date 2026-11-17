@@ -48,11 +48,11 @@ installed native version; the update manifest is only a web/Expo Go fallback.
 
 ### Step 1b — Review native runtime compatibility
 
-`app.config.ts` owns the independent explicit `runtimeVersion`. If the release
-changes native dependencies, plugins, permissions, entitlements or the native
-contract, advance this value to the new release version. A shared top-level
-runtime bump requires both new iOS and Android binaries before OTA delivery.
-An OTA requiring those native APIs must never target older binaries.
+Codemagic Patch targets each OTA release at the marketing version in
+`package.json` and also compares the native fingerprint. If the release changes
+native dependencies, plugins, permissions, entitlements or the native contract,
+ship both new iOS and Android binaries before OTA delivery. An OTA requiring
+those native APIs must never target older binaries.
 
 For a metadata-only patch with an unchanged native contract, explicitly retain
 the compatible runtime and record the decision in release evidence. Historical

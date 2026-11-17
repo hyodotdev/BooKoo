@@ -1,5 +1,5 @@
-import {useEffect, useRef, useState} from 'react';
-import * as Updates from 'expo-updates';
+import {useEffect, useState} from 'react';
+import * as Patch from '@codemagic/react-native-patch';
 
 import {diagnostic} from '~/features/diagnostics/ring';
 import {Storage, storage} from '~/utils/storage';
@@ -34,6 +34,7 @@ const timeout = async (ms: number): Promise<'TIMEOUT'> =>
 
 async function runSequence(
   deps: ColdStartUpdateDeps,
+  timedOut: () => boolean,
 ): Promise<ColdStartUpdateOutcome> {
   let result: {isAvailable: boolean};
   try {
@@ -49,6 +50,9 @@ async function runSequence(
     diagnostic({kind: 'UPDATE', outcome: 'DOWNLOAD_FAILED'});
     return 'FAILED';
   }
+  // Past the budget the splash is gone and the user may be mid-entry, so the
+  // staged update waits for the next cold start instead of restarting now.
+  if (timedOut()) return 'TIMEOUT';
   // `reload` restarts the app, so this promise normally never settles. The
   // caller keeps holding the splash until the process is replaced.
   await deps.reload();
@@ -65,7 +69,14 @@ export async function applyColdStartUpdate(
 ): Promise<ColdStartUpdateOutcome> {
   if (!deps.isEnabled) return 'DISABLED';
   const budget = deps.timeoutMs ?? COLD_START_UPDATE_TIMEOUT_MS;
-  const outcome = await Promise.race([runSequence(deps), timeout(budget)]);
+  let expired = false;
+  const outcome = await Promise.race([
+    runSequence(deps, () => expired),
+    timeout(budget).then((value) => {
+      expired = true;
+      return value;
+    }),
+  ]);
   return outcome;
 }
 
@@ -74,29 +85,39 @@ export const coldStartUpdateHoldsSplash = (
 ): boolean => outcome === null || outcome === 'APPLIED';
 
 /**
- * expo-updates checks and downloads on load by default, so the runtime can
- * stage an update on its own — and when it wins that race our explicit
- * `checkForUpdate` reports nothing available while the OLD bundle keeps
- * running. Martie covers this with an unconditional `isUpdatePending` reload.
- * BooKoo reloads only while the splash is still up: after first paint the user
- * may be mid-entry, and `SoftUpdateSheet` asks before taking their input away.
+ * Over-the-air updates come from Codemagic Patch. Development builds load their
+ * bundle from Metro, so Patch has nothing to replace there.
  */
-export const shouldReloadForPendingUpdate = (
-  isUpdatePending: boolean,
-  outcome: ColdStartUpdateOutcome | null,
-  elapsedSinceMountMs: number,
-  budgetMs: number = COLD_START_UPDATE_TIMEOUT_MS,
-): boolean => {
-  if (!isUpdatePending) return false;
-  // A reload is already replacing the process.
-  if (outcome === 'APPLIED') return false;
-  // Still holding the splash, or close enough to launch that nothing the user
-  // typed can be lost. `NONE` belongs here: the explicit check reports nothing
-  // available precisely because the runtime already staged the newer bundle.
-  return (
-    coldStartUpdateHoldsSplash(outcome) || elapsedSinceMountMs < budgetMs
-  );
-};
+export const otaUpdatesEnabled = !__DEV__;
+
+/**
+ * Patch dependencies for one cold start. The check result is kept between the
+ * calls so `fetchUpdate` stages exactly the package `checkForUpdate` found.
+ * An `embedded-revert` answer means the server withdrew every update for this
+ * binary; staging it returns the app to the bundle that shipped in the store
+ * build.
+ */
+export function patchColdStartDeps(): ColdStartUpdateDeps {
+  let found: Patch.UpdateCheckResult | null = null;
+  return {
+    isEnabled: otaUpdatesEnabled,
+    checkForUpdate: async () => {
+      found = await Patch.checkForUpdate();
+      return {isAvailable: found.action !== 'up-to-date'};
+    },
+    fetchUpdate: async () => {
+      if (found === null || found.action === 'up-to-date') return;
+      const target =
+        found.action === 'ota-update'
+          ? await Patch.downloadUpdate(found.remotePackage)
+          : found;
+      await Patch.installUpdate(target, {
+        installMode: Patch.InstallMode.ON_NEXT_RESTART,
+      });
+    },
+    reload: () => Patch.restartApp(),
+  };
+}
 
 /**
  * True while the native splash must stay up. Cold start is the only moment an
@@ -105,34 +126,20 @@ export const shouldReloadForPendingUpdate = (
  * user may be mid-entry.
  */
 export function useColdStartUpdate(): boolean {
-  const {isUpdatePending} = Updates.useUpdates();
   const [outcome, setOutcome] = useState<ColdStartUpdateOutcome | null>(null);
-  // Mirrors `outcome` without re-running the effects that read it.
-  const outcomeRef = useRef<ColdStartUpdateOutcome | null>(null);
-  const mountedAtRef = useRef<number | null>(null);
 
   useEffect(() => {
     let active = true;
-    mountedAtRef.current = Date.now();
-    const settle = (value: ColdStartUpdateOutcome): void => {
-      outcomeRef.current = value;
-      setOutcome(value);
-    };
-    void applyColdStartUpdate({
-      isEnabled: Updates.isEnabled,
-      checkForUpdate: () => Updates.checkForUpdateAsync(),
-      fetchUpdate: () => Updates.fetchUpdateAsync(),
-      reload: () => Updates.reloadAsync(),
-    })
+    // `SoftUpdateSheet` can mount while the splash is still up and checks on
+    // mount too. Recording the attempt before it starts lets that sheet's 24h
+    // throttle skip a second, concurrent download of the same package.
+    if (otaUpdatesEnabled) storage.set(Storage.LastOtaCheckAt, Date.now());
+    void applyColdStartUpdate(patchColdStartDeps())
       .then((value) => {
-        // `SoftUpdateSheet` checks on mount too. Recording the attempt lets its
-        // 24h throttle swallow the duplicate request right after a cold start.
-        if (value !== 'DISABLED')
-          storage.set(Storage.LastOtaCheckAt, Date.now());
-        if (active) settle(value);
+        if (active) setOutcome(value);
       })
       .catch(() => {
-        if (active) settle('FAILED');
+        if (active) setOutcome('FAILED');
       });
     return () => {
       active = false;
@@ -140,21 +147,13 @@ export function useColdStartUpdate(): boolean {
   }, []);
 
   useEffect(() => {
-    const settle = (value: ColdStartUpdateOutcome): void => {
-      outcomeRef.current = value;
-      setOutcome(value);
-    };
-    if (
-      !shouldReloadForPendingUpdate(
-        isUpdatePending,
-        outcomeRef.current,
-        Date.now() - (mountedAtRef.current ?? Date.now()),
-      )
-    )
+    // Patch rolls a freshly installed update back on the next launch unless the
+    // running bundle reports itself healthy. Reaching the first paint is that
+    // proof; a reload already under way belongs to the next bundle instead.
+    if (!otaUpdatesEnabled || outcome === null || outcome === 'APPLIED')
       return;
-    settle('APPLIED');
-    void Updates.reloadAsync().catch(() => settle('FAILED'));
-  }, [isUpdatePending]);
+    void Patch.notifyAppReady().catch(() => undefined);
+  }, [outcome]);
 
   return coldStartUpdateHoldsSplash(outcome);
 }

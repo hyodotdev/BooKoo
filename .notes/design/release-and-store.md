@@ -37,11 +37,11 @@ from a verified release branch, with remote EAS build numbers, store record ids,
 and the exact Convex production deployment recorded in a private release manifest. No secret, service
 account JSON, `.p8`, keystore, OTP, or reviewer credential is committed.
 
-EAS Update is a manual production tool, not a per-merge deployment. A compatible JavaScript/assets-only
+Codemagic Patch (`bun ota:release`) is a manual production tool, not a per-merge deployment. A compatible JavaScript/assets-only
 change may be published only from a clean checkout whose `HEAD` exactly matches `origin/main`, after an
 exact successful push CI run plus an explicit compatibility acknowledgement and release message. The guarded
-`eas:prod:updates*` scripts target the `production` channel and EAS environment;
-`runtimeVersion.policy = appVersion` keeps updates scoped to matching installed binaries. Native dependency/
+`ota:release*` scripts publish to the Patch `Production` deployment with the `production` EAS environment;
+the target binary version plus Patch's native fingerprint keep updates scoped to matching installed binaries. Native dependency/
 config/permission/entitlement/manifest/asset changes require new local-only IPA/AAB builds. The EAS `preview`
 profile is retained only for explicit local internal-device testing and is unrelated to Convex cloud preview
 deployments.

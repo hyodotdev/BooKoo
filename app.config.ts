@@ -21,10 +21,23 @@ const {applicationId: APPLICATION_ID, qaApplicationId: QA_APPLICATION_ID} =
   JSON.parse(
     fs.readFileSync(path.join(projectRoot, 'shared/application.json'), 'utf8'),
   ) as {applicationId: string; qaApplicationId: string};
+// Codemagic Patch delivers over-the-air updates. The deployment keys only let a
+// build ask for updates, so they ship inside every binary and live in the repo.
+interface OtaDeployments {
+  apiUrl: string;
+  downloadBaseUrl: string;
+  deploymentKeys: Record<
+    'ios' | 'android',
+    {staging: string; production: string}
+  >;
+}
+const OTA = JSON.parse(
+  fs.readFileSync(path.join(projectRoot, 'shared/otaDeployments.json'), 'utf8'),
+) as OtaDeployments;
 
 // `EXPO_NO_DOTENV=1` means "the environment is already correct, do not read
-// local env files". `scripts/eas-update-production.zsh` sets it alongside
-// `--environment production` so a production OTA is built from the EAS
+// local env files". `scripts/ota-release.zsh` sets it inside
+// `eas env:exec production`, so a production OTA is built from the EAS
 // Environment and nothing else.
 //
 // Expo honours the flag for its own dotenv loading, but this config does its
@@ -165,6 +178,27 @@ export default ({config}: ConfigContext): ExpoConfig => ({
     typedRoutes: true,
   },
   plugins: [
+    [
+      '@codemagic/react-native-patch',
+      {
+        ios: {
+          apiUrl: OTA.apiUrl,
+          downloadBaseUrl: OTA.downloadBaseUrl,
+          // QA builds read Staging so local testing never takes or replaces a
+          // production update.
+          deploymentKey: qa
+            ? OTA.deploymentKeys.ios.staging
+            : OTA.deploymentKeys.ios.production,
+        },
+        android: {
+          apiUrl: OTA.apiUrl,
+          downloadBaseUrl: OTA.downloadBaseUrl,
+          deploymentKey: qa
+            ? OTA.deploymentKeys.android.staging
+            : OTA.deploymentKeys.android.production,
+        },
+      },
+    ],
     'expo-iap',
     'expo-router',
     'expo-asset',
@@ -427,12 +461,5 @@ export default ({config}: ConfigContext): ExpoConfig => ({
   extra: {
     eas: {projectId: EAS_PROJECT_ID},
     stage: qa ? 'preview' : (process.env.STAGE ?? 'development'),
-  },
-  // Vietnamese native declarations belong to the1.4.0 runtime; QA remains
-  // isolated so local testing cannot receive or replace production updates.
-  runtimeVersion: qa ? `qa-${version}` : '1.4.0',
-  updates: {
-    fallbackToCacheTimeout: 0,
-    url: `https://u.expo.dev/${EAS_PROJECT_ID}`,
   },
 });

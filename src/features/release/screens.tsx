@@ -14,7 +14,7 @@ import {usePaginatedQuery, useQuery} from 'convex-helpers/react/cache';
 import {useMutation} from 'convex/react';
 import Constants from 'expo-constants';
 import * as Clipboard from 'expo-clipboard';
-import * as Updates from 'expo-updates';
+import * as Patch from '@codemagic/react-native-patch';
 import {Directory, File, Paths} from 'expo-file-system';
 import * as Sharing from 'expo-sharing';
 import * as ImageManipulator from 'expo-image-manipulator';
@@ -61,6 +61,7 @@ import {navigateToNotification} from '~/features/push/provider';
 import {useLocale} from '~/hooks/useLocale';
 import {useAdRuntime} from '~/features/ads/provider';
 import {uploadFile} from '~/features/media/upload';
+import {otaUpdatesEnabled} from '~/features/runtime/coldStartUpdate';
 import {
   hasCameraAccess,
   hasPhotoPickerAccess,
@@ -1297,14 +1298,28 @@ export function OpsScreen(): ReactElement {
 export function DiagnosticsScreen(): ReactElement {
   const {theme} = useCPK();
   const [rows, setRows] = useState(() => diagnosticSnapshot());
+  // Hash of the Patch update in this process; null on the store build's bundle.
+  const [updateHash, setUpdateHash] = useState<string | null>(null);
+  useEffect(() => {
+    if (!otaUpdatesEnabled) return;
+    let active = true;
+    void Patch.getRunningBundleUpdateMetadata()
+      .then((running) => {
+        if (active) setUpdateHash(running?.packageHash ?? null);
+      })
+      .catch(() => undefined);
+    return () => {
+      active = false;
+    };
+  }, []);
   const bundle = {
     schemaVersion: 1,
     appVersion,
     build: Constants.nativeBuildVersion ?? 'unknown',
     platform: Platform.OS,
     osMajor: String(Platform.Version).split('.')[0] ?? 'unknown',
-    updateIdPrefix: Updates.updateId?.slice(0, 8) ?? null,
-    updatesEnabled: Updates.isEnabled,
+    updateIdPrefix: updateHash?.slice(0, 8) ?? null,
+    updatesEnabled: otaUpdatesEnabled,
     rows,
   } as const;
   return (
