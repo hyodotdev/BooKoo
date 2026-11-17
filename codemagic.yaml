@@ -173,7 +173,9 @@ workflows:
           set -euo pipefail
           host=$(node -p 'new URL(process.env.EXPO_PUBLIC_CONVEX_URL).host')
           ipa=$(ls build/ios/ipa/*.ipa)
-          unzip -p "$ipa" 'Payload/BooKoo.app/main.jsbundle' | grep -a -q "$host"
+          # grep -c reads to the end; grep -q would close the pipe early and
+          # pipefail would turn the writer's SIGPIPE (141) into a failure.
+          unzip -p "$ipa" 'Payload/BooKoo.app/main.jsbundle' | grep -a -c "$host" > /dev/null
           echo "main.jsbundle targets $host"
     artifacts:
       - build/ios/ipa/*.ipa
@@ -235,9 +237,11 @@ workflows:
         script: |
           set -euo pipefail
           aab=android/app/build/outputs/bundle/release/app-release.aab
-          keytool -printcert -jarfile "$aab" | grep -q "SHA256: $UPLOAD_CERT_SHA256"
+          # grep -c reads to the end; grep -q would close the pipe early and
+          # pipefail would turn the writer's SIGPIPE (141) into a failure.
+          keytool -printcert -jarfile "$aab" | grep -c "SHA256: $UPLOAD_CERT_SHA256" > /dev/null
           host=$(node -p 'new URL(process.env.EXPO_PUBLIC_CONVEX_URL).host')
-          unzip -p "$aab" base/assets/index.android.bundle | grep -a -q "$host"
+          unzip -p "$aab" base/assets/index.android.bundle | grep -a -c "$host" > /dev/null
           echo "Signed with the upload key; bundle targets $host"
     artifacts:
       - android/app/build/outputs/bundle/release/*.aab
