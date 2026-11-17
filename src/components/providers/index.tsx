@@ -37,9 +37,8 @@ export function CpkReadySplashBoundary({
   const updating = useColdStartUpdate();
 
   useEffect(() => {
-    // `fallbackToCacheTimeout: 0` means the native layer never waits for an
-    // update, so without this gate a staged update first appears on the NEXT
-    // launch. Hold the splash across the bounded check instead; the timeout in
+    // Codemagic Patch never waits for an update before launching the bundle,
+    // so without this gate a staged update first appears on the NEXT launch. Hold the splash across the bounded check instead; the timeout in
     // `coldStartUpdate` is what keeps a flaky network from hiding the recovery
     // screens below this boundary.
     if (!updating) void SplashScreen.hideAsync();

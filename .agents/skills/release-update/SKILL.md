@@ -1,6 +1,6 @@
 ---
 name: release-update
-description: Build, verify, submit, and publish BooKoo releases through EAS Build, Expo Updates, Google Play, and App Store Connect. Use when the user runs `/release-update` or `$release-update`, asks to release or deploy BooKoo, upload IPA/AAB artifacts, submit store builds for review, add release notes, choose between a native build and an OTA update, or finish a version rollout after review and E2E.
+description: Build, verify, submit, and publish BooKoo releases through local EAS Build, Codemagic Patch OTA, Google Play, and App Store Connect. Use when the user runs `/release-update` or `$release-update`, asks to release or deploy BooKoo, upload IPA/AAB artifacts, submit store builds for review, add release notes, choose between a native build and an OTA update, or finish a version rollout after review and E2E.
 ---
 
 # Release Update
@@ -44,18 +44,19 @@ Require new iOS and Android binaries when any of these changed:
   permissions, targets, manifests, Info.plist, Pod/Gradle inputs, or native
   assets — including anything under `plugins/` and the social-login SDKs;
 - app version/build numbers or store compliance requirements;
-- behavior that cannot run safely on the installed runtime version.
+- behavior that cannot run safely on the installed binary version.
 
-For the explicit native runtime, follow `$update-version`: native-contract
-changes must advance `app.config.ts`'s shared runtimeVersion and ship new
-iOS and Android binaries before OTA delivery. A proven metadata-only store patch
-may retain the existing
-compatible runtime and build only the platform that requires a new store version
-(iOS1.1.1 retains runtime1.1.0; Android32 stays public). Record the exception and
-verify the installed native version separately from the OTA manifest version.
+Over-the-air updates come from Codemagic Patch (`@codemagic/react-native-patch`,
+team OpenIAP on `https://ota.codemagicpatch.dev`, apps `BooKoo-iOS` and
+`BooKoo-Android`). A release targets the binary's marketing version and Patch
+also checks the native fingerprint, so an OTA never lands on an incompatible
+binary. Native-contract changes need new iOS and Android binaries before any
+OTA that relies on them; follow `$update-version`. The first Patch binary is
+1.5.0; store binaries up to 1.4.0 still run expo-updates and receive nothing
+from Patch.
 
-Use Expo Updates only when the change is JavaScript/assets compatible with the
-existing production runtime and no store binary or compliance update is needed.
+Use a Codemagic Patch OTA only when the change is JavaScript/assets compatible with the
+existing production binary and no store binary or compliance update is needed.
 
 ## Verify Before Shipping
 
@@ -99,15 +100,19 @@ existing production runtime and no store binary or compliance update is needed.
 2. Publish an OTA only for a JavaScript/assets-compatible change from a clean
    checkout whose `HEAD` exactly matches `origin/main`. Record that decision and
    a useful message explicitly:
-   - `EAS_UPDATE_CONFIRM_COMPATIBLE=1 EAS_UPDATE_MESSAGE="<notes>" bun eas:prod:updates`
+   - `OTA_CONFIRM_COMPATIBLE=1 OTA_MESSAGE="<notes>" bun ota:release`
    - append `:ios` or `:android` to target one platform.
-     The guard publishes to the `production` channel with the `production` EAS
-     environment. Never publish automatically on every merge: native modules,
-     config plugins, permissions, entitlements, and native assets require new
-     locally built binaries even when the semantic app version is unchanged.
-   - add `EAS_UPDATE_DRY_RUN=1` to verify the exact-main and successful-CI gates
+     The guard publishes to the Patch `Production` deployment, bundling with
+     the `production` EAS environment through `eas env:exec`. Never publish
+     automatically on every merge: native modules, config plugins, permissions,
+     entitlements, and native assets require new locally built binaries even
+     when the semantic app version is unchanged.
+   - Sign in once with `bunx @codemagic/patch-cli@0.10.0 login --server-url
+     https://ota.codemagicpatch.dev`. QA builds read the `Staging` deployment;
+     test there first with `cmpatch release-react --deployment Staging`.
+   - add `OTA_DRY_RUN=1` to verify the exact-main and successful-CI gates
      without bundling or publishing.
-   - when GitHub Actions cannot run, add `EAS_UPDATE_VERIFY=local`: the script
+   - when GitHub Actions cannot run, add `OTA_VERIFY=local`: the script
      runs CI's `check` commands (`bun lint:all`, `bun typecheck`, `bun run
      test`) on that exact clean commit instead of looking up the CI run. Never
      use it for a change under `convex/`.
@@ -145,7 +150,7 @@ Include:
 - Convex deploy result and the deployment targeted;
 - AAB/IPA inspection results;
 - `$perf-audit` and `$e2e-test` summaries;
-- Expo update IDs, branch, and runtime version when OTA was used;
+- Patch release labels, deployment, and target binary version when OTA was used;
 - per-store upload, review, approval, and release states;
 - release-note text and any remaining manual action.
 

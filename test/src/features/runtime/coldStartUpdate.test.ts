@@ -1,10 +1,22 @@
+import * as Patch from '@codemagic/react-native-patch';
+
 import {
   applyColdStartUpdate,
   coldStartUpdateHoldsSplash,
-  shouldReloadForPendingUpdate,
+  patchColdStartDeps,
   COLD_START_UPDATE_TIMEOUT_MS,
   type ColdStartUpdateDeps,
 } from '~/features/runtime/coldStartUpdate';
+
+jest.mock('@codemagic/react-native-patch', () => ({
+  ...jest.requireActual<object>('@codemagic/react-native-patch'),
+  checkForUpdate: jest.fn(),
+  downloadUpdate: jest.fn(),
+  installUpdate: jest.fn(),
+  restartApp: jest.fn(),
+}));
+
+const patch = jest.mocked(Patch);
 
 const deps = (
   overrides: Partial<ColdStartUpdateDeps> = {},
@@ -72,6 +84,32 @@ describe('cold start update gate', () => {
     await expect(applyColdStartUpdate(config)).resolves.toBe('TIMEOUT');
   });
 
+  it('never restarts mid-use when a download finishes after the budget', async () => {
+    // The splash is already gone, so the user may be typing. The staged update
+    // must wait for the next cold start instead of reloading under them.
+    let finishDownload: () => void = () => undefined;
+    const fetchUpdate = jest.fn(
+      () =>
+        new Promise<void>((resolve) => {
+          finishDownload = resolve;
+        }),
+    );
+    const reload = jest.fn().mockResolvedValue(undefined);
+    const config = deps({
+      checkForUpdate: jest.fn().mockResolvedValue({isAvailable: true}),
+      fetchUpdate,
+      reload,
+      timeoutMs: 20,
+    });
+
+    await expect(applyColdStartUpdate(config)).resolves.toBe('TIMEOUT');
+    finishDownload();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    expect(fetchUpdate).toHaveBeenCalledTimes(1);
+    expect(reload).not.toHaveBeenCalled();
+  });
+
   it.each([
     ['check', {checkForUpdate: jest.fn().mockRejectedValue(new Error('x'))}],
     [
@@ -89,44 +127,81 @@ describe('cold start update gate', () => {
     expect(reload).not.toHaveBeenCalled();
   });
 
-  describe('runtime-staged update (expo-updates downloads on load)', () => {
-    it('reloads while the splash is still up', () => {
-      expect(shouldReloadForPendingUpdate(true, null, 0, 4000)).toBe(true);
-    });
-
-    it('reloads when the explicit check found nothing because it was already staged', () => {
-      // The hole this closes: the runtime downloads on load and wins the race,
-      // so `checkForUpdate` reports NONE while the OLD bundle keeps running.
-      expect(shouldReloadForPendingUpdate(true, 'NONE', 10, 4000)).toBe(true);
-      expect(shouldReloadForPendingUpdate(true, 'TIMEOUT', 10, 4000)).toBe(
-        true,
-      );
-    });
-
-    it('stops reloading once the launch window has passed', () => {
-      // After that the user may be mid-entry; SoftUpdateSheet asks first.
-      expect(shouldReloadForPendingUpdate(true, 'NONE', 4001, 4000)).toBe(
-        false,
-      );
-      expect(shouldReloadForPendingUpdate(true, 'FAILED', 60_000, 4000)).toBe(
-        false,
-      );
-    });
-
-    it('does not stack a second reload on one already under way', () => {
-      expect(shouldReloadForPendingUpdate(true, 'APPLIED', 0, 4000)).toBe(
-        false,
-      );
-    });
-
-    it('does nothing when no update is staged', () => {
-      expect(shouldReloadForPendingUpdate(false, null, 0, 4000)).toBe(false);
-      expect(shouldReloadForPendingUpdate(false, 'NONE', 0, 4000)).toBe(false);
-    });
-  });
-
   it('bounds the default budget so a launch cannot hang', () => {
     expect(COLD_START_UPDATE_TIMEOUT_MS).toBeGreaterThan(0);
     expect(COLD_START_UPDATE_TIMEOUT_MS).toBeLessThanOrEqual(5000);
+  });
+
+  describe('Codemagic Patch adapter', () => {
+    const remotePackage = {packageHash: 'abc'} as Patch.RemotePackage;
+    const localPackage = {packageHash: 'abc'} as Patch.LocalPackage;
+
+    beforeEach(() => {
+      jest.clearAllMocks();
+      patch.installUpdate.mockResolvedValue(undefined);
+      patch.restartApp.mockResolvedValue(undefined);
+    });
+
+    it('downloads and stages an OTA update for the next restart', async () => {
+      patch.checkForUpdate.mockResolvedValue({
+        action: 'ota-update',
+        remotePackage,
+        isStoreUpdateAvailable: false,
+        latestBinaryVersion: null,
+      });
+      const download = patch.downloadUpdate.mockResolvedValue(localPackage);
+      const install = patch.installUpdate;
+      const ota = patchColdStartDeps();
+
+      await expect(ota.checkForUpdate()).resolves.toEqual({isAvailable: true});
+      await ota.fetchUpdate();
+
+      expect(download).toHaveBeenCalledWith(remotePackage);
+      expect(install).toHaveBeenCalledWith(localPackage, {
+        installMode: Patch.InstallMode.ON_NEXT_RESTART,
+      });
+    });
+
+    it('stages a withdrawn update back to the store bundle', async () => {
+      const revert = {
+        action: 'embedded-revert',
+        isStoreUpdateAvailable: false,
+        latestBinaryVersion: null,
+      } as const;
+      patch.checkForUpdate.mockResolvedValue(revert);
+      const download = patch.downloadUpdate;
+      const install = patch.installUpdate;
+      const ota = patchColdStartDeps();
+
+      await expect(ota.checkForUpdate()).resolves.toEqual({isAvailable: true});
+      await ota.fetchUpdate();
+
+      expect(download).not.toHaveBeenCalled();
+      expect(install).toHaveBeenCalledWith(revert, {
+        installMode: Patch.InstallMode.ON_NEXT_RESTART,
+      });
+    });
+
+    it('stages nothing when the bundle is current', async () => {
+      patch.checkForUpdate.mockResolvedValue({
+        action: 'up-to-date',
+        isStoreUpdateAvailable: false,
+        latestBinaryVersion: null,
+      });
+      const install = patch.installUpdate;
+      const ota = patchColdStartDeps();
+
+      await expect(ota.checkForUpdate()).resolves.toEqual({
+        isAvailable: false,
+      });
+      await ota.fetchUpdate();
+
+      expect(install).not.toHaveBeenCalled();
+    });
+
+    it('reloads through Patch so the staged bundle takes over', async () => {
+      await patchColdStartDeps().reload();
+      expect(patch.restartApp).toHaveBeenCalledTimes(1);
+    });
   });
 });

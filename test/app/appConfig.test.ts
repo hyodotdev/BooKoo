@@ -5,12 +5,23 @@ import type {ConfigContext} from '@expo/config';
 
 import createConfig from '../../app.config';
 
+const ota = JSON.parse(
+  readFileSync(join(process.cwd(), 'shared/otaDeployments.json'), 'utf8'),
+) as {
+  apiUrl: string;
+  downloadBaseUrl: string;
+  deploymentKeys: Record<
+    'ios' | 'android',
+    {staging: string; production: string}
+  >;
+};
+
 const config = createConfig({
   config: {name: 'BooKoo', slug: 'bookoo'},
 } as ConfigContext);
 
 describe('Expo app config', () => {
-  it('separates QA native identities, OTA runtimes and deep links from production', () => {
+  it('separates QA native identities, OTA deployments and deep links from production', () => {
     const previous = process.env.BOOKOO_APP_VARIANT;
     process.env.BOOKOO_APP_VARIANT = 'qa';
     try {
@@ -21,7 +32,18 @@ describe('Expo app config', () => {
         expect(qaConfig.name).toBe('BooKoo QA');
         expect(qaConfig.ios?.bundleIdentifier).toBe('dev.hyo.bookoo.qa');
         expect(qaConfig.android?.package).toBe('dev.hyo.bookoo.qa');
-        expect(qaConfig.runtimeVersion).toBe('qa-1.4.0');
+        // QA builds ask the Staging deployment, never Production.
+        expect(qaConfig.plugins).toContainEqual([
+          '@codemagic/react-native-patch',
+          {
+            ios: expect.objectContaining({
+              deploymentKey: ota.deploymentKeys.ios.staging,
+            }),
+            android: expect.objectContaining({
+              deploymentKey: ota.deploymentKeys.android.staging,
+            }),
+          },
+        ]);
         expect(qaConfig.scheme).toBe('bookoo-qa');
         expect(qaConfig.ios?.associatedDomains).toEqual([]);
         expect(qaConfig.android?.intentFilters).toEqual([]);
@@ -45,13 +67,29 @@ describe('Expo app config', () => {
     ]);
   });
 
-  it('isolates the LevelPlay native contract from older binaries', () => {
-    expect(config.updates?.url).toBe(
-      'https://u.expo.dev/7eac02cb-ef02-4d4c-9999-0e0825ab4263',
-    );
+  it('keeps the LevelPlay native contract in the binary', () => {
     expect(config.version).toBe('1.4.0');
-    expect(config.runtimeVersion).toBe('1.4.0');
     expect(config.plugins).toContain('./plugins/withLevelPlay');
+  });
+
+  it('takes over-the-air updates from Codemagic Patch, not EAS Update', () => {
+    expect(config.updates).toBeUndefined();
+    expect(config.runtimeVersion).toBeUndefined();
+    expect(config.plugins).toContainEqual([
+      '@codemagic/react-native-patch',
+      {
+        ios: {
+          apiUrl: ota.apiUrl,
+          downloadBaseUrl: ota.downloadBaseUrl,
+          deploymentKey: ota.deploymentKeys.ios.production,
+        },
+        android: {
+          apiUrl: ota.apiUrl,
+          downloadBaseUrl: ota.downloadBaseUrl,
+          deploymentKey: ota.deploymentKeys.android.production,
+        },
+      },
+    ]);
   });
 
   it('declares every supported locale to iOS', () => {
@@ -271,8 +309,8 @@ describe('local env files', () => {
     .replace(/^\s*\/\/.*$/gm, '');
 
   it('are skipped when EXPO_NO_DOTENV says the environment is already correct', () => {
-    // `scripts/eas-update-production.zsh` sets EXPO_NO_DOTENV=1 next to
-    // `--environment production` so a production OTA is built from the EAS
+    // `scripts/ota-release.zsh` sets EXPO_NO_DOTENV=1 next to
+    // `eas env:exec production` so a production OTA is built from the EAS
     // Environment alone. This config does its own dotenv loading, so Expo
     // honouring the flag is not enough — it has to honour it here too.
     expect(code).toContain("process.env.EXPO_NO_DOTENV !== '1'");

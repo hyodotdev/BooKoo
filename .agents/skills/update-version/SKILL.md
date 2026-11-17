@@ -12,11 +12,11 @@ Use `references/workflow.md` as the detailed version and force-update checklist.
 1. Parse the requested semantic version and whether `--force` was requested.
 2. Update the marketing/store `version` in `package.json`; `app.config.ts`
    reads it. Never duplicate that marketing version in a screen.
-3. Inspect native compatibility before building or publishing: `app.config.ts`
-   owns an explicit `runtimeVersion`. Advance it to the new release version
-   whenever native dependencies, plugins, permissions or the native contract
-   change. A shared top-level runtime bump requires both new iOS and Android
-   binaries before compatible OTA delivery.
+3. Inspect native compatibility before building or publishing. Codemagic Patch
+   targets OTA releases by this marketing version and checks the native
+   fingerprint. Whenever native dependencies, plugins, permissions or the
+   native contract change, ship new iOS and Android binaries before any OTA
+   that depends on them.
    A metadata-only version change may retain the existing runtime only after
    confirming the native contract is unchanged and recording that decision.
    Historical iOS1.1.1 deliberately retained runtime1.1.0 for live Android32/iOS41.

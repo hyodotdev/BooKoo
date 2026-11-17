@@ -55,8 +55,11 @@ const ownershipGroups: readonly (readonly [string, readonly string[]])[] = [
       'expo-splash-screen',
       'expo-status-bar',
       'expo-system-ui',
-      'expo-updates',
     ],
+  ],
+  [
+    'Over-the-air updates through Codemagic Patch — scripts/ota-release.zsh',
+    ['@codemagic/react-native-patch'],
   ],
   [
     'Authentication, app lock and provider hand-off',

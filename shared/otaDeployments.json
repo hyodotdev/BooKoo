@@ -1,0 +1,14 @@
+{
+  "apiUrl": "https://ota.codemagicpatch.dev",
+  "downloadBaseUrl": "https://ota-storage.codemagicpatch.dev",
+  "deploymentKeys": {
+    "ios": {
+      "staging": "dep_21bd504172704257ac0ca4400d2f881f",
+      "production": "dep_275d59cd58f04380839a2365dcf2ca5e"
+    },
+    "android": {
+      "staging": "dep_c5979e6273c84da8ae0bf6d8d3413ecb",
+      "production": "dep_bbc9c24e08154da99ae04b4736fbd5d7"
+    }
+  }
+}

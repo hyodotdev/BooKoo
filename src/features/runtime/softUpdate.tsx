@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import {useQuery} from 'convex-helpers/react/cache';
 import * as Application from 'expo-application';
-import * as Updates from 'expo-updates';
+import * as Patch from '@codemagic/react-native-patch';
 import {Button, Typography, useCPK} from 'cpk-ui';
 import {usePathname} from 'expo-router';
 
@@ -19,6 +19,7 @@ import {diagnostic} from '~/features/diagnostics/ring';
 import {t} from '~/utils/i18n';
 import {Storage, storage} from '~/utils/storage';
 import {compareSemver} from './boot';
+import {otaUpdatesEnabled, patchColdStartDeps} from './coldStartUpdate';
 
 const OTA_CHECK_INTERVAL_MS = 24 * 60 * 60 * 1000;
 const SOFT_DISMISSAL_MS = 7 * 24 * 60 * 60 * 1000;
@@ -88,7 +89,7 @@ export function SoftUpdateSheet(): ReactElement | null {
   }, [latest, mountedAt]);
 
   useEffect(() => {
-    if (!Updates.isEnabled) return;
+    if (!otaUpdatesEnabled) return;
     let active = true;
     let checking = false;
     const check = (): void => {
@@ -97,10 +98,12 @@ export function SoftUpdateSheet(): ReactElement | null {
       if (checking || now - last < OTA_CHECK_INTERVAL_MS) return;
       checking = true;
       storage.set(Storage.LastOtaCheckAt, now);
-      void Updates.checkForUpdateAsync()
+      const ota = patchColdStartDeps();
+      void ota
+        .checkForUpdate()
         .then(async (result) => {
           if (!active || !result.isAvailable) return;
-          await Updates.fetchUpdateAsync();
+          await ota.fetchUpdate();
           if (active) setOtaReady(true);
         })
         .catch(() => {
@@ -135,7 +138,7 @@ export function SoftUpdateSheet(): ReactElement | null {
           </Typography.Body3>
           <Button
             onPress={() => {
-              if (isOta) void Updates.reloadAsync();
+              if (isOta) void Patch.restartApp();
               else if (storeUrl !== null) void Linking.openURL(storeUrl);
             }}
             text={isOta ? t('release.applyUpdate') : t('release.openStore')}

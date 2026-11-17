@@ -346,7 +346,7 @@ OCR review/cancel/apply, and Duo transitions on the new artifact.
 
 Primary source: https://github.com/expo/expo/pull/50435.
 
-## Production EAS Update policy
+## Production OTA policy
 
 The September 13 release instruction authorizes finishing the reviewed changes,
 submission and production OTA without another owner-confirmation pause. Play
@@ -356,10 +356,14 @@ Automatically release this version selected; `store.config.js` preserves
 `automaticRelease: true`. A future native release still needs actual store
 submission; automatic publication does not submit an unsubmitted build.
 
-BooKoo keeps Martie's useful production OTA capability but makes the release
-boundary explicit. `expo-updates`, the EAS project URL, the `production` build
-channel, and the app-version runtime policy are configured in the app. The EAS
-`production` channel points to the same-named update branch.
+BooKoo ships over-the-air updates through Codemagic Patch (hosted for the
+OpenIAP team at `https://ota.codemagicpatch.dev`, apps `BooKoo-iOS` and
+`BooKoo-Android`). Store builds read the `Production` deployment and QA builds
+read `Staging`; the keys live in `shared/otaDeployments.json`. A release targets
+the binary's marketing version and Patch checks the native fingerprint. The
+first Patch binary is 1.5.0; store binaries up to 1.4.0 still run expo-updates
+and only receive EAS Update, so `bun ota:release` reaches devices only after
+`package.json` and the store builds carry 1.5.0.
 
 Production OTA publishing is manual and is allowed only for a JavaScript/assets-
 compatible change from a clean checkout whose `HEAD` exactly matches
@@ -368,25 +372,26 @@ package scripts with both an explicit compatibility acknowledgement and release
 message:
 
 ```sh
-EAS_UPDATE_CONFIRM_COMPATIBLE=1 \
-EAS_UPDATE_MESSAGE="<what changed>" \
-bun eas:prod:updates
+OTA_CONFIRM_COMPATIBLE=1 \
+OTA_MESSAGE="<what changed>" \
+bun ota:release
 ```
 
-Add `EAS_UPDATE_DRY_RUN=1` to verify the branch, clean-tree, exact-main and CI
+Add `OTA_DRY_RUN=1` to verify the branch, clean-tree, exact-main and CI
 gates without bundling or publishing an update.
 
 When GitHub Actions cannot run (for example its included minutes are used up),
-add `EAS_UPDATE_VERIFY=local`. The script then runs, on that exact clean commit,
+add `OTA_VERIFY=local`. The script then runs, on that exact clean commit,
 the commands of CI's `check` job (`bun lint:all`, `bun typecheck`, `bun run
 test`) in place of the CI lookup, and every other gate still applies. The Convex
 budget suite and the history secret scan stay CI-only, so the mode is only for
 the JavaScript/assets-only updates the compatibility acknowledgement already
 requires, and a change under `convex/` must wait for a real CI run.
 
-Use `eas:prod:updates:ios` or `eas:prod:updates:android` only when the compatible
-change is intentionally platform-specific. The command publishes through the
-`production` channel and EAS environment. It never creates an EAS cloud build.
+Use `ota:release:ios` or `ota:release:android` only when the compatible change
+is intentionally platform-specific. The command bundles with the `production`
+EAS environment through `eas env:exec` and publishes to the Patch `Production`
+deployment. It never creates a cloud build.
 
 Do not publish an OTA automatically on every merge. Any native dependency,
 config plugin, permission, entitlement, manifest, Pod/Gradle input, or native
@@ -523,13 +528,10 @@ successful39 retry in [.notes/qa](../../.notes/qa/2026-10-09-apple-gallery-1-1-0
 
 ### Metadata-only store versions and native compatibility
 
-The store version in package.json and the compatible native runtime in
-app.config.ts have distinct roles. iOS1.1.1 changes only its Korean store name
-and retains runtime1.1.0, matching public Android32/iOS41. The guarded production
-OTA commands therefore still target these compatible binaries. Advance the
-explicit runtimeVersion whenever native dependencies, plugins, permissions or
-the native contract change. A shared runtime bump requires both new iOS and
-Android binaries before OTA delivery; a marketing-only bump does not advance it.
+Patch targets each OTA at the marketing version in package.json and compares
+the native fingerprint, so an incompatible binary never receives it. Whenever
+native dependencies, plugins, permissions or the native contract change, ship
+both new iOS and Android binaries before any OTA that depends on them.
 No OTA accompanies this metadata task.
 
 The canonical Apple gallery selector is sourceVersion in

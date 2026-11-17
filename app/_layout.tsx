@@ -9,7 +9,7 @@ import {styled, css} from 'kstyled';
 import {useMMKVString} from 'react-native-mmkv';
 import {Stack, usePathname} from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import * as Updates from 'expo-updates';
+import * as Patch from '@codemagic/react-native-patch';
 import {wrapWithObserveRoot} from '../src/features/runtime/observeRoot';
 import {CustomPressable, Icon, useCPK} from 'cpk-ui';
 import StatusBarBrightness from 'cpk-ui/components/uis/StatusbarBrightness/StatusBarBrightness';
@@ -120,7 +120,7 @@ function Navigator(): ReactElement | null {
             icon="WifiSlash"
             primaryAction={{
               label: t('common.tryAgain'),
-              onPress: () => void Updates.reloadAsync().catch(() => undefined),
+              onPress: () => void Patch.restartApp().catch(() => undefined),
             }}
             secondaryAction={{
               label: t('permission.openSettings'),
