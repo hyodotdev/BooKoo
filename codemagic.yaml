@@ -162,7 +162,9 @@ workflows:
       - name: Build the signed IPA
         script: |
           set -euo pipefail
-          xcode-project use-profiles
+          # Without --project it rewrites every .xcodeproj in the checkout,
+          # node_modules included, and fails on the first library project.
+          xcode-project use-profiles --project ios/BooKoo.xcodeproj
           xcode-project build-ipa \
             --workspace ios/BooKoo.xcworkspace \
             --scheme BooKoo
