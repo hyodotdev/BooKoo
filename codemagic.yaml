@@ -11,6 +11,9 @@
 # and read every credential from the secure `bookoo_production` group.
 # Codemagic builds a pull request from the yaml on its source branch, so PR
 # webhooks stay off until fork builds are proven unable to reach that group.
+#
+# Every workflow runs on mac_mini_m2: the OpenIAP team plan offers no Linux
+# instance, and the Mac image carries the Android SDK as well.
 
 definitions:
   environment: &environment
@@ -41,7 +44,11 @@ definitions:
       name: Load the EAS production environment
       script: |
         set -euo pipefail
-        bunx eas-cli@23.0.0 env:exec production --non-interactive \
+        # eas-cli evaluates app.config.ts before it loads the environment, so
+        # the production guards keyed on EAS_BUILD_* would reject the empty
+        # EXPO_PUBLIC_* values here. They apply again from the next step on.
+        env -u EAS_BUILD_PROFILE -u EAS_BUILD_PLATFORM \
+          bunx eas-cli@23.0.0 env:exec production --non-interactive \
           'node scripts/codemagic/print-public-env.mjs' \
           | grep -E '^EXPO_PUBLIC_[A-Z0-9_]+=' > /tmp/bookoo-public.env
         test -s /tmp/bookoo-public.env
@@ -89,7 +96,7 @@ workflows:
 
   android-qa-release:
     name: Android QA release build
-    instance_type: linux_x2
+    instance_type: mac_mini_m2
     max_build_duration: 60
     environment:
       <<: *environment
@@ -180,7 +187,7 @@ workflows:
 
   android-production:
     name: Android production (Play internal draft)
-    instance_type: linux_x2
+    instance_type: mac_mini_m2
     max_build_duration: 90
     environment:
       <<: *production_environment
