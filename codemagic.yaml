@@ -11,6 +11,9 @@
 # and read every credential from the secure `bookoo_production` group.
 # Codemagic builds a pull request from the yaml on its source branch, so PR
 # webhooks stay off until fork builds are proven unable to reach that group.
+#
+# Every workflow runs on mac_mini_m2: the OpenIAP team plan offers no Linux
+# instance, and the Mac image carries the Android SDK as well.
 
 definitions:
   environment: &environment
@@ -89,7 +92,7 @@ workflows:
 
   android-qa-release:
     name: Android QA release build
-    instance_type: linux_x2
+    instance_type: mac_mini_m2
     max_build_duration: 60
     environment:
       <<: *environment
@@ -180,7 +183,7 @@ workflows:
 
   android-production:
     name: Android production (Play internal draft)
-    instance_type: linux_x2
+    instance_type: mac_mini_m2
     max_build_duration: 90
     environment:
       <<: *production_environment
