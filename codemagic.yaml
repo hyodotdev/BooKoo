@@ -1,9 +1,16 @@
-# Codemagic native build checks for BooKoo.
+# Codemagic native builds for BooKoo.
 #
-# These workflows prove that the native iOS and Android projects still build.
+# The QA workflows prove that the native iOS and Android projects still build.
 # They use the QA app identity and no signing or store credentials, so they
 # run the same for forks and pull requests. Lint, typecheck and tests stay in
 # GitHub Actions (.github/workflows/ci.yml).
+#
+# The production workflows build signed store binaries and upload them to
+# TestFlight and the Play internal track as a draft. They never submit for
+# review or roll out; those stay manual store actions. They start only by hand
+# and read every credential from the secure `bookoo_production` group.
+# Codemagic builds a pull request from the yaml on its source branch, so PR
+# webhooks stay off until fork builds are proven unable to reach that group.
 
 definitions:
   environment: &environment
@@ -30,6 +37,24 @@ definitions:
     - &install_dependencies
       name: Install dependencies
       script: bun install --frozen-lockfile
+    - &load_production_env
+      name: Load the EAS production environment
+      script: |
+        set -euo pipefail
+        bunx eas-cli@23.0.0 env:exec production --non-interactive \
+          'node scripts/codemagic/print-public-env.mjs' \
+          | grep -E '^EXPO_PUBLIC_[A-Z0-9_]+=' > /tmp/bookoo-public.env
+        test -s /tmp/bookoo-public.env
+        cat /tmp/bookoo-public.env >> "$CM_ENV"
+        echo "Loaded $(wc -l < /tmp/bookoo-public.env | tr -d ' ') EXPO_PUBLIC_* variables"
+        rm /tmp/bookoo-public.env
+  # YAML merge keys are shallow: each production workflow lists its own `vars`.
+  # app.config.ts keys its production guards (required ad and map ids, no QA
+  # identity) on the EAS_BUILD_* names, so these builds set them too.
+  production_environment: &production_environment
+    node: 22.14.0
+    groups:
+      - bookoo_production
 
 workflows:
   ios-qa-simulator:
@@ -79,3 +104,137 @@ workflows:
         script: cd android && ./gradlew :app:assembleRelease --no-daemon
     artifacts:
       - android/app/build/outputs/**/*.apk
+
+  ios-production:
+    name: iOS production (TestFlight upload)
+    instance_type: mac_mini_m2
+    max_build_duration: 90
+    environment:
+      <<: *production_environment
+      vars:
+        CI: '1'
+        EXPO_NO_DOTENV: '1'
+        STAGE: production
+        BOOKOO_APP_VARIANT: production
+        EAS_BUILD_PROFILE: production
+        EAS_BUILD_PLATFORM: ios
+        BUN_VERSION: '1.3.13'
+        APP_STORE_APPLE_ID: '6805969489'
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - *install_bun
+      - *install_dependencies
+      - *load_production_env
+      - name: Pick the next build number
+        script: |
+          set -euo pipefail
+          testflight=$(app-store-connect get-latest-testflight-build-number "$APP_STORE_APPLE_ID" | tail -1)
+          store=$(app-store-connect get-latest-app-store-build-number "$APP_STORE_APPLE_ID" | tail -1) || store=0
+          [[ "$testflight" =~ ^[0-9]+$ && "$store" =~ ^[0-9]+$ ]]
+          next=$(( (testflight > store ? testflight : store) + 1 ))
+          echo "BOOKOO_BUILD_NUMBER=$next" >> "$CM_ENV"
+          echo "Build number $next"
+      - name: Install the App Store signing files
+        script: |
+          set -euo pipefail
+          keychain initialize
+          echo "$BOOKOO_IOS_DIST_P12_BASE64" | base64 --decode > /tmp/bookoo-dist.p12
+          keychain add-certificates \
+            --certificate /tmp/bookoo-dist.p12 \
+            --certificate-password "$BOOKOO_IOS_DIST_P12_PASSWORD"
+          rm /tmp/bookoo-dist.p12
+          profiles="$HOME/Library/MobileDevice/Provisioning Profiles"
+          mkdir -p "$profiles"
+          echo "$BOOKOO_IOS_PROFILE_BASE64" | base64 --decode \
+            > "$profiles/bookoo-app-store.mobileprovision"
+      - name: Generate the iOS project
+        script: bunx expo prebuild --no-install --platform ios
+      - name: Install pods
+        script: cd ios && pod install
+      - name: Build the signed IPA
+        script: |
+          set -euo pipefail
+          xcode-project use-profiles
+          xcode-project build-ipa \
+            --workspace ios/BooKoo.xcworkspace \
+            --scheme BooKoo
+      - name: Check the bundle carries the production backend
+        script: |
+          set -euo pipefail
+          host=$(node -p 'new URL(process.env.EXPO_PUBLIC_CONVEX_URL).host')
+          ipa=$(ls build/ios/ipa/*.ipa)
+          unzip -p "$ipa" 'Payload/BooKoo.app/main.jsbundle' | grep -a -q "$host"
+          echo "main.jsbundle targets $host"
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
+    publishing:
+      app_store_connect:
+        api_key: $APP_STORE_CONNECT_PRIVATE_KEY
+        key_id: $APP_STORE_CONNECT_KEY_IDENTIFIER
+        issuer_id: $APP_STORE_CONNECT_ISSUER_ID
+        submit_to_testflight: false
+        submit_to_app_store: false
+
+  android-production:
+    name: Android production (Play internal draft)
+    instance_type: linux_x2
+    max_build_duration: 90
+    environment:
+      <<: *production_environment
+      vars:
+        CI: '1'
+        EXPO_NO_DOTENV: '1'
+        STAGE: production
+        BOOKOO_APP_VARIANT: production
+        EAS_BUILD_PROFILE: production
+        EAS_BUILD_PLATFORM: android
+        BUN_VERSION: '1.3.13'
+        PACKAGE_NAME: dev.hyo.bookoo
+        # Public SHA-256 of the Play upload certificate. A release signed with
+        # any other key fails here instead of at the Play upload.
+        UPLOAD_CERT_SHA256: 'A1:86:1E:6C:45:25:63:64:F5:27:1D:7A:A9:76:95:9D:77:70:40:F2:3C:AD:14:39:55:16:A6:8A:B9:A4:B1:01'
+      java: 17
+    scripts:
+      - *install_bun
+      - *install_dependencies
+      - *load_production_env
+      - name: Pick the next version code
+        script: |
+          set -euo pipefail
+          latest=$(google-play get-latest-build-number --package-name "$PACKAGE_NAME" | tail -1)
+          [[ "$latest" =~ ^[0-9]+$ ]]
+          next=$((latest + 1))
+          echo "BOOKOO_BUILD_NUMBER=$next" >> "$CM_ENV"
+          echo "Version code $next"
+      - name: Install the upload keystore
+        script: |
+          set -euo pipefail
+          echo "$BOOKOO_UPLOAD_KEYSTORE_BASE64" | base64 --decode > /tmp/bookoo-upload.jks
+          echo "BOOKOO_UPLOAD_KEYSTORE_PATH=/tmp/bookoo-upload.jks" >> "$CM_ENV"
+      - name: Generate the Android project
+        script: |
+          set -euo pipefail
+          bunx expo prebuild --no-install --platform android
+          echo "apply from: new File(rootDir, '../scripts/codemagic/release-signing.gradle')" \
+            >> android/app/build.gradle
+      - name: Build the signed app bundle
+        script: cd android && ./gradlew :app:bundleRelease --no-daemon
+      - name: Check the signature and the production backend
+        script: |
+          set -euo pipefail
+          aab=android/app/build/outputs/bundle/release/app-release.aab
+          keytool -printcert -jarfile "$aab" | grep -q "SHA256: $UPLOAD_CERT_SHA256"
+          host=$(node -p 'new URL(process.env.EXPO_PUBLIC_CONVEX_URL).host')
+          unzip -p "$aab" base/assets/index.android.bundle | grep -a -q "$host"
+          echo "Signed with the upload key; bundle targets $host"
+    artifacts:
+      - android/app/build/outputs/bundle/release/*.aab
+      - android/app/build/outputs/mapping/release/mapping.txt
+    publishing:
+      google_play:
+        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
+        track: internal
+        submit_as_draft: true

@@ -68,7 +68,7 @@ describe('Expo app config', () => {
   });
 
   it('keeps the LevelPlay native contract in the binary', () => {
-    expect(config.version).toBe('1.4.0');
+    expect(config.version).toBe('1.5.0');
     expect(config.plugins).toContain('./plugins/withLevelPlay');
   });
 
@@ -253,7 +253,48 @@ describe('Expo app config', () => {
       restore('EXPO_PUBLIC_GOOGLE_MAPS_ANDROID_API_KEY', previous.mapsKey);
     }
   });
+
+  describe('store build number', () => {
+    const withBuildNumber = (value: string | undefined): ExpoConfigShape => {
+      const previous = process.env.BOOKOO_BUILD_NUMBER;
+      if (value === undefined) delete process.env.BOOKOO_BUILD_NUMBER;
+      else process.env.BOOKOO_BUILD_NUMBER = value;
+      try {
+        let loaded: ExpoConfigShape | undefined;
+        jest.isolateModules(() => {
+          loaded = jest
+            .requireActual<typeof import('../../app.config')>('../../app.config')
+            .default({config: {name: 'BooKoo', slug: 'bookoo'}} as ConfigContext);
+        });
+        if (loaded === undefined) throw new Error('config did not load');
+        return loaded;
+      } finally {
+        if (previous === undefined) delete process.env.BOOKOO_BUILD_NUMBER;
+        else process.env.BOOKOO_BUILD_NUMBER = previous;
+      }
+    };
+
+    it('leaves EAS builds on their remote counters', () => {
+      const unset = withBuildNumber(undefined);
+      expect(unset.ios?.buildNumber).toBeUndefined();
+      expect(unset.android?.versionCode).toBeUndefined();
+    });
+
+    it('stamps a Codemagic build number on both platforms', () => {
+      const stamped = withBuildNumber('60');
+      expect(stamped.ios?.buildNumber).toBe('60');
+      expect(stamped.android?.versionCode).toBe(60);
+    });
+
+    it.each(['0', '-1', '1.5', 'abc'])('refuses build number %s', (value) => {
+      expect(() => withBuildNumber(value)).toThrow(
+        'BOOKOO_BUILD_NUMBER must be a positive integer',
+      );
+    });
+  });
 });
+
+type ExpoConfigShape = ReturnType<typeof createConfig>;
 
 describe('Layers growth attribution', () => {
   const pluginNames = (config.plugins ?? []).map((plugin) =>

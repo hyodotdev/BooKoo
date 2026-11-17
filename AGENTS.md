@@ -89,6 +89,12 @@ Always write commit messages in Angular Conventional Commits format.
   pin. A native dependency upgrade requires rebuilt candidates and fresh E2E.
 - Never enqueue an EAS cloud build. Every EAS native build must use
   `eas build --local`, including production and store-candidate builds.
+- Store binaries may instead come from the manual Codemagic `ios-production`
+  and `android-production` workflows in `codemagic.yaml`. They upload to
+  TestFlight and a Play internal draft only, never submit for review, and
+  number each build one above the latest store build. The EAS remote counter
+  then falls behind: raise it with `eas build:version:set` before the next EAS
+  store build.
 - Direct local Xcode and Gradle builds remain the preferred fast path for
   simulator, emulator, and connected-device E2E checks.
 - Store submission is a separate operation: inspect the locally built IPA or

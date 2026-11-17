@@ -77,6 +77,11 @@ const variant = process.env.BOOKOO_APP_VARIANT;
 if (variant !== undefined && variant !== 'qa' && variant !== 'production')
   throw new Error('BOOKOO_APP_VARIANT must be qa or production');
 const qa = variant === 'qa';
+// Builds made outside EAS (Codemagic) pass the store build number in; EAS
+// builds keep `appVersionSource: remote` and leave this unset.
+const storeBuildNumber = process.env.BOOKOO_BUILD_NUMBER?.trim() || undefined;
+if (storeBuildNumber !== undefined && !/^[1-9]\d*$/.test(storeBuildNumber))
+  throw new Error('BOOKOO_BUILD_NUMBER must be a positive integer');
 if (
   qa &&
   ['production', 'purchase-test'].includes(process.env.EAS_BUILD_PROFILE ?? '')
@@ -376,6 +381,7 @@ export default ({config}: ConfigContext): ExpoConfig => ({
   ],
   ios: {
     bundleIdentifier: qa ? QA_APPLICATION_ID : APPLICATION_ID,
+    ...(storeBuildNumber === undefined ? {} : {buildNumber: storeBuildNumber}),
     appleTeamId: APPLE_TEAM_ID,
     supportsTablet: true,
     usesAppleSignIn: true,
@@ -408,6 +414,9 @@ export default ({config}: ConfigContext): ExpoConfig => ({
   },
   android: {
     package: qa ? QA_APPLICATION_ID : APPLICATION_ID,
+    ...(storeBuildNumber === undefined
+      ? {}
+      : {versionCode: Number(storeBuildNumber)}),
     adaptiveIcon: {
       foregroundImage: './assets/adaptive-icon-foreground.png',
       monochromeImage: './assets/adaptive-icon-foreground.png',
