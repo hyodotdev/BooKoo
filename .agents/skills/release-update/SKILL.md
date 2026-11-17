@@ -77,6 +77,12 @@ existing production binary and no store binary or compliance update is needed.
    - `bun eas:prod:android`
    - `bun eas:prod:ios`
    - `bun eas:preview:android` for an internal-distribution check first
+   - or the Codemagic `ios-production` / `android-production` workflows, started
+     by hand on the merged commit. They load the `production` EAS environment,
+     sign from the secure `bookoo_production` group, fail unless the bundle
+     targets the production Convex host (and, on Android, unless the upload key
+     signed it), then upload to TestFlight and a Play internal draft. Review
+     submission and rollout stay manual.
 6. Inspect EAS build metadata and download the artifacts when URLs are
    available. Verify Android is a readable AAB with the expected package and
    version, and iOS is an IPA archive with the expected bundle and version. A

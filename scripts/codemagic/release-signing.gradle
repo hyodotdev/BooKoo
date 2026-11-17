@@ -1,0 +1,27 @@
+// Signs Codemagic store builds with BooKoo's Play upload key.
+//
+// `codemagic.yaml` decodes the keystore from the `bookoo_production` group and
+// appends `apply from:` for this file to the generated android/app/build.gradle,
+// so it is evaluated after Expo's `android {}` block and replaces the debug
+// signing config the template gives release builds.
+def env = { String name ->
+  def value = System.getenv(name)
+  if (!value) throw new GradleException("${name} is required to sign a store build")
+  value
+}
+
+android {
+  signingConfigs {
+    upload {
+      storeFile file(env('BOOKOO_UPLOAD_KEYSTORE_PATH'))
+      storePassword env('BOOKOO_UPLOAD_KEYSTORE_PASSWORD')
+      keyAlias env('BOOKOO_UPLOAD_KEY_ALIAS')
+      keyPassword env('BOOKOO_UPLOAD_KEY_PASSWORD')
+    }
+  }
+  buildTypes {
+    release {
+      signingConfig signingConfigs.upload
+    }
+  }
+}
