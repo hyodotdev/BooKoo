@@ -388,6 +388,16 @@ budget suite and the history secret scan stay CI-only, so the mode is only for
 the JavaScript/assets-only updates the compatibility acknowledgement already
 requires, and a change under `convex/` must wait for a real CI run.
 
+The same release can run in Codemagic: push an annotated tag named
+`ota-<label>` on the tip of main, for example
+`git tag -a ota-1.5.0-1 -m "Fix the calendar total" && git push origin ota-1.5.0-1`.
+The `ota-production` workflow checks that the tag is the current main, then runs
+this script for both platforms with `OTA_VERIFY=local`, the tag message as
+`OTA_MESSAGE`, and the Patch token from the secure `bookoo_production` group.
+Pushing the tag is the compatibility attestation, so the same rules apply: no
+native change, and no `convex/` change without a real CI run. A tag named
+`ota-dry-<label>` runs every gate without publishing.
+
 Use `ota:release:ios` or `ota:release:android` only when the compatible change
 is intentionally platform-specific. The command bundles with the `production`
 EAS environment through `eas env:exec` and publishes to the Patch `Production`
