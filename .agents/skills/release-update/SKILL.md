@@ -77,8 +77,9 @@ existing production binary and no store binary or compliance update is needed.
    - `bun eas:prod:android`
    - `bun eas:prod:ios`
    - `bun eas:preview:android` for an internal-distribution check first
-   - or the Codemagic `ios-production` / `android-production` workflows, started
-     by hand on the merged commit. They load the `production` EAS environment,
+   - or the Codemagic `ios-production` / `android-production` workflows. Push a
+     `v<version>` tag on the merged main commit (`git tag v1.6.0 && git push
+     origin v1.6.0`); the tag must match `package.json`. They load the `production` EAS environment,
      sign from the secure `bookoo_production` group, fail unless the bundle
      targets the production Convex host (and, on Android, unless the upload key
      signed it), then upload to TestFlight and a Play internal draft. Review
@@ -108,6 +109,12 @@ existing production binary and no store binary or compliance update is needed.
    a useful message explicitly:
    - `OTA_CONFIRM_COMPATIBLE=1 OTA_MESSAGE="<notes>" bun ota:release`
    - append `:ios` or `:android` to target one platform.
+   - or from Codemagic: push an annotated `ota-<label>` tag on the tip of main
+     (`git tag -a ota-1.5.0-1 -m "<notes>" && git push origin ota-1.5.0-1`).
+     The `ota-production` workflow runs this same script for both platforms with
+     `OTA_VERIFY=local`; the tag message is the release note and pushing the tag
+     is the compatibility attestation. `ota-dry-<label>` runs every gate
+     without publishing.
      The guard publishes to the Patch `Production` deployment, bundling with
      the `production` EAS environment through `eas env:exec`. Never publish
      automatically on every merge: native modules, config plugins, permissions,

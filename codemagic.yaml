@@ -5,12 +5,19 @@
 # run the same for forks and pull requests. Lint, typecheck and tests stay in
 # GitHub Actions (.github/workflows/ci.yml).
 #
-# The production workflows build signed store binaries and upload them to
-# TestFlight and the Play internal track as a draft. They never submit for
-# review or roll out; those stay manual store actions. They start only by hand
-# and read every credential from the secure `bookoo_production` group.
-# Codemagic builds a pull request from the yaml on its source branch, so PR
-# webhooks stay off until fork builds are proven unable to reach that group.
+# Releases start from tags pushed to this repository:
+#   v<version>     (e.g. v1.6.0)  ios-production + android-production. Signed store
+#                  binaries go to TestFlight and a Play internal draft; review
+#                  submission and production rollout stay manual store actions.
+#   ota-<label>    (annotated; its message is the release note) ota-production
+#                  publishes a Codemagic Patch update to the Production
+#                  deployment through scripts/ota-release.zsh.
+#   ota-dry-<label> runs every OTA gate without publishing.
+# Each workflow can also be started by hand. They read every credential from the
+# secure `bookoo_production` group. The GitHub webhook sends push and
+# tag-creation events only: Codemagic builds a pull request from the yaml on its
+# source branch, so PR events must not reach Codemagic until fork builds are
+# proven unable to read that group.
 #
 # Every workflow runs on mac_mini_m2: the OpenIAP team plan offers no Linux
 # instance, and the Mac image carries the Android SDK as well.
@@ -55,6 +62,30 @@ definitions:
         cat /tmp/bookoo-public.env >> "$CM_ENV"
         echo "Loaded $(wc -l < /tmp/bookoo-public.env | tr -d ' ') EXPO_PUBLIC_* variables"
         rm /tmp/bookoo-public.env
+    - &require_tag_on_main
+      name: Require the tag to be on main
+      script: |
+        set -euo pipefail
+        if [ -z "${CM_TAG:-}" ]; then echo "Started by hand on $(git rev-parse --short HEAD)"; exit 0; fi
+        # A shallow clone cannot prove ancestry.
+        [ "$(git rev-parse --is-shallow-repository)" = false ] || git fetch --quiet --unshallow origin
+        git fetch --quiet origin main
+        git merge-base --is-ancestor HEAD origin/main \
+          || { echo "Tag $CM_TAG is not on main"; exit 1; }
+    - &require_version_tag
+      name: Match the tag to the app version
+      script: |
+        set -euo pipefail
+        if [ -z "${CM_TAG:-}" ]; then exit 0; fi
+        version=$(node -p 'require("./package.json").version')
+        [ "$CM_TAG" = "v$version" ] \
+          || { echo "Tag $CM_TAG does not match package.json $version"; exit 1; }
+  version_tag: &version_tag
+    events:
+      - tag
+    tag_patterns:
+      - pattern: 'v*'
+        include: true
   # YAML merge keys are shallow: each production workflow lists its own `vars`.
   # app.config.ts keys its production guards (required ad and map ids, no QA
   # identity) on the EAS_BUILD_* names, so these builds set them too.
@@ -129,7 +160,10 @@ workflows:
         APP_STORE_APPLE_ID: '6805969489'
       xcode: latest
       cocoapods: default
+    triggering: *version_tag
     scripts:
+      - *require_tag_on_main
+      - *require_version_tag
       - *install_bun
       - *install_dependencies
       - *load_production_env
@@ -208,7 +242,10 @@ workflows:
         # any other key fails here instead of at the Play upload.
         UPLOAD_CERT_SHA256: 'A1:86:1E:6C:45:25:63:64:F5:27:1D:7A:A9:76:95:9D:77:70:40:F2:3C:AD:14:39:55:16:A6:8A:B9:A4:B1:01'
       java: 17
+    triggering: *version_tag
     scripts:
+      - *require_tag_on_main
+      - *require_version_tag
       - *install_bun
       - *install_dependencies
       - *load_production_env
@@ -251,3 +288,46 @@ workflows:
         credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
         track: internal
         submit_as_draft: true
+
+  ota-production:
+    name: OTA production (Codemagic Patch)
+    instance_type: mac_mini_m2
+    max_build_duration: 60
+    environment:
+      <<: *production_environment
+      vars:
+        CI: '1'
+        BUN_VERSION: '1.3.13'
+    triggering:
+      events:
+        - tag
+      tag_patterns:
+        - pattern: 'ota-*'
+          include: true
+    scripts:
+      - name: Require the tag to be the tip of main
+        script: |
+          set -euo pipefail
+          git fetch --quiet origin main
+          [ "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)" ] \
+            || { echo "OTA must publish the current main; ${CM_TAG:-this commit} is not its tip"; exit 1; }
+          # ota-release.zsh insists on the main branch; a tag build is detached.
+          git checkout -q -B main
+      - *install_bun
+      - *install_dependencies
+      - name: Publish the OTA update
+        script: |
+          set -euo pipefail
+          if [ -n "${CM_TAG:-}" ]; then
+            message=$(git tag -l --format='%(contents:subject)' "$CM_TAG")
+            [ "$(git cat-file -t "$CM_TAG")" = tag ] \
+              || { echo "Use an annotated tag: its message is the release note"; exit 1; }
+          else
+            message="${OTA_MESSAGE:-}"
+          fi
+          case "${CM_TAG:-}" in ota-dry-*) export OTA_DRY_RUN=1 ;; esac
+          # The tag is the explicit JavaScript/assets-only attestation that the
+          # script asks for. Actions minutes are not available, so the CI check
+          # commands run here on the exact commit.
+          OTA_CONFIRM_COMPATIBLE=1 OTA_VERIFY=local OTA_MESSAGE="$message" \
+            zsh scripts/ota-release.zsh all
