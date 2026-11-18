@@ -69,7 +69,7 @@ definitions:
         if [ -z "${CM_TAG:-}" ]; then echo "Started by hand on $(git rev-parse --short HEAD)"; exit 0; fi
         # A shallow clone cannot prove ancestry.
         [ "$(git rev-parse --is-shallow-repository)" = false ] || git fetch --quiet --unshallow origin
-        git fetch --quiet origin main
+        git fetch --quiet origin +refs/heads/main:refs/remotes/origin/main
         git merge-base --is-ancestor HEAD origin/main \
           || { echo "Tag $CM_TAG is not on main"; exit 1; }
     - &require_version_tag
@@ -308,7 +308,7 @@ workflows:
       - name: Require the tag to be the tip of main
         script: |
           set -euo pipefail
-          git fetch --quiet origin main
+          git fetch --quiet origin +refs/heads/main:refs/remotes/origin/main
           [ "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)" ] \
             || { echo "OTA must publish the current main; ${CM_TAG:-this commit} is not its tip"; exit 1; }
           # ota-release.zsh insists on the main branch; a tag build is detached.
