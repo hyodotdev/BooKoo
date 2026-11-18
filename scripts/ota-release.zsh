@@ -35,7 +35,9 @@ if [[ -n "$(git status --porcelain)" ]]; then
   exit 1
 fi
 
-git fetch --quiet origin main
+# An explicit refspec: a CI clone of a tag may have no remote-tracking branches,
+# and a bare `fetch origin main` then updates only FETCH_HEAD.
+git fetch --quiet origin +refs/heads/main:refs/remotes/origin/main
 local_head="$(git rev-parse HEAD)"
 remote_head="$(git rev-parse origin/main)"
 if [[ "$local_head" != "$remote_head" ]]; then
