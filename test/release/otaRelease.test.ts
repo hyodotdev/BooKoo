@@ -50,7 +50,9 @@ describe('production OTA release contract', () => {
   it('requires a clean checkout at the exact latest main commit', () => {
     expect(script).toContain('git branch --show-current');
     expect(script).toContain('git status --porcelain');
-    expect(script).toContain('git fetch --quiet origin main');
+    expect(script).toContain(
+      'git fetch --quiet origin +refs/heads/main:refs/remotes/origin/main',
+    );
     expect(script).toContain('git rev-parse origin/main');
     expect(script).toContain('if [[ "$local_head" != "$remote_head" ]]');
     expect(script).toContain('gh run list');
