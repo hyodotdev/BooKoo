@@ -377,8 +377,16 @@ OTA_MESSAGE="<what changed>" \
 bun ota:release
 ```
 
-Add `OTA_DRY_RUN=1` to verify the branch, clean-tree, exact-main and CI
-gates without bundling or publishing an update.
+Add `OTA_DRY_RUN=1` to run every gate and the whole build — prebuild, bundle,
+fingerprint — through `release-react --dry-run`, without uploading.
+
+Every release regenerates the native projects first
+(`expo prebuild --no-install --clean --platform <ios|android>` inside the same
+`eas env:exec production` call). Patch fingerprints the generated `ios/` and
+`android/` projects and blocks a release whose fingerprint differs from earlier
+releases for the same binary version; without a prebuild a clean checkout has no
+native project to fingerprint at all. The store build number does not enter the
+fingerprint. `--clean` replaces local `ios/` and `android/` folders.
 
 When GitHub Actions cannot run (for example its included minutes are used up),
 add `OTA_VERIFY=local`. The script then runs, on that exact clean commit,
@@ -388,15 +396,24 @@ budget suite and the history secret scan stay CI-only, so the mode is only for
 the JavaScript/assets-only updates the compatibility acknowledgement already
 requires, and a change under `convex/` must wait for a real CI run.
 
-The same release can run in Codemagic: push an annotated tag named
-`ota-<label>` on the tip of main, for example
+The same release runs in Codemagic, started from GitHub Actions:
+
+```sh
+gh workflow run Release -f kind=ota -f message="Fix the calendar total"
+```
+
+The `Release` workflow (`.github/workflows/release.yml`) refuses a main commit
+whose CI has not passed, then pushes the annotated tag `ota-<version>-<n>`.
+Codemagic's `ota-production` workflow runs this script for both platforms with
+the tag message as `OTA_MESSAGE` and the Patch token from the secure
+`bookoo_production` group; on Codemagic (`CM_BUILD_ID`) the script requires the
+tag to be on main and runs CI's check commands itself. Kind `ota-dry` tags
+`ota-dry-<version>-<n>`, which does the same run without the upload; kind
+`store` tags `v<version>` with a GitHub Release and starts both store builds.
+The tag is the compatibility attestation, so the same rules apply: no native
+change, and no `convex/` change without a real CI run. When Actions cannot run,
+push the same annotated tag by hand, for example
 `git tag -a ota-1.5.0-1 -m "Fix the calendar total" && git push origin ota-1.5.0-1`.
-The `ota-production` workflow checks that the tag is the current main, then runs
-this script for both platforms with `OTA_VERIFY=local`, the tag message as
-`OTA_MESSAGE`, and the Patch token from the secure `bookoo_production` group.
-Pushing the tag is the compatibility attestation, so the same rules apply: no
-native change, and no `convex/` change without a real CI run. A tag named
-`ota-dry-<label>` runs every gate without publishing.
 
 Use `ota:release:ios` or `ota:release:android` only when the compatible change
 is intentionally platform-specific. The command bundles with the `production`

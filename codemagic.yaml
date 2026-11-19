@@ -12,8 +12,11 @@
 #   ota-<label>    (annotated; its message is the release note) ota-production
 #                  publishes a Codemagic Patch update to the Production
 #                  deployment through scripts/ota-release.zsh.
-#   ota-dry-<label> runs every OTA gate without publishing.
-# Each workflow can also be started by hand. They read every credential from the
+#   ota-dry-<label> runs every OTA step, prebuild and bundle included, without
+#                  uploading.
+# The GitHub Actions `Release` workflow (.github/workflows/release.yml) creates
+# these tags after CI passed; pushing the same tag by hand works when Actions
+# cannot run. Each workflow can also be started by hand. They read every credential from the
 # secure `bookoo_production` group. The GitHub webhook sends push and
 # tag-creation events only: Codemagic builds a pull request from the yaml on its
 # source branch, so PR events must not reach Codemagic until fork builds are
@@ -305,29 +308,28 @@ workflows:
         - pattern: 'ota-*'
           include: true
     scripts:
-      - name: Require the tag to be the tip of main
-        script: |
-          set -euo pipefail
-          git fetch --quiet origin +refs/heads/main:refs/remotes/origin/main
-          [ "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)" ] \
-            || { echo "OTA must publish the current main; ${CM_TAG:-this commit} is not its tip"; exit 1; }
-          # ota-release.zsh insists on the main branch; a tag build is detached.
-          git checkout -q -B main
       - *install_bun
       - *install_dependencies
+      - name: Check the Patch access
+        script: |
+          set -euo pipefail
+          test -n "${CODEMAGIC_PATCH_TOKEN:-}" \
+            || { echo "CODEMAGIC_PATCH_TOKEN is missing from bookoo_production"; exit 1; }
+          bunx @codemagic/patch-cli@0.10.0 whoami --server-url https://ota.codemagicpatch.dev > /dev/null
+          echo "Patch login works"
       - name: Publish the OTA update
         script: |
           set -euo pipefail
           if [ -n "${CM_TAG:-}" ]; then
-            message=$(git tag -l --format='%(contents:subject)' "$CM_TAG")
             [ "$(git cat-file -t "$CM_TAG")" = tag ] \
               || { echo "Use an annotated tag: its message is the release note"; exit 1; }
+            message=$(git tag -l --format='%(contents:subject)' "$CM_TAG")
           else
             message="${OTA_MESSAGE:-}"
           fi
           case "${CM_TAG:-}" in ota-dry-*) export OTA_DRY_RUN=1 ;; esac
-          # The tag is the explicit JavaScript/assets-only attestation that the
-          # script asks for. Actions minutes are not available, so the CI check
-          # commands run here on the exact commit.
-          OTA_CONFIRM_COMPATIBLE=1 OTA_VERIFY=local OTA_MESSAGE="$message" \
-            zsh scripts/ota-release.zsh all
+          # The tag is the explicit JavaScript/assets-only attestation the
+          # script asks for. On Codemagic (CM_BUILD_ID) the script requires the
+          # commit to be on main and runs CI's check commands itself, then
+          # regenerates the native projects so Patch can fingerprint them.
+          OTA_CONFIRM_COMPATIBLE=1 OTA_MESSAGE="$message" zsh scripts/ota-release.zsh all

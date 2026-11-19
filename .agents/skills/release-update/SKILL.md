@@ -77,9 +77,11 @@ existing production binary and no store binary or compliance update is needed.
    - `bun eas:prod:android`
    - `bun eas:prod:ios`
    - `bun eas:preview:android` for an internal-distribution check first
-   - or the Codemagic `ios-production` / `android-production` workflows. Push a
-     `v<version>` tag on the merged main commit (`git tag v1.6.0 && git push
-     origin v1.6.0`); the tag must match `package.json`. They load the `production` EAS environment,
+   - or the Codemagic `ios-production` / `android-production` workflows: run
+     the GitHub Actions `Release` workflow with kind `store` (`gh workflow run
+     Release -f kind=store -f message="<notes>"`). After CI passed on main it
+     tags `v<package.json version>` and creates a GitHub Release; pushing that
+     tag by hand does the same when Actions cannot run. They load the `production` EAS environment,
      sign from the secure `bookoo_production` group, fail unless the bundle
      targets the production Convex host (and, on Android, unless the upload key
      signed it), then upload to TestFlight and a Play internal draft. Review
@@ -109,12 +111,18 @@ existing production binary and no store binary or compliance update is needed.
    a useful message explicitly:
    - `OTA_CONFIRM_COMPATIBLE=1 OTA_MESSAGE="<notes>" bun ota:release`
    - append `:ios` or `:android` to target one platform.
-   - or from Codemagic: push an annotated `ota-<label>` tag on the tip of main
+   - or from Codemagic: run the `Release` workflow with kind `ota` (`gh
+     workflow run Release -f kind=ota -f message="<notes>"`), which tags
+     `ota-<version>-<n>` on a green main commit; kind `ota-dry` does the whole
+     run without the upload. Without Actions, push the annotated tag by hand
      (`git tag -a ota-1.5.0-1 -m "<notes>" && git push origin ota-1.5.0-1`).
-     The `ota-production` workflow runs this same script for both platforms with
-     `OTA_VERIFY=local`; the tag message is the release note and pushing the tag
-     is the compatibility attestation. `ota-dry-<label>` runs every gate
-     without publishing.
+     The `ota-production` workflow runs this same script for both platforms;
+     on Codemagic it requires the tag to be on main and runs CI's check
+     commands itself. The tag message is the release note and the tag is the
+     compatibility attestation.
+     Every release first runs `expo prebuild --no-install --clean` for its
+     platform: Patch fingerprints the generated native projects and blocks a
+     release whose fingerprint differs from earlier ones for that binary.
      The guard publishes to the Patch `Production` deployment, bundling with
      the `production` EAS environment through `eas env:exec`. Never publish
      automatically on every merge: native modules, config plugins, permissions,
@@ -123,8 +131,8 @@ existing production binary and no store binary or compliance update is needed.
    - Sign in once with `bunx @codemagic/patch-cli@0.10.0 login --server-url
      https://ota.codemagicpatch.dev`. QA builds read the `Staging` deployment;
      test there first with `cmpatch release-react --deployment Staging`.
-   - add `OTA_DRY_RUN=1` to verify the exact-main and successful-CI gates
-     without bundling or publishing.
+   - add `OTA_DRY_RUN=1` to run every gate, the prebuild and the bundle and
+     fingerprint with `release-react --dry-run`, without uploading.
    - when GitHub Actions cannot run, add `OTA_VERIFY=local`: the script
      runs CI's `check` commands (`bun lint:all`, `bun typecheck`, `bun run
      test`) on that exact clean commit instead of looking up the CI run. Never

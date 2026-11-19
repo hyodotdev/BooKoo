@@ -29,7 +29,7 @@ describe('production OTA release contract', () => {
     expect(script).toContain('@codemagic/patch-cli@0.10.0 release-react');
     expect(script).toContain('--server-url https://ota.codemagicpatch.dev');
     expect(script).toContain('--deployment Production');
-    expect(script).toContain('--target-binary-version $version');
+    expect(script).toContain('--target-binary-version "$version"');
     expect(script).toContain('BooKoo-iOS');
     expect(script).toContain('BooKoo-Android');
     expect(script).not.toContain('eas-cli@23.0.0 update');
@@ -51,7 +51,10 @@ describe('production OTA release contract', () => {
     expect(script).toContain('git branch --show-current');
     expect(script).toContain('git status --porcelain');
     expect(script).toContain(
-      'git fetch --quiet origin +refs/heads/main:refs/remotes/origin/main',
+      'main_ref=+refs/heads/main:refs/remotes/origin/main',
+    );
+    expect(script).toContain(
+      'git fetch --quiet --unshallow origin "$main_ref"',
     );
     expect(script).toContain('git rev-parse origin/main');
     expect(script).toContain('if [[ "$local_head" != "$remote_head" ]]');
@@ -59,6 +62,33 @@ describe('production OTA release contract', () => {
     expect(script).toContain('--event push');
     expect(script).toContain('${local_head}:completed:success');
     expect(script).toContain('OTA_DRY_RUN');
+  });
+
+  it('accepts a Codemagic tag build on main and runs the CI checks there', () => {
+    expect(script).toContain('if [[ -n "${CM_BUILD_ID:-}" ]]; then');
+    expect(script).toContain(
+      'git merge-base --is-ancestor "$local_head" origin/main',
+    );
+    expect(script).toContain('verify_mode=local');
+  });
+
+  it('regenerates the native projects before every release so Patch can fingerprint them', () => {
+    expect(script).toContain(
+      'prebuild=(bunx expo prebuild --no-install --clean --platform "$target")',
+    );
+    expect(script).toContain(
+      '"$production_env ${(j: :)${(@q)prebuild}} && $production_env ${(j: :)${(@q)release}}"',
+    );
+    expect(script.indexOf('prebuild=(')).toBeLessThan(
+      script.indexOf('release=('),
+    );
+  });
+
+  it('builds everything on a dry run and skips only the upload', () => {
+    expect(script).toContain(
+      '[[ "${OTA_DRY_RUN:-}" == "1" ]] && dry_run=(--dry-run)',
+    );
+    expect(script).not.toContain('exit 0');
   });
 
   it('defaults to the CI gate, and a local mode runs the same commands CI runs', () => {
@@ -72,5 +102,29 @@ describe('production OTA release contract', () => {
       expect(script).toContain(command);
       expect(ci).toContain(command);
     }
+  });
+});
+
+describe('Release dispatch workflow', () => {
+  const workflow = read('.github', 'workflows', 'release.yml');
+  const codemagic = read('codemagic.yaml');
+
+  it('tags only a main commit whose CI passed', () => {
+    expect(workflow).toContain('workflow_dispatch:');
+    expect(workflow).toContain("github.ref == 'refs/heads/main'");
+    expect(workflow).toContain('--workflow CI');
+    expect(workflow).toContain('completed:success');
+  });
+
+  it('creates exactly the tags Codemagic triggers on', () => {
+    for (const kind of ['- ota', '- ota-dry', '- store']) {
+      expect(workflow).toContain(kind);
+    }
+    expect(workflow).toContain('tag="v$version"');
+    expect(workflow).toContain('prefix="$KIND-$version-"');
+    expect(workflow).toContain('git tag -a "$tag" -m "$MESSAGE"');
+    expect(codemagic).toContain("pattern: 'v*'");
+    expect(codemagic).toContain("pattern: 'ota-*'");
+    expect(codemagic).toContain('ota-dry-*) export OTA_DRY_RUN=1');
   });
 });
