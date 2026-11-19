@@ -90,8 +90,9 @@ Always write commit messages in Angular Conventional Commits format.
 - Never enqueue an EAS cloud build. Every EAS native build must use
   `eas build --local`, including production and store-candidate builds.
 - Store binaries may instead come from the Codemagic `ios-production` and
-  `android-production` workflows in `codemagic.yaml`, started by pushing a
-  `v<version>` tag on main (or by hand). They upload to
+  `android-production` workflows in `codemagic.yaml`, started by the GitHub
+  Actions `Release` workflow (kind `store`), a hand-pushed `v<version>` tag on
+  main, or by hand in Codemagic. They upload to
   TestFlight and a Play internal draft only, never submit for review, and
   number each build one above the latest store build. The EAS remote counter
   then falls behind: raise it with `eas build:version:set` before the next EAS

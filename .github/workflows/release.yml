@@ -1,0 +1,96 @@
+name: Release
+
+# Starts a Codemagic release from GitHub. It only creates a tag on the current
+# main commit after that commit's CI passed; Codemagic's webhook does the rest
+# (codemagic.yaml):
+#   store   -> tag v<package.json version> + GitHub Release
+#              -> ios-production and android-production (TestFlight, Play draft)
+#   ota     -> annotated tag ota-<version>-<n> -> ota-production (Codemagic Patch)
+#   ota-dry -> annotated tag ota-dry-<version>-<n> -> the same OTA run, without
+#              the upload
+# When Actions cannot run, push the same tag by hand; Codemagic treats it alike.
+
+on:
+  workflow_dispatch:
+    inputs:
+      kind:
+        description: What to release
+        type: choice
+        options:
+          - ota
+          - ota-dry
+          - store
+        required: true
+      message:
+        description: Release note (the OTA note and the GitHub Release text)
+        type: string
+        required: true
+
+permissions:
+  actions: read
+  contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  tag:
+    if: ${{ github.repository == 'hyodotdev/BooKoo' && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Require successful CI for this commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          state=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow CI \
+            --commit "$GITHUB_SHA" --event push --limit 1 \
+            --json status,conclusion \
+            --jq 'if length == 1 then "\(.[0].status):\(.[0].conclusion)" else "" end')
+          if [ "$state" != "completed:success" ]; then
+            echo "::error::CI for $GITHUB_SHA is '${state:-missing}'; release only a green main commit."
+            exit 1
+          fi
+
+      - name: Create and push the release tag
+        env:
+          KIND: ${{ inputs.kind }}
+          MESSAGE: ${{ inputs.message }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          version=$(node -p 'require("./package.json").version')
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          case "$KIND" in
+            store)
+              tag="v$version"
+              if git rev-parse -q --verify "refs/tags/$tag" > /dev/null; then
+                echo "::error::$tag already exists; bump the version in package.json first."
+                exit 1
+              fi
+              ;;
+            ota | ota-dry)
+              prefix="$KIND-$version-"
+              last=$(git tag -l "$prefix*" | sed "s/^$prefix//" | grep -E '^[0-9]+$' | sort -n | tail -1 || true)
+              tag="$prefix$(( ${last:-0} + 1 ))"
+              ;;
+            *)
+              echo "::error::Unknown release kind $KIND"
+              exit 1
+              ;;
+          esac
+          git tag -a "$tag" -m "$MESSAGE"
+          git push origin "$tag"
+          if [ "$KIND" = store ]; then
+            gh release create "$tag" --verify-tag --title "$tag" --notes "$MESSAGE"
+          fi
+          {
+            echo "### Tagged \`$tag\` on \`${GITHUB_SHA::7}\`"
+            echo "Codemagic picks it up: https://codemagic.io/builds"
+          } >> "$GITHUB_STEP_SUMMARY"
