@@ -1,0 +1,4 @@
+interface:
+  display_name: "Maintain BooKoo"
+  short_description: "Run one serialized maintenance and delivery cycle"
+  default_prompt: "Use $maintain to recover BooKoo's current work and complete one verified maintenance cycle."

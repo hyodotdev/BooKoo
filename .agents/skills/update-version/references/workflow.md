@@ -48,56 +48,52 @@ installed native version; the update manifest is only a web/Expo Go fallback.
 
 ### Step 1b — Review native runtime compatibility
 
-Codemagic Patch targets each OTA release at the marketing version in
-`package.json` and also compares the native fingerprint. If the release changes
-native dependencies, plugins, permissions, entitlements or the native contract,
-ship both new iOS and Android binaries before OTA delivery. An OTA requiring
-those native APIs must never target older binaries.
+Current OTA delivery uses Codemagic Patch. package.json version is its target
+binary marketing version; Patch verifies a fingerprint of the generated native
+projects. `app.config.ts` no longer has an expo-updates runtimeVersion. Do not
+restore the obsolete runtime-bump procedure. Historical 1.1.1/runtime 1.1.0
+explains old expo-updates binaries only; it does not authorize Patch delivery.
 
-For a metadata-only patch with an unchanged native contract, explicitly retain
-the compatible runtime and record the decision in release evidence. Historical
-iOS1.1.1 retained runtime1.1.0 to support live Android32/iOS41 through the guarded
-OTA workflow. That title change did not include an OTA.
-Inspect the resolved configuration and embedded runtime in each new archive.
+Check cumulative native dependency, plugin, permission, entitlement and asset
+changes since each platform's actual public binary. Native changes require a
+new compatible binary and fresh device/purchase gates before dependent OTA.
+Compatible JS/assets changes retain the verified target binary's marketing
+version. The first Patch binary is 1.5.0; <=1.4.0 still uses expo-updates.
+Inspect the resolved config and archive, not only the version string.
 
 Native build numbers (iOS `buildNumber`, Android `versionCode`) are not managed
-here. EAS auto-increments them; see `$release-update`.
+here. EAS auto-increments them; Codemagic chooses above store maxima. Reconcile
+EAS counters before switching build paths; see `$release-update`.
 
 ### Step 2 — (only with `--force`) Convex force-update record
 
 **Precondition:** the target version must already be live in both stores. A
 force-update floor above the newest published build bricks every install.
 
-1. Confirm the table and functions exist:
-
-   ```bash
-   grep -rn "appVersion" convex/schema.ts convex/schema/ 2>/dev/null
-   bunx convex function-spec | grep -i version
-   ```
-
-2. If they do not exist, stop. Report that force update is not implemented and
-   point at the intended shape in `.notes/research/06-martie-convex.md` §2.2
-   (an `appVersions`-style table: `version: v.string()`,
-   `shouldUpdate: v.boolean()`, `createdAt: v.number()`, indexed by
-   `shouldUpdate`). Do not create the table as a side effect of a version bump.
-
-3. If they do exist, push the functions and run the real mutation name from the
-   function spec against the dev deployment first:
-
-   ```bash
-   bun dev:convex:once
-   bunx convex run <module>:<mutation> '{"version": "<version>", "shouldUpdate": true}'
-   ```
-
-4. Production is a separate, explicitly confirmed step. Never fold it into the
-   dev command:
-
-   ```bash
-   bunx convex deploy
-   bunx convex run --prod <module>:<mutation> '{"version": "<version>", "shouldUpdate": true}'
-   ```
-
-5. Verify by reading the record back before reporting success.
+1. Read the existing contract: `convex/schema/appContent.ts` defines
+   `appConfig` indexed by `by_singleton`; `convex/app/queries.ts:config` is its
+   public projection; `convex/app/mutations.ts:upsertConfig` is the ADMIN-only
+   full replacement. The client gate is `src/features/runtime/boot.tsx`.
+   Never create `appVersions` or use an invented `shouldUpdate` mutation.
+2. Obtain the owner's exact platform/build floor and named deployment. Confirm
+   the selected build is publicly obtainable on each affected platform, not
+   merely uploaded or in internal testing. Ordinary releases keep floors.
+3. Read current `app/queries:config` on that deployment. If absent, do not invent
+   initial feature/maintenance values; obtain the missing configuration.
+4. Build the complete mutation arguments from the current config and change
+   only the approved fields. Preserve both store URLs, marketing versions,
+   maintenance mode/message, legacy claim switch and every feature flag.
+   Remove read-only `updatedAt`; normalize a null public maintenanceMessageKey
+   to an omitted optional argument. `upsertConfig` uses `db.replace`, not patch.
+5. Rehearse with the exact schema on isolated local/dev state. Use an authorized
+   app ADMIN session for the real mutation; deployment credentials do not grant
+   app ADMIN. Re-read immediately before writing and rebuild if anything changed.
+   Avoid concurrent configuration writers: this API has no compare-and-swap.
+6. Production floors require the separate owner decision. Discover the deployed
+   function spec, invoke the actual `app/mutations:upsertConfig` once with that
+   full payload, then read `app/queries:config` back. Record sanitized before/
+   after values, deployment and affected platform; never expose admin tokens.
+   On timeout read back before retrying. Stop if config changed concurrently.
 
 ### Step 3 — Report
 
@@ -110,10 +106,10 @@ was not written, say so explicitly and why.
 | File                                  | Role                                                                                        |
 | ------------------------------------- | ------------------------------------------------------------------------------------------- |
 | `package.json`                        | Sole marketing/store version source (`version` field)                                       |
-| `app.config.ts`                       | Consumes marketing version; owns native compatibility runtime and store ids                 |
+| `app.config.ts`                       | Consumes marketing version; owns native config and store ids                 |
 | `config.ts`                           | Exports installed native appVersion (manifest fallback only on web/Expo Go) and Convex URLs |
-| `convex/schema.ts`, `convex/schema/`  | Where the force-update table will be declared                                               |
-| `.notes/research/06-martie-convex.md` | Reference shape for the `appVersions` table                                                 |
+| `convex/schema.ts`, `convex/schema/`  | Existing appConfig singleton and its indexes                                               |
+| `convex/app/mutations.ts`, `convex/app/queries.ts` | ADMIN replacement and public config projection |
 | `.notes/research/13-convex-scale.md`  | Index and query rules any new table must satisfy                                            |
 
 ## Cautions

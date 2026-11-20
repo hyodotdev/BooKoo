@@ -49,14 +49,15 @@ a `NN-` prefix (for example `00-project.mdc`) and are never generated or pruned.
    ``Use when the user runs `/<name>` or `$<name>`, ...`` so every agent's
    invocation syntax matches.
 2. Put anything long in `.agents/skills/<name>/references/`.
-3. Run `bash .agents/scripts/sync-skills.sh`.
-4. Add `.codex/skills/<name>/agents/openai.yaml` if the skill should show up in
-   the Codex skill picker.
+3. Optionally author `agents/openai.yaml` in the canonical skill directory.
+   The sync copies it to the Codex pointer for skill-picker discovery.
+4. Run `bash .agents/scripts/sync-skills.sh`.
 
 ## Current skills
 
 | Skill | Purpose |
 | --- | --- |
+| `maintain` | One serialized maintenance/product cycle, recovery and delivery |
 | `commit` | Branch checks, conventional commits, push, PR |
 | `review-self` | Self-review loop over the current work until stable |
 | `review-pr` | PR review findings and review-comment handling |

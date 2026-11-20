@@ -29,6 +29,34 @@ rule in `.notes/design/RECONCILIATION.md`. Future work must check those rules be
 `BooKooLegacy/` is a read-only reference copy of the 2017 app. Never edit or build it.
 `.local/` holds exported production user data. Never commit it, never quote it, never upload it.
 
+## Autonomous operation
+
+On 2026-11-21 (Asia/Seoul), the owner delegated routine BooKoo investigation,
+code/configuration changes, necessary compatible dependency migrations, tests,
+commits, push, PRs, review fixes, integration, existing-path backend/OTA/native
+builds, store review submission and publication. This standing authority applies
+to `$maintain` and its scheduled continuations; do not request it again for each
+technical step. Existing skill wording requiring authorization is satisfied
+within this scope. It does not bypass access controls, environment approvals,
+branch protection, credentials or required source/native/purchase gates.
+
+Without a new product goal, preserve product intent and complete one maintenance
+bundle. With a goal, record flows, acceptance criteria and implementation order,
+then deliver a reviewable result. Record new feature proposals in the existing
+status rather than implementing an unsolicited direction.
+
+Separate owner decisions remain necessary for new prices/payment policy,
+forced-update floors, new paid contracts, unsupported privacy/legal declarations
+and irreversible production-data deletion/conversion. Human authentication and
+unsupported store actions are real handoffs; continue independent work.
+
+Use [the canonical maintain skill](.agents/skills/maintain/SKILL.md) for one
+sequential cycle. Acquire its host-wide coordinator lock before changes or
+release actions, including manual continuations; an overlapping run exits.
+Read `.notes/STATUS.md` and remote PR/release state before choosing work. Retain
+one shared status, publish only sanitized evidence, and do not make timestamp-only
+commits or dispatch client releases for docs/skills/tooling-only changes.
+
 ## SSOT and KISS
 
 - Before implementation and every review, identify the canonical owner of each
@@ -201,7 +229,7 @@ Skills are defined once in `.agents/skills/<name>/SKILL.md` and mirrored to
 `.claude/skills/`, `.codex/skills/`, `.grok/skills/`, and `.cursor/rules/` as
 thin pointers (those mirrors are generated — they appear on the first sync
 run). Edit the canonical file only, then run
-`bash .agents/scripts/sync-skills.sh`. See `.agents/README.md` (to be created)
+`bash .agents/scripts/sync-skills.sh`. See `.agents/README.md`
 for the layout and the authoring conventions.
 
 The sync script owns and overwrites every mirrored pointer, and prunes any

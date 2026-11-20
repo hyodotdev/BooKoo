@@ -16,5 +16,7 @@ agent. Relative paths inside it resolve under
 
 - Sibling skills written as `$name` are Codex skills; invoke them directly.
 - This skill's Codex interface metadata lives in `agents/openai.yaml`.
-- For any interval or recurring step, use a Codex automation. Never emulate it
-  with `sleep`, `while true`, or a detached background process.
+- Use supported bounded tool waits for an active task's review/check interval.
+  Do not create an automation to monitor one task to completion. Standing daily
+  project work may use one Codex automation when the user requested it.
+  Never emulate recurrence with shell sleep loops or detached background jobs.

@@ -27,8 +27,10 @@ codex_notes() {
 
 - Sibling skills written as `$name` are Codex skills; invoke them directly.
 - This skill's Codex interface metadata lives in `agents/openai.yaml`.
-- For any interval or recurring step, use a Codex automation. Never emulate it
-  with `sleep`, `while true`, or a detached background process.
+- Use supported bounded tool waits for an active task's review/check interval.
+  Do not create an automation to monitor one task to completion. Standing daily
+  project work may use one Codex automation when the user requested it.
+  Never emulate recurrence with shell sleep loops or detached background jobs.
 EOF
 }
 
@@ -114,6 +116,10 @@ for dir in "$canonical_dir"/*/; do
   write_pointer .codex  "Codex"       codex_notes  "$name" "$title" "$description"
   write_pointer .grok   "Grok"        grok_notes   "$name" "$title" "$description"
   write_cursor_pointer "$name" "$title" "$description"
+  if [ -f "$dir/agents/openai.yaml" ]; then
+    mkdir -p ".codex/skills/$name/agents"
+    cp "$dir/agents/openai.yaml" ".codex/skills/$name/agents/openai.yaml"
+  fi
   echo "generated: $name"
 done
 

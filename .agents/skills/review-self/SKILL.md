@@ -89,13 +89,14 @@ This override exists so a fallback review never starts a second polling loop.
 ## Recheck Every Five Minutes
 
 - Run the first round immediately.
-- Use the product's recurring wake-up mechanism to re-enter `$review-self` 300
-  seconds later. Never emulate recurrence with shell sleep loops or background
-  jobs.
-- Keep at most one wake-up for the same target.
+- In an active task, use supported bounded tool waits to recheck after at least
+  300 seconds; do not create an automation to watch this task to completion.
+  If the environment cannot continue, save a resumable PENDING checkpoint.
+  Never emulate recurrence with shell sleep loops or detached background jobs.
+- Keep one polling owner for the same target.
 - Carry the original goal, target/base, head and worktree fingerprints, seen
   feedback/check IDs, poll count, clean count, findings, fix attempts, and
-  commit/push authority in the scheduled prompt.
+  commit/push authority in the active loop checkpoint.
 - Keep loop state out of tracked files and revalidate it against disk and
   GitHub.
 - Increment the clean count only after a full round has no actionable findings,

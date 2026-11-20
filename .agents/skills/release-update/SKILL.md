@@ -28,9 +28,12 @@ states.
 The app is useless against a stale backend. Before any client artifact reaches
 users:
 
-1. Push and verify Convex functions for the target deployment:
-   - `bun dev:convex:once` for dev
-   - `bun deploy:convex` for production
+1. Inspect current `.github/workflows/ci.yml` and repository configuration.
+   Main CI deploys production only for `hyodotdev/BooKoo` with
+   `CONVEX_PRODUCTION_DEPLOY=enabled` and its deploy key. Wait for that exact
+   SHA's deploy job and verify it; do not manually redeploy a successful CI
+   deployment. Local validation uses isolated anonymous state. An explicitly
+   required manual deployment must target the named environment.
 2. Confirm every new query the client calls exists in the deployed function
    spec, and that any new index has finished backfilling.
 3. A schema change that removes or narrows a field must ship **after** the
@@ -85,7 +88,8 @@ existing production binary and no store binary or compliance update is needed.
      sign from the secure `bookoo_production` group, fail unless the bundle
      targets the production Convex host (and, on Android, unless the upload key
      signed it), then upload to TestFlight and a Play internal draft. Review
-     submission and rollout stay manual.
+     submission and rollout are separate store actions; standing authority in
+     AGENTS.md covers routine delivery once candidate acceptance passes.
 6. Inspect EAS build metadata and download the artifacts when URLs are
    available. Verify Android is a readable AAB with the expected package and
    version, and iOS is an IPA archive with the expected bundle and version. A
@@ -154,6 +158,20 @@ existing production binary and no store binary or compliance update is needed.
 8. If credentials, agreements, compliance answers, 2FA, or a manual product
    choice blocks submission, stop at that exact boundary and preserve the
    completed uploads.
+
+## Candidate And Public Acceptance
+
+Before integration retain the required source, device and old-client/backend
+compatibility gates. After integration, confirm exact-SHA backend delivery, build
+and inspect the final candidate, then upload it to the internal tester track.
+Complete `docs/release/PURCHASE_E2E.md` on that installed candidate when relevant
+before public review/rollout. PENDING/FAIL blocks public release. Use all currently
+configured locales for notes; never infer public availability from upload or a
+successful tag workflow. Check cumulative changes since each platform's last
+actual delivery, and choose one build path per platform. Record last healthy
+source/artifact, supported recovery and post-delivery smoke checks. On API timeout,
+read remote state before retrying. Publish automatically after approval for an
+authorized routine release; follow each platform independently.
 
 ## After The Rollout
 

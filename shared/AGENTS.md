@@ -25,7 +25,10 @@ server** — the client for instant feedback, the server as the real gate:
 
 - validation and normalization (usernames, emails, invite codes)
 - money arithmetic in minor units and currency formatting rules
-- period keys (`'YYYY-MM'`, `'YYYY-MM-DD'`) and day-boundary resolution
+- stored integer period keys (`monthKey=YYYYMM`, `dayKey=YYYYMMDD`), derived
+  in the ledger timezone by `shared/date.ts`, and day-boundary resolution;
+  ISO strings (`YYYY-MM`, `YYYY-MM-DD`) belong only at UI/API boundaries and
+  use that module's calendar/ISO codecs
 - category identifiers and their i18n key mapping
 - the shared error-code union and its payload type
 

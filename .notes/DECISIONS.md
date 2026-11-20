@@ -260,3 +260,29 @@ behind a capability check. That is the fallback path the feature needs anyway â€
 RecallAI's `on-device-organizer.ts` is the precedent, trying the model first and
 falling back to `classifyDeterministically()`. Slot the model behind the same
 interface in October.
+
+
+## 2026-11-21 â€” Autonomous maintenance and delivery
+
+The owner delegates routine investigation, implementation, necessary compatible
+migrations, verification, commit/push/PR/review fixes, integration and existing-path
+backend/OTA/native/store submission/publication. AGENTS.md's Autonomous operation
+section is the canonical authority boundary; maintain orchestrates existing skills.
+Reserved decisions include pricing/payment policy, forced-update floors, new paid
+contracts, unsupported privacy/legal answers and irreversible production-data work.
+
+One host-wide kernel lock serializes daily and manual coordinators across clones
+and worktrees. Kernel ownership supersedes stale metadata; never unlink the inode.
+No multi-host automation without shared scheduler exclusion. STATUS is tracked and
+sanitized; PR metadata owns exact final head/merge/check evidence. Daily default:
+09:00 Asia/Seoul, after a verified first cycle; no timestamp-only commits.
+
+Root strict nonforce fast-forward integration wins over the old loop-review
+squash wording. Protection/rulesets must still be inspected on each integration;
+no bypass if they conflict. Self-review means self-review, with two clean full
+snapshots at least five minutes apart; no external reviewer substitution.
+
+Existing appConfig owns native build floors. Its ADMIN mutation replaces the
+whole singleton, so preserve all unrelated settings and read back; no appVersions
+table. Stored date buckets are integers in ledger timezone; ISO date strings are
+UI/API codecs. No runtime dependency/version change belongs to this tooling batch.

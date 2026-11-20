@@ -7,7 +7,7 @@ description: Run BooKoo's complete change-to-merge loop from the latest origin/m
 
 Own one BooKoo change from a fresh `main` baseline through a verified merge.
 Delegate to the sibling skill that owns a procedure instead of restating it.
-Only the steps no sibling skill owns — external reviewer requests, polling, the
+Only the steps no sibling skill owns — polling, the
 regression gates, and the merge — are specified here.
 
 ## Load The Workflows
@@ -20,17 +20,22 @@ Read before acting:
 An explicit invocation authorizes the in-scope commit, push, PR creation, review
 replies, thread resolution, and merge for this task. It does not authorize
 `$release-update`, store submission, Expo updates, running data migrations
-against production Convex, or unrelated cleanup.
+against production Convex, or unrelated cleanup. Existing standing authority in
+AGENTS.md still applies when this is a `$maintain` continuation.
 
 ## 1. Start From Current Main
 
 1. Snapshot `git status --short --branch`. Preserve every existing change.
-2. For a new task, require a clean worktree, then `git fetch origin`, switch to
-   `main`, and `git pull --ff-only origin main`.
-3. Confirm local `main` equals `origin/main`, then create a semantic branch
-   using the naming rules in `$commit` — `feat/`, `bugfix/`, `docs/`,
-   `refactor/`, `test/`, or `chore/`. Never a tool or vendor prefix.
-4. Record the starting main SHA. The implementation diff must descend from it.
+2. Resolve the canonical repository and remote first. For `$maintain`, it is
+   `hyodotdev/BooKoo`; an ops clone's `origin` can point elsewhere. Fetch that
+   remote's main explicitly and record its full SHA as the integration base.
+3. Require a clean task worktree before claiming new work. Branch from that
+   fetched main using `$commit` naming rules. Fast-forward an existing local
+   main only when its lineage matches and no other task uses it; otherwise
+   preserve it and use an isolated checkout/worktree based on canonical main.
+4. Record the remote name and main SHA. Use that remote/main throughout this
+   loop, including PRs, ancestry checks, push and final readback; `origin/main`
+   in examples is not authority to integrate into a different repository.
 
 If invoked for work already in progress, treat it as a resumed loop. Do not
 stash, reset, switch branches, or discard anything. Verify the merge base and
@@ -71,15 +76,11 @@ Follow `$commit` with push and PR:
 - Push the semantic branch and open an English PR against `main`.
 - Apply 1–3 existing repository labels; never invent new ones.
 
-`$commit` does not request external reviewers, so this loop does it. Request
-whichever review bot the repository actually has configured, and never block on
-the response: post the request, then run the exact-head `$review-self` fallback
-in the same round so the head has review coverage immediately. If the bot
-reports later on that same head, handle its findings as a new round.
-
-Do not substitute a different review bot for one that is unavailable, and never
-count a silently-ignored reviewer request as coverage — the
-`requested_reviewers` API accepts unknown reviewers and adds nobody.
+Use `$review-self` for change reviews. Do not request Muse or substitute another
+external reviewer. Inspect existing human/automation feedback through `$review-pr`;
+report self-review honestly without claiming independent coverage. The single-round
+fallback below handles feedback during polling; it does not replace step 3's two
+clean snapshots separated by five minutes.
 
 When the pushed head is identical to the diff step 3 already stabilized, record
 that coverage against the head SHA instead of repeating the round. Any later
@@ -90,8 +91,8 @@ clean review coverage.
 
 ## 5. Poll Until The Exact Head Is Clean
 
-Run `$review-pr` immediately, then re-enter it every five minutes through the
-product's recurring wake-up mechanism. `loop-review` is the only polling owner;
+Run `$review-pr` immediately, then re-enter it every five minutes through
+supported bounded tool waits in the active task. `loop-review` is the only polling owner;
 `review-pr` performs one pass per round.
 
 Each round:
@@ -102,20 +103,17 @@ Each round:
    comment with the plain commit hash, and resolve only the threads you replied
    to with a fix.
 3. Rerun the checks the batch affects plus everything previously failing.
-4. After a head change, redo step 4 for the new SHA — re-request the reviewer
+4. After a head change, redo step 4 for the new SHA — rerun the affected self-review
    and re-establish head coverage, since the push invalidated the previous
    round.
-5. Keep polling while CI is pending or a reviewer has reported findings you have
-   not handled. A missing reviewer response never holds the loop open. Do not
-   rerun expensive unchanged local checks on a no-op poll, and never retrigger a
-   review bot on a no-op.
+5. Keep polling while CI or actionable feedback is pending. Do not rerun
+   expensive unchanged local checks on a no-op poll or request review bots.
 
 Clean means all of these hold for the same head SHA:
 
 - zero unresolved actionable review threads;
-- the head has review coverage — either the external reviewer reported on it
-  with nothing actionable left, or the exact-head `$review-self` fallback ran
-  clean;
+- the head has clean `$review-self` coverage and step 3's two separated clean
+  snapshots still cover this exact tree; a single fallback is insufficient;
 - every required CI check is terminal and successful;
 - the PR is mergeable and carries every required update from `main`;
 - the worktree is clean and the final diff has been reread.
@@ -139,13 +137,11 @@ sign-in providers, invite deep links, app lock, receipt photo capture,
 notifications, `app.config.ts`, `plugins/`, `android/`, `ios/`, or dependency
 changes that reach the runtime.
 
-When it is required, **stop without merging even if the PR is otherwise
-clean**. Report the scenarios the diff implicates and hand back to the user. Two
-things clear the gate, and both are recorded on the PR first:
-
-1. An `$e2e-test` run covering the implicated scenarios, with its result posted.
-2. An explicit written waiver from the user in this conversation, naming what is
-   waived and why. Record it verbatim on the PR.
+When required, run `$e2e-test` for the implicated scenarios and record its
+result on the PR before merging. Missing or failed native gates block merging.
+Only an explicit written owner waiver naming the omitted checks and reason can
+waive a missing gate; record it verbatim. Do not request a waiver for checks that
+can be completed under standing authority.
 
 Absence of an objection is not a waiver, and the loop never grants itself one.
 Green CI is not a substitute — CI does not launch a simulator, add a ledger
@@ -158,18 +154,20 @@ that justify it; silence reads as an untested merge.
 ## 7. Merge And Close The Loop
 
 Immediately before merging, refetch the PR and confirm its head still equals the
-clean reviewed SHA. Squash merge with branch deletion unless a stricter policy
-applies. Never bypass branch protection or merge a stale, pending, or failing
-head.
+clean reviewed SHA. Follow root AGENTS.md: strict nonforce fast-forward only.
+Confirm remote main is an ancestor of the reviewed head. Inspect current protection and
+rulesets first. If permitted, push the reviewed head to main without force and
+verify GitHub marks the PR merged. If protection requires a different method,
+report the conflict without bypassing it. Do not silently substitute squash or
+merge a stale, pending, or failing head.
 
 After merge:
 
 1. Confirm the PR state is `MERGED` and record the merge commit.
-2. Delete the reviewer-trigger comments this loop posted and any terminal
-   "review skipped/unavailable" notices. Never delete human comments, inline
-   replies, or substantive review feedback.
-3. Switch to `main` and fast-forward from `origin/main` when that cannot disturb
-   other work.
+2. Preserve substantive review discussion and evidence; no reviewer-trigger
+   comments are needed for self-review.
+3. Fast-forward the matching local integration checkout only when that cannot
+   disturb other work. Preserve any legacy ops main with a different history.
 4. Report the PR, merge commit, final checks, review coverage, gate results, and
    anything skipped. Do not release or deploy unless separately requested.
 
