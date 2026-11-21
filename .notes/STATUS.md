@@ -77,7 +77,7 @@
 | Surface | Observed state | Evidence / next read |
 | --- | --- | --- |
 | Backend | PASS: production deployed source `c4ba5783` before this batch | [main CI](https://github.com/hyodotdev/BooKoo/actions/runs/44764921928), deploy job succeeded; final batch state comes from the tracking PR |
-| Source | package 1.5.0; Expo 57 / RN 0.86.3 / React 19.2.3 / Convex 1.45.0 / expo-iap 6.4.2 | package.json + bun.lock; no version changes in this batch |
+| Source | package 1.5.0; Expo 57 / RN 0.86.3 / React 19.2.3 / Convex 1.45.0 / expo-iap 6.4.2 | package.json unchanged; only the shell-quote lock resolution changes |
 | Release dispatch | PASS: last run was `ota-dry`, not a store or public OTA dispatch; current remote has no tags | [run](https://github.com/hyodotdev/BooKoo/actions/runs/44467232727), step log inspected; do not replay removed tags |
 | iOS | PASS ASC readback: 1.5.0 READY_FOR_SALE / AFTER_APPROVAL, selected build 60 VALID, not expired | App 6805969489 / dev.hyo.bookoo, read 2026-11-21 KST; [public Apple lookup](https://itunes.apple.com/lookup?id=6805969489&country=kr) independently confirms 1.5.0 (release 2026-11-18T18:25:16Z) |
 | Android | PASS public listing advertises 1.5.0; exact build/versionCode and internal-track state PENDING authenticated Play readback | [public Play](https://play.google.com/store/apps/details?id=dev.hyo.bookoo&hl=en&gl=US); no new upload or rollout performed |
@@ -92,7 +92,7 @@ reachability. This batch resolves the sole critical package, shell-quote. Triage
 remaining packages and their actual app/server/tooling call paths next; no silent
 suppression, audit-pass claim, wholesale major upgrade or broad override.
 
-Delivery recovery: no open public PR or active/retryable build was found before
+Delivery recovery: no open public PR or active build was found before
 this batch. Latest Codemagic run was an OTA dry run, and Patch Production has no
 releases on either platform. iOS 1.5.0 was already READY_FOR_SALE; do not duplicate
 submission. Android exact versionCode/internal-track state still needs
